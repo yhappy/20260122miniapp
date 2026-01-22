@@ -1,0 +1,30 @@
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 新闻列表 -->
+  <view class="news-list" wx:elif="{{newsList.length > 0}}">
+    <view
+      class="news-item"
+      wx:for="{{newsList}}"
+      wx:key="id"
+      data-item="{{item}}"
+      bindtap="onNewsTap"
+    >
+      <view class="news-title">{{item.title}}</view>
+      <view class="news-content" wx:if="{{item.content}}">{{item.content}}</view>
+      <view class="news-meta">
+        <text class="news-author">{{item.author}}</text>
+        <text class="news-time">{{item.time}}</text>
+        <text class="news-read" wx:if="{{item.readCount > 0}}">{{item.readCount}} 阅读</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:else>
+    <text>暂无新闻数据</text>
+  </view>
+</view>

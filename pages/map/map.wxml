@@ -1,0 +1,29 @@
+<view class="container">
+  <map
+    id="sanfangMap"
+    class="map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}"
+    polyline="{{polyline}}"
+    show-location="{{true}}"
+    bindmarkertap="onMarkerTap"
+    bindregionchange="onRegionChange"
+  >
+    <!-- <cover-view class="map-info">
+      <cover-view class="info-title">{{name}}</cover-view>
+      <cover-view class="info-desc">{{address}}</cover-view>
+    </cover-view> -->
+  </map>
+
+  <cover-view class="bottom-actions">
+    <cover-view class="action-btn" bindtap="moveToLocation">
+      <cover-image class="btn-icon" src="/images/location.png"></cover-image>
+      <cover-view class="btn-text">定位</cover-view>
+    </cover-view>
+    <cover-view class="action-btn" bindtap="openWeChatLocation">
+      <cover-image class="btn-icon" src="/images/navigation.png"></cover-image>
+      <cover-view class="btn-text">导航</cover-view>
+    </cover-view>
+  </cover-view>
+</view>

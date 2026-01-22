@@ -1,0 +1,53 @@
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="error" wx:elif="{{error}}">
+    <text class="error-icon">⚠️</text>
+    <text class="error-text">加载失败，请稍后重试</text>
+  </view>
+
+  <!-- 新闻详情 -->
+  <view class="article" wx:else>
+    <!-- 标题 -->
+    <view class="article-title">{{article.title}}</view>
+
+    <!-- 元信息 -->
+    <view class="article-meta">
+      <view class="meta-item" wx:if="{{article.pubtime}}">
+        <text class="meta-label">时间：</text>
+        <text class="meta-value">{{article.pubtime}}</text>
+      </view>
+      <view class="meta-item" wx:if="{{article.author}}">
+        <text class="meta-label">作者：</text>
+        <text class="meta-value">{{article.author}}</text>
+      </view>
+      <view class="meta-item" wx:if="{{article.source}}">
+        <text class="meta-label">来源：</text>
+        <text class="meta-value">{{article.source}}</text>
+      </view>
+      <view class="meta-item" wx:if="{{article.editor}}">
+        <text class="meta-label">责编：</text>
+        <text class="meta-value">{{article.editor}}</text>
+      </view>
+    </view>
+
+    <!-- 分割线 -->
+    <view class="divider"></view>
+
+    <!-- 正文内容 -->
+    <view class="article-content">
+      <text>{{article.content}}</text>
+    </view>
+
+    <!-- 底部操作按钮 -->
+    <view class="actions">
+      <button class="action-btn" bindtap="openInBrowser">
+        在浏览器中打开
+      </button>
+    </view>
+  </view>
+</view>
