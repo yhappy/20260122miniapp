@@ -81,5 +81,12 @@ Page({
 
   onRegionChange(e) {
     console.log('地图区域变化', e)
+  },
+
+  /**
+   * 返回上一页
+   */
+  goBack() {
+    wx.navigateBack()
   }
 })

@@ -10,9 +10,28 @@ Page({
     error: false
   },
 
-  onLoad() {
+  onLoad(options) {
+    // 获取主题ID参数
+    const themeId = options.themeId
+
+    // 根据主题ID设置不同的标题
+    const themeTitles = {
+      1: '历史文化',
+      2: '美食探索',
+      3: '艺术展览',
+      4: '自然风光',
+      5: '购物攻略',
+      6: '娱乐休闲',
+      7: '建筑之美',
+      8: '交通出行',
+      9: '教育培训',
+      10: '职场发展'
+    }
+
+    const title = themeTitles[themeId] || '新闻资讯'
+
     wx.setNavigationBarTitle({
-      title: '新闻资讯'
+      title: title
     })
 
     // 加载新闻数据
@@ -112,5 +131,12 @@ Page({
       title: '没有更多新闻了',
       icon: 'none'
     })
+  },
+
+  /**
+   * 返回上一页
+   */
+  goBack() {
+    wx.navigateBack()
   }
 })

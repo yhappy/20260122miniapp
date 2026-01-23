@@ -4,6 +4,34 @@
   padding-bottom: 20rpx;
 }
 
+.top-bar {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  padding-top: 60rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.back-icon {
+  font-size: 36rpx;
+  color: #333;
+  margin-right: 8rpx;
+}
+
+.back-text {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
 .loading,
 .empty {
   display: flex;

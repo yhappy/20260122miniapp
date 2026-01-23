@@ -1,31 +1,18 @@
 {
   "pages": [
-    "pages/news/news",
+    "pages/cover/cover",
+    "pages/home/home",
     "pages/map/map",
+    "pages/themes/themes",
+    "pages/news/news",
     "pages/news-detail/news-detail",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "城市探索",
     "navigationBarBackgroundColor": "#ffffff"
-  },
-  "tabBar": {
-    "color": "#666666",
-    "selectedColor": "#1890ff",
-    "borderStyle": "black",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/news/news",
-        "text": "📰 新闻"
-      },
-      {
-        "pagePath": "pages/map/map",
-        "text": "🗺️ 地图"
-      }
-    ]
   },
   "style": "v2",
   "componentFramework": "glass-easel",

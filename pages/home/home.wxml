@@ -1,0 +1,23 @@
+<!--pages/home/home.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="header-title">选择探索方向</view>
+    <view class="header-subtitle">发现城市的新视角</view>
+  </view>
+
+  <view class="buttons-wrapper">
+    <view class="button-card left-card" bindtap="goToMap">
+      <view class="card-icon">🗺️</view>
+      <view class="card-title">城市地图</view>
+      <view class="card-desc">探索城市地图，发现周边精彩</view>
+      <view class="card-arrow">→</view>
+    </view>
+
+    <view class="button-card right-card" bindtap="goToThemes">
+      <view class="card-icon">📚</view>
+      <view class="card-title">十大主题</view>
+      <view class="card-desc">浏览精选主题，深入了解城市</view>
+      <view class="card-arrow">→</view>
+    </view>
+  </view>
+</view>

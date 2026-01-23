@@ -1,0 +1,9 @@
+<!--pages/cover/cover.wxml-->
+<view class="container">
+  <view class="cover-content">
+    <view class="title">城市探索</view>
+    <view class="subtitle">发现城市的美好</view>
+    <view class="logo">🏙️</view>
+    <button class="start-btn" bindtap="startExplore">开始探索</button>
+  </view>
+</view>

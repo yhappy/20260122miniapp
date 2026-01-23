@@ -16,6 +16,13 @@
     </cover-view> -->
   </map>
 
+  <cover-view class="top-actions">
+    <cover-view class="back-btn" bindtap="goBack">
+      <cover-view class="back-icon">←</cover-view>
+      <cover-view class="back-text">返回</cover-view>
+    </cover-view>
+  </cover-view>
+
   <cover-view class="bottom-actions">
     <cover-view class="action-btn" bindtap="moveToLocation">
       <cover-image class="btn-icon" src="/images/location.png"></cover-image>
