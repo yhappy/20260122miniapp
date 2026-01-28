@@ -25,11 +25,11 @@
 
   <cover-view class="bottom-actions">
     <cover-view class="action-btn" bindtap="moveToLocation">
-      <cover-image class="btn-icon" src="/images/location.png"></cover-image>
+      <cover-image class="btn-icon" src="https://app5.fjsen.com/h5/20260122/images/location.png"></cover-image>
       <cover-view class="btn-text">定位</cover-view>
     </cover-view>
     <cover-view class="action-btn" bindtap="openWeChatLocation">
-      <cover-image class="btn-icon" src="/images/navigation.png"></cover-image>
+      <cover-image class="btn-icon" src="https://app5.fjsen.com/h5/20260122/images/navigation.png"></cover-image>
       <cover-view class="btn-text">导航</cover-view>
     </cover-view>
   </cover-view>

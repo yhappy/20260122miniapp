@@ -1,9 +1,25 @@
 <!--pages/cover/cover.wxml-->
 <view class="container">
-  <view class="cover-content">
-    <view class="title">城市探索</view>
-    <view class="subtitle">发现城市的美好</view>
-    <view class="logo">🏙️</view>
-    <button class="start-btn" bindtap="startExplore">开始探索</button>
+  <!-- 背景图片 -->
+  <image class="bg-image s1p15" src="https://app5.fjsen.com/h5/20260122/images/s1p15.jpg" mode="aspectFill"></image>
+
+  <!-- 内容区域 -->
+  <view class="content-layer">
+    <!-- 上部叠放图片 -->
+    <view class="top-images">
+      <image class="overlay-image s1p16" src="https://app5.fjsen.com/h5/20260122/images/s1p16.png" mode="widthFix"></image>
+      <image class="overlay-image s1p3" src="https://app5.fjsen.com/h5/20260122/images/s1p3.png" mode="widthFix"></image>
+      <image class="overlay-image s1p2" src="https://app5.fjsen.com/h5/20260122/images/s1p2.png" mode="widthFix"></image>
+    </view>
+
+    <!-- 中部靠下图片 -->
+    <view class="center-bottom">
+      <image class="center-image s1p1" src="https://app5.fjsen.com/h5/20260122/images/s1p1.png" mode="widthFix"></image>
+    </view>
+
+    <!-- 底部靠边图片 -->
+    <view class="bottom-corner">
+      <image class="corner-image s1p14" src="https://app5.fjsen.com/h5/20260122/images/s1p14.png" mode="widthFix"></image>
+    </view>
   </view>
 </view>
