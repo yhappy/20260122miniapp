@@ -16,10 +16,11 @@
     <view class="center-bottom">
       <image class="center-image s1p1" src="https://app5.fjsen.com/h5/20260122/images/s1p1.png" mode="widthFix"></image>
     </view>
-
+  </view>
+  
     <!-- 底部靠边图片 -->
     <view class="bottom-corner">
       <image class="corner-image s1p14" src="https://app5.fjsen.com/h5/20260122/images/s1p14.png" mode="widthFix"></image>
     </view>
-  </view>
+    
 </view>
