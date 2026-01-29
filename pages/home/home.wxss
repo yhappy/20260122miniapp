@@ -72,7 +72,7 @@
   width: 28%;
   z-index: 4;
   opacity: 0;
-  animation: fadeIn 1s ease-out 1.3s forwards;
+  animation: fadeIn 1s ease-out 1.3s forwards, cloudFloat 8s ease-in-out 8s infinite;
 }
 
 .overlay-image.s2p6 {
@@ -83,7 +83,7 @@
   width: 20%;
   z-index: 5;
   opacity: 0;
-  animation: fadeIn 1s ease-out 1.5s forwards;
+  animation: fadeIn 1s ease-out 1.5s forwards, cloudFloat 10s ease-in-out 5s infinite;
 }
 
 .overlay-image.s2p7 {
@@ -355,4 +355,23 @@
   90%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
   95% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
   100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 云彩漂浮动画 - 上下左右轻微浮动 */
+@keyframes cloudFloat {
+  0% {
+    transform: translateX(-50%) translateY(0) translateX(0) scale(1);
+  }
+  25% {
+    transform: translateX(calc(-50% + 8rpx)) translateY(-5rpx) scale(1.01);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-8rpx) translateX(0) scale(1.02);
+  }
+  75% {
+    transform: translateX(calc(-50% - 8rpx)) translateY(-5rpx) scale(1.01);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) translateX(0) scale(1);
+  }
 }
