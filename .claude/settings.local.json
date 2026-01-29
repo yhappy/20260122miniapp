@@ -3,7 +3,8 @@
     "allow": [
       "Bash(dir:*)",
       "Bash(findstr:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(curl:*)"
     ]
   }
 }

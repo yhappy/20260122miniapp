@@ -1,18 +1,34 @@
 // pages/news/news.js
 const newsParser = require('../../utils/news-parser.js')
 
-const NEWS_URL = 'https://xm.fjsen.com/node_163616.htm'
+// 默认新闻源（厦门频道）
+const DEFAULT_NEWS_URL = 'https://xm.fjsen.com/node_163616.htm'
 
 Page({
   data: {
     newsList: [],
     loading: false,
-    error: false
+    error: false,
+    currentUrl: '',  // 当前新闻URL
+    backButtonTop: 0  // 返回按钮位置
   },
 
   onLoad(options) {
     // 获取主题ID参数
-    const themeId = options.themeId
+    const themeId = options.themeId || '320551'  // 默认使用历史文化专题
+    console.log('接收到的 themeId:', themeId)
+
+    // 拼接专题网址 - 使用新的wap站点
+    const newsUrl = `https://www.fjsen.com/wap/zhuanti/node_${themeId}.htm`
+    console.log('拼接后的新闻URL:', newsUrl)
+
+    // 保存到 data 中，供后续使用
+    this.setData({
+      currentUrl: newsUrl
+    })
+
+    // 获取系统信息，计算返回按钮位置
+    this.getSystemInfo()
 
     // 根据主题ID设置不同的标题
     const themeTitles = {
@@ -25,7 +41,8 @@ Page({
       7: '建筑之美',
       8: '交通出行',
       9: '教育培训',
-      10: '职场发展'
+      10: '职场发展',
+      320551: '历史文化专题'  // 添加专题标题
     }
 
     const title = themeTitles[themeId] || '新闻资讯'
@@ -39,6 +56,28 @@ Page({
   },
 
   /**
+   * 获取系统信息
+   */
+  getSystemInfo() {
+    const systemInfo = wx.getSystemInfoSync()
+    console.log('系统信息:', systemInfo)
+
+    // 计算状态栏高度（px转rpx）
+    const screenWidth = systemInfo.screenWidth
+    const statusBarHeight = systemInfo.statusBarHeight
+
+    // px 转 rpx（以 iPhone 6 为基准，750rpx = 375px）
+    const rpxRatio = 750 / screenWidth
+    const statusBarHeightInRpx = statusBarHeight * rpxRatio
+
+    console.log('状态栏高度:', statusBarHeight, 'px =', statusBarHeightInRpx, 'rpx')
+
+    this.setData({
+      backButtonTop: statusBarHeightInRpx
+    })
+  },
+
+  /**
    * 加载新闻数据
    */
   async loadNews() {
@@ -48,8 +87,10 @@ Page({
         error: false
       })
 
-      // 使用封装的函数获取新闻列表
-      const newsList = await newsParser.getNewsList(NEWS_URL)
+      // 使用动态URL获取新闻列表
+      const newsList = await newsParser.getNewsList(this.data.currentUrl)
+
+      console.log('获取到的新闻:', newsList)
 
       if (newsList.length > 0) {
         this.setData({
@@ -58,6 +99,7 @@ Page({
         })
       } else {
         // 如果没有获取到数据，使用测试数据
+        console.warn('未获取到新闻数据，使用降级方案')
         this.useFallbackData()
       }
 

@@ -14,16 +14,11 @@
 /* 返回按钮 */
 .back-btn {
   position: fixed;
-  top: calc(60rpx + env(safe-area-inset-top));  /* 适配安全区域 */
+  /* top 通过 JS 动态计算设置 */
   left: 30rpx;
   width: 120rpx;
-  height: 120rpx;
   z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   /* 移除点击高亮效果 */
   -webkit-tap-highlight-color: transparent;
   user-select: none;
@@ -35,8 +30,7 @@
 }
 
 .back-icon {
-  width: 160rpx;
-  height: 160rpx;
+  width: 100%;
   display: block;
 }
 
@@ -46,7 +40,7 @@
   grid-template-columns: repeat(2, 1fr); /* 2列 */
   grid-template-rows: repeat(5, auto); /* 5行 */
   gap: 50rpx 100rpx; /* 间距 */
-  padding: 120rpx 140rpx 20rpx 140rpx; /* 顶部留出返回按钮空间 */
+  padding: 20rpx 140rpx 0rpx 140rpx; /* 顶部留出返回按钮空间 */
   width: 100%;
   box-sizing: border-box;
   max-height: 100vh;
@@ -56,12 +50,9 @@
 .theme-image {
   width: 100%;
   display: block;
-  border-radius: 20rpx;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .theme-image:active {
   transform: scale(0.95);
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
 }

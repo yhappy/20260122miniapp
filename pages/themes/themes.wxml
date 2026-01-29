@@ -1,13 +1,18 @@
 <!--pages/themes/themes.wxml-->
 <view class="container">
   <!-- 返回按钮 -->
-  <view class="back-btn" bindtap="goBack">
+  <view class="back-btn" style="top: {{backButtonTop}}rpx" bindtap="goBack">
     <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
   </view>
 
   <!-- 主题图片网格 - 5行2列 -->
-  <view class="themes-grid">
-    <image class="theme-image s3p1" src="https://app5.fjsen.com/h5/20260122/images/s3p1.png" mode="widthFix"></image>
+  <view class="themes-grid" style="padding-top: calc({{backButtonTop}}rpx + 40rpx)">
+    <image
+      class="theme-image s3p1"
+      src="https://app5.fjsen.com/h5/20260122/images/s3p1.png"
+      mode="widthFix"
+      bindtap="onS3P1Click"
+    ></image>
     <image class="theme-image s3p2" src="https://app5.fjsen.com/h5/20260122/images/s3p2.png" mode="widthFix"></image>
     <image class="theme-image s3p3" src="https://app5.fjsen.com/h5/20260122/images/s3p3.png" mode="widthFix"></image>
     <image class="theme-image s3p4" src="https://app5.fjsen.com/h5/20260122/images/s3p4.png" mode="widthFix"></image>

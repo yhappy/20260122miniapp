@@ -1,19 +1,16 @@
 <view class="container">
-  <!-- 顶部返回按钮 -->
-  <view class="top-bar">
-    <view class="back-btn" bindtap="goBack">
-      <text class="back-icon">←</text>
-      <text class="back-text">返回</text>
-    </view>
+  <!-- 返回按钮 - 与 themes 页面一致 -->
+  <view class="back-btn" style="top: {{backButtonTop + 10}}rpx" bindtap="goBack">
+    <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
   </view>
 
   <!-- 加载状态 -->
-  <view class="loading" wx:if="{{loading}}">
+  <view class="loading" wx:if="{{loading}}" style="padding-top: calc({{backButtonTop}}rpx + 188rpx)">
     <text>加载中...</text>
   </view>
 
   <!-- 新闻列表 -->
-  <view class="news-list" wx:elif="{{newsList.length > 0}}">
+  <scroll-view class="news-list" scroll-y wx:elif="{{newsList.length > 0}}" style="padding-top: calc({{backButtonTop}}rpx + 60rpx)">
     <view
       class="news-item"
       wx:for="{{newsList}}"
@@ -21,18 +18,24 @@
       data-item="{{item}}"
       bindtap="onNewsTap"
     >
-      <view class="news-title">{{item.title}}</view>
-      <view class="news-content" wx:if="{{item.content}}">{{item.content}}</view>
-      <view class="news-meta">
-        <text class="news-author">{{item.author}}</text>
-        <text class="news-time">{{item.time}}</text>
-        <text class="news-read" wx:if="{{item.readCount > 0}}">{{item.readCount}} 阅读</text>
+      <!-- 封面图片 -->
+      <image
+        class="news-cover"
+        src="{{item.imgUrl}}"
+        mode="aspectFill"
+        lazy-load="{{true}}"
+      ></image>
+
+      <!-- 内容区域 -->
+      <view class="news-content">
+        <!-- 标题 -->
+        <view class="news-title">{{item.title}}</view>  
       </view>
     </view>
-  </view>
+  </scroll-view>
 
   <!-- 空状态 -->
-  <view class="empty" wx:else>
+  <view class="empty" wx:else style="padding-top: calc({{backButtonTop}}rpx + 188rpx)">
     <text>暂无新闻数据</text>
   </view>
 </view>

@@ -47,7 +47,8 @@ function fetchHTML(url) {
 }
 
 /**
- * 从HTML中提取新闻列表数据
+ * 从HTML中提取新闻列表数据 - wap 版本
+ * 结构：<ul class="clear tuwenlist clearfix"><li><a href="...">...</a></li></ul>
  * @param {string} html - HTML内容
  * @returns {Array} 新闻列表数组
  */
@@ -55,29 +56,48 @@ function parseNewsList(html) {
   const newsList = []
 
   try {
-    // 先提取 cont-left 区域的内容
-    const contLeftRegex = /<div[^>]*class="cont-left"[^>]*>([\s\S]*?)<\/div>/i
-    const contLeftMatch = html.match(contLeftRegex)
+    console.log('开始解析 wap 版本新闻列表')
 
-    if (!contLeftMatch) {
-      console.error('未找到 cont-left 区域')
+    // 匹配 <ul class="clear tuwenlist clearfix">
+    const ulRegex = /<ul[^>]*class=["']clear tuwenlist clearfix["'][^>]*>[\s\S]*?<\/ul>/i
+    const ulMatch = html.match(ulRegex)
+
+    if (!ulMatch) {
+      console.error('未找到 clear tuwenlist clearfix 区域')
       return []
     }
 
-    const contLeftHTML = contLeftMatch[1]
-    console.log('成功提取 cont-left 区域')
+    const ulHTML = ulMatch[0]
+    console.log('成功提取 tuwenlist 区域')
 
-    // 匹配 <li><span>日期</span><a href="...">标题</a></li> 格式
-    const newsItemRegex = /<li[^>]*>\s*<span[^>]*>(\d{4}-\d{2}-\d{2})<\/span>\s*<a[^>]*href=["']([^"']+)["'][^>]*>(.*?)<\/a>\s*<\/li>/gi
+    // 匹配 <li><a href="完整链接"><img src="..."></a><h2><a href="完整链接">标题</a></h2></li>
+    // 注意：标题中可能包含<br>标签，需要特殊处理
+    const newsItemRegex = /<li[^>]*>\s*<a[^>]*href=["']([^"']+)["'][^>]*>[\s\S]*?<img[^>]*src=["']([^"']+)["'][^>]*>[\s\S]*?<\/a>\s*<h2[^>]*><a[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a><\/h2>\s*<\/li>/gi
 
     let match
     let count = 0
     const maxCount = 200 // 最多提取200条新闻
 
-    while ((match = newsItemRegex.exec(contLeftHTML)) !== null && count < maxCount) {
-      const date = match[1] // 日期：2026-01-22
-      const url = match[2] // 新闻链接
-      const title = match[3].trim() // 新闻标题
+    while ((match = newsItemRegex.exec(ulHTML)) !== null && count < maxCount) {
+      const imgUrl = match[2]     // 图片URL
+      const newsUrl = match[3]     // 新闻详情链接
+      let title = match[4].trim()   // 新闻标题
+
+      // 清理标题中的HTML标签和<br>标签
+      title = title
+        .replace(/<[^>]+>/g, '')     // 移除所有HTML标签
+        .replace(/<br\s*\/?>/gi, '')  // 移除<br>和<br />
+        .replace(/&nbsp;/g, ' ')       // 替换HTML实体
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&mdash;/g, '—')
+        .replace(/&ldquo;/g, '"')
+        .replace(/&rdquo;/g, '"')
+        .trim()
+
+      // 清理图片URL
+      const cleanImgUrl = imgUrl.replace(/&amp;/g, '&')
 
       // 过滤掉无效标题
       if (title && title.length > 3 &&
@@ -88,43 +108,51 @@ function parseNewsList(html) {
           !title.includes('更多>>') &&
           !title.includes('点击排行')) {
 
-        // 移除零宽字符和HTML实体
-        const cleanTitle = title
-          .replace(/&ZeroWidthSpace;/gi, '')
-          .replace(/&nbsp;/g, ' ')
-          .replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-          .trim()
-
         newsList.push({
           id: Date.now() + count,
-          title: cleanTitle,
-          url: url, // 保存新闻链接
-          content: '', // 列表页没有内容详情
-          time: `${date} ${Math.floor(Math.random() * 24).toString().padStart(2, '0')}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`,
-          author: '东南网厦门频道',
-          readCount: Math.floor(Math.random() * 5000) + 100
+          title: title,
+          url: newsUrl,         // 保存完整的新闻链接
+          imgUrl: cleanImgUrl,    // 保存图片URL
+          content: '',           // 列表页没有内容详情
         })
-
+        console.log(`新闻 ${count + 1}:`, title)
         count++
       }
     }
 
     console.log('成功解析新闻数量：', newsList.length)
-    console.log('新闻：', newsList)
-
-    // 如果没有提取到新闻，尝试备用方案
-    if (newsList.length === 0) {
-      console.log('使用备用方案提取新闻')
-      return parseNewsListFallback(contLeftHTML)
-    }
 
     return newsList
 
   } catch (error) {
     console.error('解析新闻列表失败：', error)
     return []
+  }
+}
+
+/**
+ * 从新闻URL中提取日期
+ * @param {string} url - 新闻URL
+ * @returns {string} 格式化的日期字符串
+ */
+function extractDateFromUrl(url) {
+  try {
+    // URL格式：https://www.fjsen.com/zhuanti/2026-01/05/content_32110035.htm
+    const dateRegex = /\/(\d{4})-(\d{1,2})-(\d{1,2})\//
+    const match = url.match(dateRegex)
+
+    if (match) {
+      const year = match[1]
+      const month = match[2].padStart(2, '0')
+      const day = match[3].padStart(2, '0')
+      return `${year}-${month}-${day}`
+    }
+
+    // 如果无法从URL提取，使用当前日期
+    const now = new Date()
+    return `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`
+  } catch (error) {
+    return '2026-01-05'
   }
 }
 
@@ -172,7 +200,7 @@ function parseNewsListFallback(html) {
             title: title,
             content: '',
             time: `${date} ${Math.floor(Math.random() * 24).toString().padStart(2, '0')}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`,
-            author: '东南网厦门频道',
+            author: '东南网',
             readCount: Math.floor(Math.random() * 5000) + 100
           })
 
@@ -253,7 +281,7 @@ function parseNewsDetail(html, url) {
     }
 
     // 提取标题 - 在 cont_head 里面
-    const contHeadRegex = /<div[^>]*class="cont-head"[^>]*>([\s\S]*?)<\/div>/i
+    const contHeadRegex = /<div[^>]*class="cont-head"[^>]*>[\s\S]*?)<\/div>/i
     const contHeadMatch = html.match(contHeadRegex)
 
     if (contHeadMatch) {
@@ -273,7 +301,7 @@ function parseNewsDetail(html, url) {
     }
 
     // 提取正文 - 在 cont-news 里面，只提取 p 标签内容
-    const contNewsRegex = /<div[^>]*class="cont-news"[^>]*>([\s\S]*?)<\/div>/i
+    const contNewsRegex = /<div[^>]*class="cont-news"[^>]*>[\s\S]*?<\/div>/i
     const contNewsMatch = html.match(contNewsRegex)
 
     if (contNewsMatch) {
@@ -397,4 +425,3 @@ module.exports = {
   parseNewsDetail,
   getNewsDetail
 }
-
