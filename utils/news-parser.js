@@ -281,7 +281,7 @@ function parseNewsDetail(html, url) {
     }
 
     // 提取标题 - 在 cont_head 里面
-    const contHeadRegex = /<div[^>]*class="cont-head"[^>]*>[\s\S]*?)<\/div>/i
+    const contHeadRegex = /<div[^>]*class="cont-head"[^>]*>[\s\S]*?<\/div>/i
     const contHeadMatch = html.match(contHeadRegex)
 
     if (contHeadMatch) {
