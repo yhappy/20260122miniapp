@@ -30,7 +30,7 @@
   flex-shrink: 0;
 }
 
-/* 上部叠放图片 - 使用绝对定位 */
+/* s1p16 - 淡入效果 */
 .overlay-image.s1p16 {
   position: absolute;
   top: 200rpx;
@@ -38,34 +38,105 @@
   transform: translateX(-50%);
   width: 95%;
   z-index: 2;
+  opacity: 0;
+  animation: fadeIn 2s ease-out 0s forwards;
 }
 
+/* s1p3 - 左右旋转出现效果 */
 .overlay-image.s1p3 {
   position: absolute;
   top: 440rpx;
   left: 60%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) rotate(-15deg) scale(0.5);
   width: 36%;
   z-index: 3;
+  opacity: 0;
+  animation: rotateIn 1s ease-out 1s forwards;
 }
 
+/* s1p2 - 从下到上淡入效果 */
 .overlay-image.s1p2 {
   position: absolute;
   top: 570rpx;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(100rpx);
   width: 84%;
   z-index: 4;
+  opacity: 0;
+  animation: slideUpFadeIn 1s ease-out 2s forwards;
 }
 
-/* 中部靠下图片 - s1p1 */
+/* 中部靠下图片 - s1p1 - 带点击引导动画 */
 .center-image.s1p1 {
   position: absolute;
   top: 1200rpx;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 50%;
   z-index: 5;
+  cursor: pointer;
+  animation: pulse 2s ease-in-out 3s infinite, fadeIn 1s ease-out 3s forwards;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  /* 移除点击高亮效果 */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 脉冲动画 - 呼吸效果 */
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 旋转出现动画 */
+@keyframes rotateIn {
+  from {
+    transform: translateX(-50%) rotate(-15deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 从下到上淡入动画 */
+@keyframes slideUpFadeIn {
+  from {
+    transform: translateX(-50%) translateY(100rpx);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 点击时的效果 - 已禁用，保持呼吸动画持续 */
+.center-image.s1p1:active {
+  /* 点击时不做任何视觉变化，保持动画继续 */
 }
 
 /* 底部靠边图片 - s1p14 - 使用绝对定位固定在屏幕底部 */

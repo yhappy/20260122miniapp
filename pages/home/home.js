@@ -1,20 +1,16 @@
 // pages/home/home.js
 Page({
   /**
-   * 进入城市地图页
+   * 页面的生命周期函数
    */
-  goToMap() {
-    wx.navigateTo({
-      url: '/pages/map/map'
-    })
+  onLoad(options) {
+    console.log('home 页面加载')
   },
 
   /**
-   * 进入十大主题页
+   * 页面初次渲染完成
    */
-  goToThemes() {
-    wx.navigateTo({
-      url: '/pages/themes/themes'
-    })
+  onReady() {
+    console.log('home 页面渲染完成')
   }
 })

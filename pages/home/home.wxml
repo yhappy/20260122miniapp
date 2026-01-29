@@ -1,23 +1,36 @@
 <!--pages/home/home.wxml-->
 <view class="container">
-  <view class="header">
-    <view class="header-title">选择探索方向</view>
-    <view class="header-subtitle">发现城市的新视角</view>
-  </view>
+  <!-- 背景图片 - 保持与 cover 相同 -->
+  <image class="bg-image s1p15" src="https://app5.fjsen.com/h5/20260122/images/s1p15.jpg" mode="aspectFill"></image>
 
-  <view class="buttons-wrapper">
-    <view class="button-card left-card" bindtap="goToMap">
-      <view class="card-icon">🗺️</view>
-      <view class="card-title">城市地图</view>
-      <view class="card-desc">探索城市地图，发现周边精彩</view>
-      <view class="card-arrow">→</view>
+  <!-- 内容区域 -->
+  <view class="content-layer">
+    <!-- 上部叠放图片 -->
+    <view class="top-images">
+      <image class="overlay-image s2p3" src="https://app5.fjsen.com/h5/20260122/images/s2p3.png" mode="widthFix"></image>
+      <image class="overlay-image s2p4" src="https://app5.fjsen.com/h5/20260122/images/s2p4.png" mode="widthFix"></image>
+      <image class="overlay-image s2p5" src="https://app5.fjsen.com/h5/20260122/images/s2p5.png" mode="widthFix"></image>
+      <image class="overlay-image s2p6" src="https://app5.fjsen.com/h5/20260122/images/s2p6.png" mode="widthFix"></image>
+      <image class="overlay-image s2p7" src="https://app5.fjsen.com/h5/20260122/images/s2p7.png" mode="widthFix"></image>
+      <image class="overlay-image s2p9" src="https://app5.fjsen.com/h5/20260122/images/s2p9.png" mode="widthFix"></image>
+
+      <!-- 城市标签 -->
+      <image class="overlay-image nanping" src="https://app5.fjsen.com/h5/20260122/images/南平.png" mode="widthFix"></image>
+      <image class="overlay-image ningde" src="https://app5.fjsen.com/h5/20260122/images/宁德.png" mode="widthFix"></image>
+      <image class="overlay-image sanming" src="https://app5.fjsen.com/h5/20260122/images/三明.png" mode="widthFix"></image>
+      <image class="overlay-image longyan" src="https://app5.fjsen.com/h5/20260122/images/龙岩.png" mode="widthFix"></image>
+      <image class="overlay-image putian" src="https://app5.fjsen.com/h5/20260122/images/莆田.png" mode="widthFix"></image>
+      <image class="overlay-image quanzhou" src="https://app5.fjsen.com/h5/20260122/images/泉州.png" mode="widthFix"></image>
+      <image class="overlay-image zhangzhou" src="https://app5.fjsen.com/h5/20260122/images/漳州.png" mode="widthFix"></image>
+      <image class="overlay-image pingtan" src="https://app5.fjsen.com/h5/20260122/images/平潭.png" mode="widthFix"></image>
+      <image class="overlay-image xiamen" src="https://app5.fjsen.com/h5/20260122/images/厦门.png" mode="widthFix"></image>
+      <image class="overlay-image fuzhou" src="https://app5.fjsen.com/h5/20260122/images/福州.png" mode="widthFix"></image>
     </view>
 
-    <view class="button-card right-card" bindtap="goToThemes">
-      <view class="card-icon">📚</view>
-      <view class="card-title">十大主题</view>
-      <view class="card-desc">浏览精选主题，深入了解城市</view>
-      <view class="card-arrow">→</view>
+    <!-- 中部靠下图片 - 使用 s2p1 和 s2p2 -->
+    <view class="center-bottom">
+      <image class="center-image s2p1" src="https://app5.fjsen.com/h5/20260122/images/s2p1.png" mode="widthFix"></image>
+      <image class="center-image s2p2" src="https://app5.fjsen.com/h5/20260122/images/s2p2.png" mode="widthFix"></image>
     </view>
   </view>
 </view>

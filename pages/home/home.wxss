@@ -1,93 +1,259 @@
 /* pages/home/home.wxss */
 .container {
   width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 120rpx 30rpx 60rpx;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 80rpx;
-}
-
-.header-title {
-  font-size: 56rpx;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 20rpx;
-}
-
-.header-subtitle {
-  font-size: 28rpx;
-  color: #7f8c8d;
-}
-
-.buttons-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 40rpx;
-  padding: 0 20rpx;
-}
-
-.button-card {
-  background: #ffffff;
-  border-radius: 30rpx;
-  padding: 50rpx 40rpx;
-  box-shadow: 0 10rpx 40rpx rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.button-card::before {
-  content: '';
+/* 背景图片 - s1p15 - 与 cover 相同 */
+.bg-image.s1p15 {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 8rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
-.left-card::before {
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+/* 内容层 - 使用固定高度并居中 */
+.content-layer {
+  position: relative;
+  width: 100%;
+  height: 1500rpx;
+  z-index: 1;
+  flex-shrink: 0;
 }
 
-.right-card::before {
-  background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+/* 上部叠放图片 - 6张图片使用绝对定位，按照从上到下、从中心到两边的顺序 */
+.overlay-image.s2p9 {
+  position: absolute;
+  top: 440rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  z-index: 7;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.5s forwards;
 }
 
-.button-card:active {
-  transform: scale(0.98);
-  box-shadow: 0 5rpx 20rpx rgba(0, 0, 0, 0.15);
+.overlay-image.s2p4 {
+  position: absolute;
+  top: 310rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  z-index: 3;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.8s forwards;
 }
 
-.card-icon {
-  font-size: 120rpx;
-  margin-bottom: 30rpx;
+.overlay-image.s2p3 {
+  position: absolute;
+  top: 150rpx;
+  left: 22%;
+  transform: translateX(-50%);
+  width: 29%;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.1s forwards;
 }
 
-.card-title {
-  font-size: 44rpx;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 20rpx;
+.overlay-image.s2p5 {
+  position: absolute;
+  top: 230rpx;
+  left: 80%;
+  transform: translateX(-50%);
+  width: 28%;
+  z-index: 4;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.3s forwards;
 }
 
-.card-desc {
-  font-size: 26rpx;
-  color: #95a5a6;
-  line-height: 1.6;
-  margin-bottom: 30rpx;
+.overlay-image.s2p6 {
+  position: absolute;
+  top: 550rpx;
+  left: 12%;
+  transform: translateX(-50%);
+  width: 20%;
+  z-index: 5;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.5s forwards;
 }
 
-.card-arrow {
-  font-size: 48rpx;
-  color: #bdc3c7;
-  margin-top: 10rpx;
+.overlay-image.s2p7 {
+  position: absolute;
+  top: 990rpx;
+  left: 90%;
+  transform: translateX(-50%);
+  width: 10%;
+  z-index: 6;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.7s forwards;
+}
+
+/* 福州 - 闽A */
+.overlay-image.fuzhou {
+  position: absolute;
+  top: 766rpx;
+  left: 75.5%;
+  transform: translateX(-50%);
+  width: 13%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1s forwards;
+}
+
+/* 莆田 - 闽B */
+.overlay-image.putian {
+  position: absolute;
+  top: 880rpx;
+  left: 67%;
+  transform: translateX(-50%);
+  width: 13%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.15s forwards;
+}
+
+/* 泉州 - 闽C */
+.overlay-image.quanzhou {
+  position: absolute;
+  top: 925rpx;
+  left: 52%;
+  transform: translateX(-50%);
+  width: 13%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.3s forwards;
+}
+
+/* 厦门 - 闽D */
+.overlay-image.xiamen {
+  position: absolute;
+  top: 1090rpx;
+  left: 61%;
+  transform: translateX(-50%);
+  width: 12.5%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.45s forwards;
+}
+
+/* 漳州 - 闽E */
+.overlay-image.zhangzhou {
+  position: absolute;
+  top: 1060rpx;
+  left: 38%;
+  transform: translateX(-50%);
+  width: 12.5%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.6s forwards;
+}
+
+/* 龙岩 - 闽F */
+.overlay-image.longyan {
+  position: absolute;
+  top: 885rpx;
+  left: 32%;
+  transform: translateX(-50%);
+  width: 13%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.75s forwards;
+}
+
+/* 三明 - 闽G */
+.overlay-image.sanming {
+  position: absolute;
+  top: 755rpx;
+  left: 38%;
+  transform: translateX(-50%);
+  width: 13%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.9s forwards;
+}
+
+/* 南平 - 闽H */
+.overlay-image.nanping {
+  position: absolute;
+  top: 670rpx;
+  left: 52%;
+  transform: translateX(-50%);
+  width: 13%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 2.05s forwards;
+}
+
+/* 宁德 - 闽J */
+.overlay-image.ningde {
+  position: absolute;
+  top: 625rpx;
+  left: 83%;
+  transform: translateX(-50%);
+  width: 13%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 2.2s forwards;
+}
+
+/* 平潭 - 特区 */
+.overlay-image.pingtan {
+  position: absolute;
+  top: 830rpx;
+  left: 88%;
+  transform: translateX(-50%);
+  width: 12%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 2.35s forwards;
+}
+
+/* 中部靠下图片 - s2p1 和 s2p2 - 最后同时出现 */
+.center-image.s2p1 {
+  position: absolute;
+  top: 1280rpx;
+  left: 28%;
+  transform: translateX(-50%);
+  width: 40%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s forwards;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.center-image.s2p2 {
+  position: absolute;
+  top: 1280rpx;
+  left: 73%;
+  transform: translateX(-50%);
+  width: 40%;
+  z-index: 8;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s forwards;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

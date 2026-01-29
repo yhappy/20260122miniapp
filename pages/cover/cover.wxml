@@ -14,7 +14,12 @@
 
     <!-- 中部靠下图片 -->
     <view class="center-bottom">
-      <image class="center-image s1p1" src="https://app5.fjsen.com/h5/20260122/images/s1p1.png" mode="widthFix"></image>
+      <image
+        class="center-image s1p1"
+        src="https://app5.fjsen.com/h5/20260122/images/s1p1.png"
+        mode="widthFix"
+        bindtap="onS1P1Click"
+      ></image>
     </view>
   </view>
   
