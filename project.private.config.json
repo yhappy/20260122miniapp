@@ -23,11 +23,18 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/home/home",
-          "pathName": "pages/home/home",
+          "name": "pages/themes/themes",
+          "pathName": "pages/themes/themes",
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -1,26 +1,21 @@
 <!--pages/themes/themes.wxml-->
 <view class="container">
-  <view class="top-bar">
-    <view class="back-btn" bindtap="goBack">
-      <text class="back-icon">←</text>
-      <text class="back-text">返回</text>
-    </view>
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">
+    <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
   </view>
 
-  <view class="header">
-    <view class="header-title">十大主题</view>
-    <view class="header-subtitle">精选内容，深度探索</view>
+  <!-- 主题图片网格 - 5行2列 -->
+  <view class="themes-grid">
+    <image class="theme-image s3p1" src="https://app5.fjsen.com/h5/20260122/images/s3p1.png" mode="widthFix"></image>
+    <image class="theme-image s3p2" src="https://app5.fjsen.com/h5/20260122/images/s3p2.png" mode="widthFix"></image>
+    <image class="theme-image s3p3" src="https://app5.fjsen.com/h5/20260122/images/s3p3.png" mode="widthFix"></image>
+    <image class="theme-image s3p4" src="https://app5.fjsen.com/h5/20260122/images/s3p4.png" mode="widthFix"></image>
+    <image class="theme-image s3p5" src="https://app5.fjsen.com/h5/20260122/images/s3p5.png" mode="widthFix"></image>
+    <image class="theme-image s3p6" src="https://app5.fjsen.com/h5/20260122/images/s3p6.png" mode="widthFix"></image>
+    <image class="theme-image s3p7" src="https://app5.fjsen.com/h5/20260122/images/s3p7.png" mode="widthFix"></image>
+    <image class="theme-image s3p8" src="https://app5.fjsen.com/h5/20260122/images/s3p8.png" mode="widthFix"></image>
+    <image class="theme-image s3p9" src="https://app5.fjsen.com/h5/20260122/images/s3p9.png" mode="widthFix"></image>
+    <image class="theme-image s3p10" src="https://app5.fjsen.com/h5/20260122/images/s3p10.png" mode="widthFix"></image>
   </view>
-
-  <scroll-view class="themes-list" scroll-y>
-    <view class="theme-item" wx:for="{{themes}}" wx:key="id" bindtap="goToNews" data-id="{{item.id}}">
-      <view class="theme-icon">{{item.icon}}</view>
-      <view class="theme-info">
-        <view class="theme-title">{{item.title}}</view>
-        <view class="theme-desc">{{item.description}}</view>
-        <view class="theme-count">{{item.count}} 篇稿件</view>
-      </view>
-      <view class="theme-arrow">→</view>
-    </view>
-  </scroll-view>
 </view>

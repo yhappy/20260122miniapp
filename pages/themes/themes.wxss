@@ -1,113 +1,67 @@
 /* pages/themes/themes.wxss */
 .container {
   width: 100%;
-  min-height: 100vh;
-  background: #f5f7fa;
+  height: 100vh;
+  background: #fffede; /* 黄色背景 */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.top-bar {
-  background-color: #fff;
-  padding: 20rpx 30rpx;
-  padding-top: 60rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
+/* 返回按钮 */
 .back-btn {
+  position: fixed;
+  top: calc(60rpx + env(safe-area-inset-top));  /* 适配安全区域 */
+  left: 30rpx;
+  width: 120rpx;
+  height: 120rpx;
+  z-index: 100;
   display: flex;
   align-items: center;
-  width: fit-content;
+  justify-content: center;
+  cursor: pointer;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  /* 移除点击高亮效果 */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.back-btn:active {
+  /* 点击时无视觉效果 */
 }
 
 .back-icon {
-  font-size: 36rpx;
-  color: #333;
-  margin-right: 8rpx;
+  width: 160rpx;
+  height: 160rpx;
+  display: block;
 }
 
-.back-text {
-  font-size: 28rpx;
-  color: #333;
-  font-weight: 500;
+/* 主题图片网格 - 5行2列 */
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2列 */
+  grid-template-rows: repeat(5, auto); /* 5行 */
+  gap: 50rpx 100rpx; /* 间距 */
+  padding: 120rpx 140rpx 20rpx 140rpx; /* 顶部留出返回按钮空间 */
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
-.header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 40rpx 30rpx 60rpx;
-  text-align: center;
-  color: #ffffff;
-}
-
-.header-title {
-  font-size: 56rpx;
-  font-weight: bold;
-  margin-bottom: 20rpx;
-}
-
-.header-subtitle {
-  font-size: 28rpx;
-  opacity: 0.9;
-}
-
-.themes-list {
-  height: calc(100vh - 180rpx);
-  padding: 30rpx 20rpx;
-}
-
-.theme-item {
-  background: #ffffff;
+.theme-image {
+  width: 100%;
+  display: block;
   border-radius: 20rpx;
-  padding: 40rpx 30rpx;
-  margin-bottom: 20rpx;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
-  transition: all 0.3s;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.theme-item:active {
-  transform: scale(0.98);
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.12);
-}
-
-.theme-icon {
-  font-size: 80rpx;
-  margin-right: 30rpx;
-  flex-shrink: 0;
-}
-
-.theme-info {
-  flex: 1;
-}
-
-.theme-title {
-  font-size: 34rpx;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 12rpx;
-}
-
-.theme-desc {
-  font-size: 24rpx;
-  color: #95a5a6;
-  margin-bottom: 12rpx;
-  line-height: 1.5;
-}
-
-.theme-count {
-  font-size: 22rpx;
-  color: #667eea;
-  background: rgba(102, 126, 234, 0.1);
-  padding: 6rpx 16rpx;
-  border-radius: 20rpx;
-  display: inline-block;
-}
-
-.theme-arrow {
-  font-size: 40rpx;
-  color: #bdc3c7;
-  margin-left: 20rpx;
-  flex-shrink: 0;
+.theme-image:active {
+  transform: scale(0.95);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
 }
