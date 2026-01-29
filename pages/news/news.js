@@ -9,13 +9,13 @@ Page({
     newsList: [],
     loading: false,
     error: false,
-    currentUrl: '',  // 当前新闻URL
-    backButtonTop: 0  // 返回按钮位置
+    currentUrl: '', // 当前新闻URL
+    backButtonTop: 0 // 返回按钮位置
   },
 
   onLoad(options) {
     // 获取主题ID参数
-    const themeId = options.themeId || '320551'  // 默认使用历史文化专题
+    const themeId = options.themeId || '320551' // 默认使用历史文化专题
     console.log('接收到的 themeId:', themeId)
 
     // 拼接专题网址 - 使用新的wap站点
@@ -32,20 +32,19 @@ Page({
 
     // 根据主题ID设置不同的标题
     const themeTitles = {
-      1: '历史文化',
-      2: '美食探索',
-      3: '艺术展览',
-      4: '自然风光',
-      5: '购物攻略',
-      6: '娱乐休闲',
-      7: '建筑之美',
-      8: '交通出行',
-      9: '教育培训',
-      10: '职场发展',
-      320551: '历史文化专题'  // 添加专题标题
+      320551: '观山阅海',
+      320552: '茶和天下',
+      320553: '福见好戏',
+      320554: '福地美食',
+      320555: '非遗国潮',
+      320556: '古厝新宿',
+      320557: '闽韵福游',
+      320558: '绿道慢活',
+      320559: '福海扬帆',
+      320560: '福祉绵延'
     }
 
-    const title = themeTitles[themeId] || '新闻资讯'
+    const title = themeTitles[themeId] || '闽式生活'
 
     wx.setNavigationBarTitle({
       title: title
@@ -113,16 +112,14 @@ Page({
    * 使用测试数据作为后备
    */
   useFallbackData() {
-    const fallbackNews = [
-      {
-        id: Date.now(),
-        title: '无法加载在线新闻，显示测试数据',
-        content: '请检查网络连接或稍后重试',
-        time: new Date().toISOString().split('T')[0] + ' 10:00',
-        author: '系统提示',
-        readCount: 0
-      }
-    ]
+    const fallbackNews = [{
+      id: Date.now(),
+      title: '无法加载在线新闻，显示测试数据',
+      content: '请检查网络连接或稍后重试',
+      time: new Date().toISOString().split('T')[0] + ' 10:00',
+      author: '系统提示',
+      readCount: 0
+    }]
 
     this.setData({
       newsList: fallbackNews,
@@ -140,7 +137,9 @@ Page({
    * 点击新闻项
    */
   onNewsTap(e) {
-    const { item } = e.currentTarget.dataset
+    const {
+      item
+    } = e.currentTarget.dataset
 
     if (!item || !item.url) {
       wx.showToast({
@@ -169,8 +168,9 @@ Page({
    * 页面上拉触底
    */
   onReachBottom() {
+    return
     wx.showToast({
-      title: '没有更多新闻了',
+      title: '没有更多了',
       icon: 'none'
     })
   },

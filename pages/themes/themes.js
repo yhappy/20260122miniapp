@@ -93,5 +93,180 @@ Page({
         console.error('跳转失败:', err)
       }
     })
+  },
+
+  /**
+   * s3p2 点击事件 - 跳转到 news 页面
+   */
+  onS3P2Click() {
+    console.log('点击了 s3p2 图片，准备跳转到 news 页面')
+
+    // 添加点击反馈震动
+    wx.vibrateShort({
+      type: 'light'
+    })
+
+    // 跳转到新闻页面，携带参数 320552
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320552',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
+  },
+
+  /**
+   * s3p3 点击事件 - 跳转到 news 页面
+   */
+  onS3P3Click() {
+    console.log('点击了 s3p3 图片，准备跳转到 news 页面')
+
+    wx.vibrateShort({ type: 'light' })
+
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320553',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
+  },
+
+  /**
+   * s3p4 点击事件 - 跳转到 news 页面
+   */
+  onS3P4Click() {
+    console.log('点击了 s3p4 图片，准备跳转到 news 页面')
+
+    wx.vibrateShort({ type: 'light' })
+
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320554',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
+  },
+
+  /**
+   * s3p5 点击事件 - 跳转到 news 页面
+   */
+  onS3P5Click() {
+    console.log('点击了 s3p5 图片，准备跳转到 news 页面')
+
+    wx.vibrateShort({ type: 'light' })
+
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320555',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
+  },
+
+  /**
+   * s3p6 点击事件 - 跳转到 news 页面
+   */
+  onS3P6Click() {
+    console.log('点击了 s3p6 图片，准备跳转到 news 页面')
+
+    wx.vibrateShort({ type: 'light' })
+
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320556',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
+  },
+
+  /**
+   * s3p7 点击事件 - 跳转到 news 页面
+   */
+  onS3P7Click() {
+    console.log('点击了 s3p7 图片，准备跳转到 news 页面')
+
+    wx.vibrateShort({ type: 'light' })
+
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320557',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
+  },
+
+  /**
+   * s3p8 点击事件 - 跳转到 news 页面
+   */
+  onS3P8Click() {
+    console.log('点击了 s3p8 图片，准备跳转到 news 页面')
+
+    wx.vibrateShort({ type: 'light' })
+
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320558',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
+  },
+
+  /**
+   * s3p9 点击事件 - 跳转到 news 页面
+   */
+  onS3P9Click() {
+    console.log('点击了 s3p9 图片，准备跳转到 news 页面')
+
+    wx.vibrateShort({ type: 'light' })
+
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320559',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
+  },
+
+  /**
+   * s3p10 点击事件 - 跳转到 news 页面
+   */
+  onS3P10Click() {
+    console.log('点击了 s3p10 图片，准备跳转到 news 页面')
+
+    wx.vibrateShort({ type: 'light' })
+
+    wx.navigateTo({
+      url: '/pages/news/news?themeId=320560',
+      success: () => {
+        console.log('跳转到 news 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
   }
 })
