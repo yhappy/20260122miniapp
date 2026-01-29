@@ -97,7 +97,7 @@
   animation: fadeIn 1s ease-out 1.7s forwards;
 }
 
-/* 福州 - 闽A */
+/* 福州 (闽A) - 0-1秒闪烁 */
 .overlay-image.fuzhou {
   position: absolute;
   top: 766rpx;
@@ -106,10 +106,10 @@
   width: 13%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 1s forwards;
+  animation: fadeIn 0.8s ease-out 1s forwards, fuzhouBlink 10s linear 3s infinite;
 }
 
-/* 莆田 - 闽B */
+/* 莆田 (闽B) - 1-2秒闪烁 */
 .overlay-image.putian {
   position: absolute;
   top: 880rpx;
@@ -118,10 +118,10 @@
   width: 13%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 1.15s forwards;
+  animation: fadeIn 0.8s ease-out 1.15s forwards, putianBlink 10s linear 3s infinite;
 }
 
-/* 泉州 - 闽C */
+/* 泉州 (闽C) - 2-3秒闪烁 */
 .overlay-image.quanzhou {
   position: absolute;
   top: 925rpx;
@@ -130,10 +130,10 @@
   width: 13%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 1.3s forwards;
+  animation: fadeIn 0.8s ease-out 1.3s forwards, quanzhouBlink 10s linear 3s infinite;
 }
 
-/* 厦门 - 闽D */
+/* 厦门 (闽D) - 3-4秒闪烁 */
 .overlay-image.xiamen {
   position: absolute;
   top: 1090rpx;
@@ -142,10 +142,10 @@
   width: 12.5%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 1.45s forwards;
+  animation: fadeIn 0.8s ease-out 1.45s forwards, xiamenBlink 10s linear 3s infinite;
 }
 
-/* 漳州 - 闽E */
+/* 漳州 (闽E) - 4-5秒闪烁 */
 .overlay-image.zhangzhou {
   position: absolute;
   top: 1060rpx;
@@ -154,10 +154,10 @@
   width: 12.5%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 1.6s forwards;
+  animation: fadeIn 0.8s ease-out 1.6s forwards, zhangzhouBlink 10s linear 3s infinite;
 }
 
-/* 龙岩 - 闽F */
+/* 龙岩 (闽F) - 5-6秒闪烁 */
 .overlay-image.longyan {
   position: absolute;
   top: 885rpx;
@@ -166,10 +166,10 @@
   width: 13%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 1.75s forwards;
+  animation: fadeIn 0.8s ease-out 1.75s forwards, longyanBlink 10s linear 3s infinite;
 }
 
-/* 三明 - 闽G */
+/* 三明 (闽G) - 6-7秒闪烁 */
 .overlay-image.sanming {
   position: absolute;
   top: 755rpx;
@@ -178,10 +178,10 @@
   width: 13%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 1.9s forwards;
+  animation: fadeIn 0.8s ease-out 1.9s forwards, sanmingBlink 10s linear 3s infinite;
 }
 
-/* 南平 - 闽H */
+/* 南平 (闽H) - 7-8秒闪烁 */
 .overlay-image.nanping {
   position: absolute;
   top: 670rpx;
@@ -190,10 +190,10 @@
   width: 13%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 2.05s forwards;
+  animation: fadeIn 0.8s ease-out 2.05s forwards, nanpingBlink 10s linear 3s infinite;
 }
 
-/* 宁德 - 闽J */
+/* 宁德 (闽J) - 8-9秒闪烁 */
 .overlay-image.ningde {
   position: absolute;
   top: 625rpx;
@@ -202,10 +202,10 @@
   width: 13%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 2.2s forwards;
+  animation: fadeIn 0.8s ease-out 2.2s forwards, ningdeBlink 10s linear 3s infinite;
 }
 
-/* 平潭 - 特区 */
+/* 平潭 (闽K) - 9-10秒闪烁 */
 .overlay-image.pingtan {
   position: absolute;
   top: 830rpx;
@@ -214,8 +214,9 @@
   width: 12%;
   z-index: 8;
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 2.35s forwards;
+  animation: fadeIn 0.8s ease-out 2.35s forwards, pingtanBlink 10s linear 3s infinite;
 }
+
 
 /* 中部靠下图片 - s2p1 和 s2p2 - 最后同时出现 */
 .center-image.s2p1 {
@@ -256,4 +257,102 @@
   to {
     opacity: 1;
   }
+}
+
+/* 闪烁引导点击动画 - 无限循环 */
+@keyframes blinkLoop {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  20% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* 城市循环闪烁动画 - 10秒循环，每个城市闪烁1秒 */
+
+/* 福州 (闽A) - 0-1秒 (0%-10%) 闪烁 */
+@keyframes fuzhouBlink {
+  0%, 10% { opacity: 1; transform: translateX(-50%) scale(1); }
+  5% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  10%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 莆田 (闽B) - 1-2秒 (10%-20%) 闪烁 */
+@keyframes putianBlink {
+  0%, 10% { opacity: 1; transform: translateX(-50%) scale(1); }
+  10%, 20% { opacity: 1; transform: translateX(-50%) scale(1); }
+  15% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  20%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 泉州 (闽C) - 2-3秒 (20%-30%) 闪烁 */
+@keyframes quanzhouBlink {
+  0%, 20% { opacity: 1; transform: translateX(-50%) scale(1); }
+  20%, 30% { opacity: 1; transform: translateX(-50%) scale(1); }
+  25% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  30%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 厦门 (闽D) - 3-4秒 (30%-40%) 闪烁 */
+@keyframes xiamenBlink {
+  0%, 30% { opacity: 1; transform: translateX(-50%) scale(1); }
+  30%, 40% { opacity: 1; transform: translateX(-50%) scale(1); }
+  35% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  40%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 漳州 (闽E) - 4-5秒 (40%-50%) 闪烁 */
+@keyframes zhangzhouBlink {
+  0%, 40% { opacity: 1; transform: translateX(-50%) scale(1); }
+  40%, 50% { opacity: 1; transform: translateX(-50%) scale(1); }
+  45% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  50%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 龙岩 (闽F) - 5-6秒 (50%-60%) 闪烁 */
+@keyframes longyanBlink {
+  0%, 50% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50%, 60% { opacity: 1; transform: translateX(-50%) scale(1); }
+  55% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  60%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 三明 (闽G) - 6-7秒 (60%-70%) 闪烁 */
+@keyframes sanmingBlink {
+  0%, 60% { opacity: 1; transform: translateX(-50%) scale(1); }
+  60%, 70% { opacity: 1; transform: translateX(-50%) scale(1); }
+  65% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  70%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 南平 (闽H) - 7-8秒 (70%-80%) 闪烁 */
+@keyframes nanpingBlink {
+  0%, 70% { opacity: 1; transform: translateX(-50%) scale(1); }
+  70%, 80% { opacity: 1; transform: translateX(-50%) scale(1); }
+  75% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  80%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 宁德 (闽J) - 8-9秒 (80%-90%) 闪烁 */
+@keyframes ningdeBlink {
+  0%, 80% { opacity: 1; transform: translateX(-50%) scale(1); }
+  80%, 90% { opacity: 1; transform: translateX(-50%) scale(1); }
+  85% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  90%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* 平潭 (闽K) - 9-10秒 (90%-100%) 闪烁 */
+@keyframes pingtanBlink {
+  0%, 90% { opacity: 1; transform: translateX(-50%) scale(1); }
+  90%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  95% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
 }
