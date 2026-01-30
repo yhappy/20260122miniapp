@@ -30,7 +30,7 @@
 .back-icon {
   width: 100%;
   display: block;
-  filter: drop-shadow(0 0 8rpx rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 0 8rpx white);
 }
 
 /* 内容区域 */
@@ -57,7 +57,6 @@
   flex-direction: row;
   gap: 10rpx;
   margin: 0 20rpx 0 20rpx;
-
 }
 
 /* 城市项 */
@@ -74,8 +73,6 @@
   box-sizing: border-box;
 }
 
-
-
 /* 城市图片 */
 .city-image {
   width: 100rpx;
@@ -86,7 +83,7 @@
 /* 中部偏上：福州标题 */
 .title {
   position: absolute;
-  top: 340rpx;
+  top: 240rpx;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
@@ -96,7 +93,7 @@
 /* 中部偏右：装饰图片 s2p7 */
 .s2p7 {
   position: absolute;
-  top: 970rpx;
+  top: 900rpx;
   right: 40rpx;
   width: 12%;
   z-index: 8;
@@ -105,9 +102,75 @@
 /* 中部中间：福州地图 */
 .map {
   position: absolute;
-  top: 500rpx;
+  top: 400rpx;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
   z-index: 9;
+}
+
+/* 地图上的叠放点图片 */
+.dot {
+  position: absolute;
+  z-index: 10;
+  width: 6%;
+}
+
+.dot1 {
+  top: 550rpx;
+  left: 35%;
+}
+
+.dot2 {
+  top: 650rpx;
+  left: 50%;
+}
+
+.dot3 {
+  top: 750rpx;
+  left: 60%;
+}
+
+/* 底部两列文字展示 */
+.text-columns {
+  position: absolute;
+  top: 1050rpx;
+  left: 0;
+  width: 100%;
+  padding: 0 30rpx 30rpx;
+  box-sizing: border-box;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.column.left {
+  align-items: flex-start;
+  padding-left: 10rpx;
+}
+
+.column.right {
+  align-items: flex-start;
+  padding-left: 10rpx;
+}
+
+.column-text {
+  font-size: 22rpx;
+  font-weight: normal;
+  color: #8B4513;
+  /* 棕色字体 */
+  line-height: 36rpx;
+  display: block;
+  text-decoration: underline dotted #8b4513b2;
+  text-underline-offset: 4rpx;
+  text-decoration-thickness: 0.5rpx;
+  margin-bottom: 8rpx;
 }
