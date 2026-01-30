@@ -29,7 +29,12 @@
 
     <!-- 中部靠下图片 - 使用 s2p1 和 s2p2 -->
     <view class="center-bottom">
-      <image class="center-image s2p1" src="https://app5.fjsen.com/h5/20260122/images/s2p1.png" mode="widthFix"></image>
+      <image
+        class="center-image s2p1"
+        src="https://app5.fjsen.com/h5/20260122/images/s2p1.png"
+        mode="widthFix"
+        bindtap="onS2P1Click"
+      ></image>
       <image
         class="center-image s2p2"
         src="https://app5.fjsen.com/h5/20260122/images/s2p2.png"

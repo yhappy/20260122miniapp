@@ -1,105 +1,113 @@
 .container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  background: #fffede;
+  /* 黄色背景 */
   position: relative;
   overflow: hidden;
 }
 
-.map {
-  width: 100%;
-  height: 100%;
-}
-
-.top-actions {
-  position: absolute;
-  top: 40rpx;
-  left: 30rpx;
-  z-index: 100;
-}
-
+/* 返回按钮 - 与 news 页面完全一致 */
 .back-btn {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 44rpx;
-  padding: 16rpx 32rpx;
+  position: fixed;
+  /* top 通过 JS 动态计算设置 */
+  left: 30rpx;
+  width: 120rpx;
+  z-index: 100;
   display: flex;
   align-items: center;
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+  justify-content: center;
+  /* 移除点击高亮效果 */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.back-btn:active {
+  /* 点击时无视觉效果 */
 }
 
 .back-icon {
-  font-size: 36rpx;
-  color: #333;
-  margin-right: 8rpx;
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 0 8rpx rgba(0, 0, 0, 0.3));
 }
 
-.back-text {
-  font-size: 28rpx;
-  color: #333;
-  font-weight: 500;
+/* 内容区域 */
+.content-area {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 
-.map-info {
+/* 城市横向滚动列表 - 返回按钮下方 */
+.city-scroll {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  white-space: nowrap;
+  padding: 0rpx 0rpx;
+  box-sizing: border-box;
+  z-index: 50;
+  background: linear-gradient(to bottom, #fffede 0%, #fffede 80%, rgba(255, 254, 222, 0) 100%);
+}
+
+.city-list {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 10rpx;
+  margin: 0 20rpx 0 20rpx;
+
+}
+
+/* 城市项 */
+.city-item {
+  display: inline-block;
+  width: 100rpx;
+  margin: 0 20rpx 0 20rpx;
+  flex-shrink: 0;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+
+
+/* 城市图片 */
+.city-image {
+  width: 100rpx;
+  height: 70rpx;
+  display: block;
+}
+
+/* 中部偏上：福州标题 */
+.title {
   position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 12rpx;
-  padding: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
-  width: 400rpx;
-}
-
-.info-title {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 8rpx;
-}
-
-.info-desc {
-  font-size: 26rpx;
-  color: #666;
-}
-
-.bottom-actions {
-  position: absolute;
-  bottom: 40rpx;
+  top: 340rpx;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: 20rpx;
+  width: 80%;
+  z-index: 10;
+}
+
+/* 中部偏右：装饰图片 s2p7 */
+.s2p7 {
+  position: absolute;
+  top: 970rpx;
+  right: 40rpx;
+  width: 12%;
+  z-index: 8;
+}
+
+/* 中部中间：福州地图 */
+.map {
+  position: absolute;
+  top: 500rpx;
+  left: 50%;
+  transform: translateX(-50%);
   width: 90%;
-  justify-content: center;
-}
-
-.action-btn {
-  flex: 1;
-  height: 88rpx;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 44rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
-  max-width: 320rpx;
-}
-
-.action-btn.primary {
-  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
-}
-
-.btn-icon {
-  width: 40rpx;
-  height: 40rpx;
-  margin-right: 12rpx;
-}
-
-.btn-text {
-  font-size: 28rpx;
-  color: #333;
-  font-weight: 500;
-}
-
-.action-btn.primary .btn-text {
-  color: #fff;
+  z-index: 9;
 }

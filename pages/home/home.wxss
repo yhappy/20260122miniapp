@@ -232,6 +232,11 @@
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.center-image.s2p1:active {
+  transform: translateX(-50%) scale(0.95);
 }
 
 .center-image.s2p2 {
@@ -247,6 +252,11 @@
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.center-image.s2p2:active {
+  transform: translateX(-50%) scale(0.95);
 }
 
 /* 淡入动画 */

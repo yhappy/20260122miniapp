@@ -23,6 +23,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/map/map",
+          "pathName": "pages/map/map",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
           "name": "pages/news/news",
           "pathName": "pages/news/news",
           "query": "themeId=320551",

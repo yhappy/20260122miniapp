@@ -1,36 +1,28 @@
 <view class="container">
-  <map
-    id="sanfangMap"
-    class="map"
-    latitude="{{latitude}}"
-    longitude="{{longitude}}"
-    markers="{{markers}}"
-    polyline="{{polyline}}"
-    show-location="{{true}}"
-    bindmarkertap="onMarkerTap"
-    bindregionchange="onRegionChange"
-  >
-    <!-- <cover-view class="map-info">
-      <cover-view class="info-title">{{name}}</cover-view>
-      <cover-view class="info-desc">{{address}}</cover-view>
-    </cover-view> -->
-  </map>
+  <!-- 返回按钮 - 与 news 页面一致 -->
+  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" bindtap="goBack">
+    <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
+  </view>
 
-  <cover-view class="top-actions">
-    <cover-view class="back-btn" bindtap="goBack">
-      <cover-view class="back-icon">←</cover-view>
-      <cover-view class="back-text">返回</cover-view>
-    </cover-view>
-  </cover-view>
+  <!-- 城市横向滚动列表 - 返回按钮下方 -->
+  <scroll-view class="city-scroll" style="top: {{backButtonTop + 120}}rpx" scroll-x="true" show-scrollbar="{{false}}"
+    enhanced="{{true}}" show-scrollbar="{{false}}">
+    <view class="city-list">
+      <view class="city-item" wx:for="{{cities}}" wx:key="id" bindtap="onCityTap" data-city="{{item}}">
+        <image class="city-image" src="{{item.image}}" mode="aspectFill"></image>
+      </view>
+    </view>
+  </scroll-view>
 
-  <cover-view class="bottom-actions">
-    <cover-view class="action-btn" bindtap="moveToLocation">
-      <cover-image class="btn-icon" src="https://app5.fjsen.com/h5/20260122/images/location.png"></cover-image>
-      <cover-view class="btn-text">定位</cover-view>
-    </cover-view>
-    <cover-view class="action-btn" bindtap="openWeChatLocation">
-      <cover-image class="btn-icon" src="https://app5.fjsen.com/h5/20260122/images/navigation.png"></cover-image>
-      <cover-view class="btn-text">导航</cover-view>
-    </cover-view>
-  </cover-view>
+  <!-- 内容区域 -->
+  <view class="content-area">
+    <!-- 中部偏上：标题 -->
+    <image class="title" src="https://app5.fjsen.com/h5/20260122/images/福州title.png" mode="widthFix"></image>
+
+    <!-- 中部偏右：装饰图片 -->
+    <image class="s2p7" src="https://app5.fjsen.com/h5/20260122/images/s2p7.png" mode="widthFix"></image>
+
+    <!-- 中部中间：地图 -->
+    <image class="map" src="https://app5.fjsen.com/h5/20260122/images/福州map.png" mode="widthFix"></image>
+  </view>
 </view>

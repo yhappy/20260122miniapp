@@ -1,86 +1,122 @@
 // pages/map/map.js
 Page({
   data: {
-    latitude: 26.082018,
-    longitude: 119.296438,
-    name: '鼓楼区闽一口茶点茶馆',
-    address: '福建省福州市鼓楼区南街街道三坊七巷文儒坊8号',
-    markers: [
+    backButtonTop: 0, // 返回按钮位置
+    cities: [
       {
         id: 1,
-        latitude: 26.082018,
-        longitude: 119.296438,
-        title: '鼓楼区闽一口茶点茶馆',
-        iconPath: '',
-        width: 30,
-        height: 30,
-        callout: {
-          content: '鼓楼区闽一口茶点茶馆',
-          color: '#333',
-          fontSize: 14,
-          borderRadius: 5,
-          bgColor: '#fff',
-          padding: 8,
-          display: 'ALWAYS'
-        }
+        name: '福州',
+        code: '闽A',
+        image: 'https://app5.fjsen.com/h5/20260122/images/福州.png'
+      },
+      {
+        id: 2,
+        name: '莆田',
+        code: '闽B',
+        image: 'https://app5.fjsen.com/h5/20260122/images/莆田.png'
+      },
+      {
+        id: 3,
+        name: '泉州',
+        code: '闽C',
+        image: 'https://app5.fjsen.com/h5/20260122/images/泉州.png'
+      },
+      {
+        id: 4,
+        name: '厦门',
+        code: '闽D',
+        image: 'https://app5.fjsen.com/h5/20260122/images/厦门.png'
+      },
+      {
+        id: 5,
+        name: '漳州',
+        code: '闽E',
+        image: 'https://app5.fjsen.com/h5/20260122/images/漳州.png'
+      },
+      {
+        id: 6,
+        name: '龙岩',
+        code: '闽F',
+        image: 'https://app5.fjsen.com/h5/20260122/images/龙岩.png'
+      },
+      {
+        id: 7,
+        name: '三明',
+        code: '闽G',
+        image: 'https://app5.fjsen.com/h5/20260122/images/三明.png'
+      },
+      {
+        id: 8,
+        name: '南平',
+        code: '闽H',
+        image: 'https://app5.fjsen.com/h5/20260122/images/南平.png'
+      },
+      {
+        id: 9,
+        name: '宁德',
+        code: '闽J',
+        image: 'https://app5.fjsen.com/h5/20260122/images/宁德.png'
+      },
+      {
+        id: 10,
+        name: '平潭',
+        code: '闽K',
+        image: 'https://app5.fjsen.com/h5/20260122/images/平潭.png'
       }
-    ],
-    polyline: []
+    ]
   },
 
   onLoad() {
     wx.setNavigationBarTitle({
-      title: '鼓楼区闽一口茶点茶馆'
+      title: '城市地图'
     })
 
-    // 获取当前位置并移动到 
-    this.moveToLocation()
+    // 获取系统信息，计算返回按钮位置
+    this.getSystemInfo()
   },
 
-  onUnload() {
-    // 页面卸载时恢复导航栏
-    wx.showNavigationBar()
-  },
+  /**
+   * 获取系统信息
+   */
+  getSystemInfo() {
+    const systemInfo = wx.getSystemInfoSync()
+    console.log('系统信息:', systemInfo)
 
-  moveToLocation() {
+    // 计算状态栏高度（px转rpx）
+    const screenWidth = systemInfo.screenWidth
+    const statusBarHeight = systemInfo.statusBarHeight
+
+    // px 转 rpx（以 iPhone 6 为基准，750rpx = 375px）
+    const rpxRatio = 750 / screenWidth
+    const statusBarHeightInRpx = statusBarHeight * rpxRatio
+
+    console.log('状态栏高度:', statusBarHeight, 'px =', statusBarHeightInRpx, 'rpx')
+
     this.setData({
-      latitude: 26.0808,
-      longitude: 119.2965
-    })
-  },
- 
-
-  // 使用微信内置地图导航
-  openWeChatLocation() {
-    const { latitude, longitude, name, address } = this.data
-
-    wx.openLocation({
-      latitude: latitude,
-      longitude: longitude,
-      name: name,
-      address: address,
-      scale: 18
+      backButtonTop: statusBarHeightInRpx
     })
   },
 
-  onMarkerTap(e) {
-    return
-    const { markerId } = e.detail
-    wx.showModal({
-      title: '三坊七巷',
-      content: '三坊七巷是国家5A级旅游景区，被誉为"里坊制度活化石"、"明清建筑博物馆"',
-      confirmText: '去这里',
-      cancelText: '关闭',
-      success: (res) => {
-        if (res.confirm) {
-          this.openWeChatLocation()
-        }
-      }
-    })
-  },
+  /**
+   * 点击城市
+   */
+  onCityTap(e) {
+    const city = e.currentTarget.dataset.city
+    console.log('点击了城市:', city)
 
-  onRegionChange(e) {
-    console.log('地图区域变化', e)
+    // 触觉反馈
+    wx.vibrateShort({
+      type: 'light'
+    })
+
+    // 显示提示
+    wx.showToast({
+      title: `选择了${city.name}（${city.code}）`,
+      icon: 'none',
+      duration: 2000
+    })
+
+    // TODO: 后续可以根据选择的城市显示地图或其他信息
   },
 
   /**
