@@ -295,24 +295,30 @@ function parseNewsDetail(html, url) {
       })
 
       // 2. 给 h1 标签添加字体大小样式
-      content = content.replace(/<h1([^>]*?)>/gi, (match, attrs) => {
-        const h1Style = 'text-align: center;line-height: 50px;font-size: 24px;padding: 20px 0 0 0; font-weight: normal;'
-        if (attrs.includes('style=')) {
-          return `<h1 style="${h1Style}">`
+       content = content.replace(/<h1([^>]*?)>/gi, (match, attrs) => {
+        // 检查是否已经存在 class 属性
+        if (/class=["']/.test(attrs)) {
+          // 如果存在 class，就在原有的 class 属性值里追加 h1Class
+          return match.replace(/class=(["'])(.*?)\1/, 'class=$1$2 h1Class$1');
         } else {
-          return `<h1${attrs} style="${h1Style}">`
+          // 如果不存在 class，直接添加 class="h1Class"
+          return `<h1${attrs} class="h1Class">`;
         }
-      })
+      });
 
       // 3. 给 p 标签添加字体大小样式
-      //  content = content.replace(/<p([^>]*?)>/gi, (match, attrs) => {
-      //   const pStyle = 'text-indent: 2em; text-align: justify; margin-bottom: 15px;'
-      //   if (attrs.includes('style=')) {
-      //     return `<p style="${pStyle}">`
-      //   } else {
-      //     return `<p${attrs} style="${pStyle}">`
-      //   }
-      // })
+      content = content.replace(/<p([^>]*?)>/gi, (match, attrs) => {
+        // 检查是否已经存在 class 属性
+        if (/class=["']/.test(attrs)) {
+          // 如果存在 class，就在原有的 class 值后面追加 pClass
+          // 这里的正则会匹配 class="xxx" 或 class='xxx' 并替换为 class="xxx pClass"
+          return match.replace(/class=(["'])(.*?)\1/, 'class=$1$2 pClass$1');
+        } else {
+          // 如果不存在 class，直接在属性后面添加 class="pClass"
+          // 注意保留原有的其他属性（如 id, data-* 等）
+          return `<p${attrs} class="pClass">`;
+        }
+      });
     
       article.content = content
       console.log('成功提取 phone_content 内容', article)

@@ -26,6 +26,8 @@
 .back-icon {
   width: 100%;
   display: block;
+  filter: drop-shadow(0 0 8rpx white);
+
 }
 
 .loading,
@@ -58,13 +60,24 @@
   word-wrap: break-word;
 }
 
-
-
 .article-content .source_date {
   text-align: center;
   font-size: 14px;
   color: #999;
-  padding:0 0 8px 0;
+  margin-bottom: 8px !important;
+}
 
 
+.article-content .pClass {
+  text-indent: 2em;
+  text-align: justify;
+  margin-bottom: 15px !important;
+}
+
+.article-content .h1Class {
+  text-align: center;
+  line-height: 28px;
+  font-size: 22px;
+  padding: 20px 0 8px 0;
+  font-weight: normal;
 }
