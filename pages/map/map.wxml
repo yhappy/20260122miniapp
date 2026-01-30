@@ -34,24 +34,24 @@
     <view class="text-columns">
       <view class="column left">
         <text class="column-text">1 福州鼓岭·柱里</text>
+        <text class="column-text">2 福州连江奇达村旗冠顶</text>
         <text class="column-text">3 晋安区春伦生态茶园</text>
+        <text class="column-text">4 鼓楼区闽一口茶点茶馆</text>
         <text class="column-text">5 "周末戏相逢"公益性演出（福州西湖）</text>
+        <text class="column-text">6 《冷月无声——吴石传奇》沉浸式戏剧</text>
         <text class="column-text">7 《最忆船政》实景演艺项目</text>
-        <text class="column-text">9 福建民俗博物馆"二十四节气里的闽式生活"</text>
-        <text class="column-text">11 仓山区螺洲古镇</text>
-        <text class="column-text">13 烟台山亭下路</text>
-        <text class="column-text">15 中国船政文化博物馆</text>
-        <text class="column-text">17 林则徐纪念馆</text>
+        <text class="column-text">8 福州达明美食街（台湾主题街区）</text>
       </view>
       <view class="column right">
-        <text class="column-text">2 福州连江奇达村旗冠顶</text>
-        <text class="column-text">4 鼓楼区闽一口茶点茶馆</text>
-        <text class="column-text">6 《冷月无声——吴石传奇》沉浸式戏剧</text>
-        <text class="column-text">8 福州达明美食街（台湾主题街区）</text>
+        <text class="column-text">9 福建民俗博物馆"二十四节气里的闽式生活"</text>
         <text class="column-text">10 福州漆艺基地·闽漆胶囊工场</text>
+        <text class="column-text">11 仓山区螺洲古镇</text>
         <text class="column-text">12 三坊七巷·山海福厝</text>
+        <text class="column-text">13 烟台山亭下路</text>
         <text class="column-text">14 福道</text>
+        <text class="column-text">15 中国船政文化博物馆</text>
         <text class="column-text">16 吴石故居（仓山区吴厝村）</text>
+        <text class="column-text">17 林则徐纪念馆</text>
       </view>
     </view>
   </view>
