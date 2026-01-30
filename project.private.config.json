@@ -26,8 +26,8 @@
           "name": "pages/news/news",
           "pathName": "pages/news/news",
           "query": "themeId=320551",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "pages/themes/themes",

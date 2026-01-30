@@ -4,16 +4,11 @@ const newsParser = require('../../utils/news-parser.js')
 Page({
   data: {
     article: {
-      title: '',
-      content: '',
-      pubtime: '',
-      author: '',
-      source: '',
-      editor: '',
-      url: ''
+      content: ''  // 只保留富文本内容
     },
     loading: true,
-    error: false
+    error: false,
+    backButtonTop: 0  // 返回按钮位置
   },
 
   onLoad(options) {
@@ -31,15 +26,36 @@ Page({
       return
     }
 
+    // 获取系统信息，计算返回按钮位置
+    this.getSystemInfo()
+
     // 解码URL（可能被编码了）
     const newsUrl = decodeURIComponent(url)
 
-    this.setData({
-      'article.url': newsUrl
-    })
-
     // 加载新闻详情
     this.loadNewsDetail(newsUrl)
+  },
+
+  /**
+   * 获取系统信息
+   */
+  getSystemInfo() {
+    const systemInfo = wx.getSystemInfoSync()
+    console.log('系统信息:', systemInfo)
+
+    // 计算状态栏高度（px转rpx）
+    const screenWidth = systemInfo.screenWidth
+    const statusBarHeight = systemInfo.statusBarHeight
+
+    // px 转 rpx（以 iPhone 6 为基准，750rpx = 375px）
+    const rpxRatio = 750 / screenWidth
+    const statusBarHeightInRpx = statusBarHeight * rpxRatio
+
+    console.log('状态栏高度:', statusBarHeight, 'px =', statusBarHeightInRpx, 'rpx')
+
+    this.setData({
+      backButtonTop: statusBarHeightInRpx
+    })
   },
 
   /**
@@ -52,18 +68,22 @@ Page({
         error: false
       })
 
-      const article = await newsParser.getNewsDetail(url)
+      // 转换 URL 为 wap 版本
+      // 例如：https://www.fjsen.com/zhuanti/2026-01/05/content_32110286.htm
+      // 转换为：https://www.fjsen.com/wap/zhuanti/2026-01/05/content_32110286.htm
+      let wapUrl = url
+      if (url.includes('www.fjsen.com/') && !url.includes('/wap/')) {
+        wapUrl = url.replace('www.fjsen.com/', 'www.fjsen.com/wap/')
+        console.log('转换 URL 为 wap 版本:', url, '->', wapUrl)
+      }
 
-      if (article) {
+      const article = await newsParser.getNewsDetail(wapUrl)
+      console.log(article)
+      if (article && article.content) {
         this.setData({
           article: article,
           loading: false,
           error: false
-        })
-
-        // 设置导航栏标题
-        wx.setNavigationBarTitle({
-          title: '新闻详情'
         })
       } else {
         throw new Error('解析失败')
@@ -83,35 +103,9 @@ Page({
   },
 
   /**
-   * 在浏览器中打开原文
+   * 返回上一页
    */
-  openInBrowser() {
-    const { url } = this.data.article
-
-    if (url) {
-      wx.showModal({
-        title: '提示',
-        content: '是否在浏览器中打开原文？',
-        success: (res) => {
-          if (res.confirm) {
-            wx.showToast({
-              title: '功能开发中',
-              icon: 'none'
-            })
-          }
-        }
-      })
-    }
-  },
-
-  /**
-   * 分享新闻
-   */
-  onShareAppMessage() {
-    const { title } = this.data.article
-    return {
-      title: title || '新闻详情',
-      path: '/pages/news/news'
-    }
+  goBack() {
+    wx.navigateBack()
   }
 })

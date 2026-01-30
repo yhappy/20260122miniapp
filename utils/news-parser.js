@@ -271,114 +271,46 @@ function generateNewsDetail(title) {
 function parseNewsDetail(html, url) {
   try {
     const article = {
-      title: '',
-      content: '',
-      pubtime: '',
-      author: '',
-      source: '',
-      editor: '',
-      url: url
+      content: ''  // 只保留富文本内容
     }
 
-    // 提取标题 - 在 cont_head 里面
-    const contHeadRegex = /<div[^>]*class="cont-head"[^>]*>[\s\S]*?<\/div>/i
-    const contHeadMatch = html.match(contHeadRegex)
+    // 提取 phone_content 区域的完整 HTML 内容
+    const phoneContentRegex = /<div[^>]*class="phone_content"[^>]*>([\s\S]*?)<\/div>\s*<script[^>]*ipa_bottom\.js/i;
+    const phoneContentMatch = html.match(phoneContentRegex)
 
-    if (contHeadMatch) {
-      const contHeadHTML = contHeadMatch[1]
-      // 提取标题（通常在 h1 标签中）
-      const titleRegex = /<h1[^>]*>(.*?)<\/h1>/i
-      const titleMatch = contHeadHTML.match(titleRegex)
-      if (titleMatch) {
-        article.title = titleMatch[1]
-          .replace(/<[^>]+>/g, '') // 移除HTML标签
-          .replace(/&nbsp;/g, ' ')
-          .replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-          .trim()
-      }
-    }
+    if (phoneContentMatch) {
+      // 提取 HTML 内容并处理样式
+      let content = phoneContentMatch[1].trim()
 
-    // 提取正文 - 在 cont-news 里面，只提取 p 标签内容
-    const contNewsRegex = /<div[^>]*class="cont-news"[^>]*>[\s\S]*?<\/div>/i
-    const contNewsMatch = html.match(contNewsRegex)
-
-    if (contNewsMatch) {
-      const contNewsHTML = contNewsMatch[1]
-
-      // 只提取 p 标签的内容
-      const pTagRegex = /<p[^>]*>(.*?)<\/p>/gi
-      const paragraphs = []
-      let pMatch
-
-      while ((pMatch = pTagRegex.exec(contNewsHTML)) !== null) {
-        const paragraph = pMatch[1]
-          // 移除 p 标签内的其他 HTML 标签
-          .replace(/<[^>]+>/g, '')
-          // 替换 HTML 实体
-          .replace(/&nbsp;/g, ' ')
-          .replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-          .replace(/&quot;/g, '"')
-          .replace(/&#39;/g, "'")
-          .replace(/&mdash;/g, '—')
-          .replace(/&ldquo;/g, '"')
-          .replace(/&rdquo;/g, '"')
-          .trim()
-
-        // 只添加非空段落
-        if (paragraph) {
-          paragraphs.push(paragraph)
+      // 1. 给所有图片添加内联样式
+      content = content.replace(/<img([^>]*?)>/gi, (match, attrs) => {
+        if (attrs.includes('style=')) {
+          return match.replace(/style=["']([^"']*)["']/i, (styleMatch, styleContent) => {
+            return `style="${styleContent}; max-width: 100%; height: auto; display: block;"`
+          })
+        } else {
+          return `<img${attrs} style="max-width: 100%; height: auto; display: block;">`
         }
-      }
+      })
 
-      // 用换行符连接所有段落
-      article.content = paragraphs.join('\n\n')
+      // 2. 给 h1 标签添加字体大小样式
+      content = content.replace(/<h1([^>]*?)>/gi, (match, attrs) => {
+        const h1Style = 'font-size: 40rpx; font-weight: bold; margin: 30rpx 0 20rpx; line-height: 1.5;'
+        if (attrs.includes('style=')) {
+          return `<h1 style="${h1Style}">`
+        } else {
+          return `<h1${attrs} style="${h1Style}">`
+        }
+      })
+
+      article.content = content
+      console.log('成功提取 phone_content 内容', article)
+
+    } else {
+      console.warn('未找到 phone_content 区域')
     }
 
-    // 提取元信息
-    // 发布时间
-    const pubtimeRegex = /<span[^>]*id="pubtime_baidu"[^>]*>(.*?)<\/span>/i
-    const pubtimeMatch = html.match(pubtimeRegex)
-    if (pubtimeMatch) {
-      article.pubtime = pubtimeMatch[1]
-        .replace(/&nbsp;/g, '')
-        .trim()
-    }
-
-    // 作者
-    const authorRegex = /<span[^>]*id="author_baidu"[^>]*>(.*?)<\/span>/i
-    const authorMatch = html.match(authorRegex)
-    if (authorMatch) {
-      article.author = authorMatch[1]
-        .replace(/作者：\s*/, '')
-        .replace(/&nbsp;/g, ' ')
-        .trim()
-    }
-
-    // 来源
-    const sourceRegex = /<span[^>]*id="source_baidu"[^>]*>(.*?)<\/span>/i
-    const sourceMatch = html.match(sourceRegex)
-    if (sourceMatch) {
-      article.source = sourceMatch[1]
-        .replace(/来源：\s*/, '')
-        .replace(/&nbsp;/g, ' ')
-        .trim()
-    }
-
-    // 责任编辑
-    const editorRegex = /<span[^>]*id="editor_baidu"[^>]*>(.*?)<\/span>/i
-    const editorMatch = html.match(editorRegex)
-    if (editorMatch) {
-      article.editor = editorMatch[1]
-        .replace(/责任编辑：\s*/, '')
-        .replace(/&nbsp;/g, ' ')
-        .trim()
-    }
-
-    console.log('成功解析新闻详情：', article)
+    console.log('成功解析新闻详情')
     return article
 
   } catch (error) {
