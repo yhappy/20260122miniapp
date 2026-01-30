@@ -284,18 +284,19 @@ function parseNewsDetail(html, url) {
 
       // 1. 给所有图片添加内联样式
       content = content.replace(/<img([^>]*?)>/gi, (match, attrs) => {
+        const imgStyle = 'max-width: 100%; height: auto; display: block;'
         if (attrs.includes('style=')) {
           return match.replace(/style=["']([^"']*)["']/i, (styleMatch, styleContent) => {
-            return `style="${styleContent}; max-width: 100%; height: auto; display: block;"`
+            return `style="${styleContent}; ${imgStyle}"`
           })
         } else {
-          return `<img${attrs} style="max-width: 100%; height: auto; display: block;">`
+          return `<img${attrs} style="${imgStyle}">`
         }
       })
 
       // 2. 给 h1 标签添加字体大小样式
       content = content.replace(/<h1([^>]*?)>/gi, (match, attrs) => {
-        const h1Style = 'font-size: 40rpx; font-weight: bold; margin: 30rpx 0 20rpx; line-height: 1.5;'
+        const h1Style = 'text-align: center;line-height: 50px;font-size: 24px;padding: 20px 0 0 0; font-weight: normal;'
         if (attrs.includes('style=')) {
           return `<h1 style="${h1Style}">`
         } else {
@@ -303,6 +304,16 @@ function parseNewsDetail(html, url) {
         }
       })
 
+      // 3. 给 p 标签添加字体大小样式
+      //  content = content.replace(/<p([^>]*?)>/gi, (match, attrs) => {
+      //   const pStyle = 'text-indent: 2em; text-align: justify; margin-bottom: 15px;'
+      //   if (attrs.includes('style=')) {
+      //     return `<p style="${pStyle}">`
+      //   } else {
+      //     return `<p${attrs} style="${pStyle}">`
+      //   }
+      // })
+    
       article.content = content
       console.log('成功提取 phone_content 内容', article)
 

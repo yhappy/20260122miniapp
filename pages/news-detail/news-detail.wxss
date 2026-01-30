@@ -58,20 +58,13 @@
   word-wrap: break-word;
 }
 
-/* 富文本图片样式 */
-.article-content img {
-  max-width: 100% !important;
-  height: auto !important;
-  display: block;
-  margin: 20rpx 0;
-}
-
-/* 富文本段落样式 */
-.article-content p {
-  margin: 20rpx 0;
-  line-height: 1.8;
-}
 
 
-.article-content h1 {
+.article-content .source_date {
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+  padding:0 0 8px 0;
+
+
 }

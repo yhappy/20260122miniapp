@@ -204,22 +204,6 @@ async loadNews() {
    - 自动转换 HTTP → HTTPS
    - 使用 `wx.request` 发起请求
 
-2. **parseNewsList(html)** - 解析新闻列表
-   - 提取 `.cont-left` 区域
-   - 匹配 `<li><span>日期</span><a href="...">标题</a></li>` 格式
-   - 过滤无效标题（翻页按钮、纯数字等）
-   - 最多提取200条新闻
-
-3. **parseNewsDetail(html, url)** - 解析新闻详情
-   - 提取标题：`.cont-head h1`
-   - 提取正文：`.cont-news p` 标签
-   - 提取元信息：通过 id 选择器
-
-4. **HTML 清理**
-   - 移除零宽字符：`&ZeroWidthSpace;`
-   - 替换 HTML 实体：`&nbsp;`, `&amp;`, `&lt;`, `&gt;`, `&quot;`, `&mdash;`, `&ldquo;`, `&rdquo;`
-   - 移除 HTML 标签
-
 **导出接口**
 ```javascript
 module.exports = {
