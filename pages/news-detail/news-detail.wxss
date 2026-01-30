@@ -69,8 +69,6 @@
 
 
 .article-content .pClass {
-  text-indent: 2em;
-  text-align: justify;
   margin-bottom: 15px !important;
 }
 

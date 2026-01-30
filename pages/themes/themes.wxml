@@ -1,71 +1,31 @@
 <!--pages/themes/themes.wxml-->
 <view class="container">
   <!-- 返回按钮 -->
-  <view class="back-btn" style="top: {{backButtonTop}}rpx" bindtap="goBack">
+  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" bindtap="goBack">
     <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
   </view>
 
   <!-- 主题图片网格 - 5行2列 -->
   <view class="themes-grid" style="padding-top: calc({{backButtonTop}}rpx + 40rpx)">
-    <image
-      class="theme-image s3p1"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p1.png"
-      mode="widthFix"
-      bindtap="onS3P1Click"
-    ></image>
-    <image
-      class="theme-image s3p2"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p2.png"
-      mode="widthFix"
-      bindtap="onS3P2Click"
-    ></image>
-    <image
-      class="theme-image s3p3"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p3.png"
-      mode="widthFix"
-      bindtap="onS3P3Click"
-    ></image>
-    <image
-      class="theme-image s3p4"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p4.png"
-      mode="widthFix"
-      bindtap="onS3P4Click"
-    ></image>
-    <image
-      class="theme-image s3p5"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p5.png"
-      mode="widthFix"
-      bindtap="onS3P5Click"
-    ></image>
-    <image
-      class="theme-image s3p6"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p6.png"
-      mode="widthFix"
-      bindtap="onS3P6Click"
-    ></image>
-    <image
-      class="theme-image s3p7"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p7.png"
-      mode="widthFix"
-      bindtap="onS3P7Click"
-    ></image>
-    <image
-      class="theme-image s3p8"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p8.png"
-      mode="widthFix"
-      bindtap="onS3P8Click"
-    ></image>
-    <image
-      class="theme-image s3p9"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p9.png"
-      mode="widthFix"
-      bindtap="onS3P9Click"
-    ></image>
-    <image
-      class="theme-image s3p10"
-      src="https://app5.fjsen.com/h5/20260122/images/s3p10.png"
-      mode="widthFix"
-      bindtap="onS3P10Click"
-    ></image>
+    <image class="theme-image s3p1" src="https://app5.fjsen.com/h5/20260122/images/s3p1.png" mode="widthFix"
+      bindtap="onS3P1Click"></image>
+    <image class="theme-image s3p2" src="https://app5.fjsen.com/h5/20260122/images/s3p2.png" mode="widthFix"
+      bindtap="onS3P2Click"></image>
+    <image class="theme-image s3p3" src="https://app5.fjsen.com/h5/20260122/images/s3p3.png" mode="widthFix"
+      bindtap="onS3P3Click"></image>
+    <image class="theme-image s3p4" src="https://app5.fjsen.com/h5/20260122/images/s3p4.png" mode="widthFix"
+      bindtap="onS3P4Click"></image>
+    <image class="theme-image s3p5" src="https://app5.fjsen.com/h5/20260122/images/s3p5.png" mode="widthFix"
+      bindtap="onS3P5Click"></image>
+    <image class="theme-image s3p6" src="https://app5.fjsen.com/h5/20260122/images/s3p6.png" mode="widthFix"
+      bindtap="onS3P6Click"></image>
+    <image class="theme-image s3p7" src="https://app5.fjsen.com/h5/20260122/images/s3p7.png" mode="widthFix"
+      bindtap="onS3P7Click"></image>
+    <image class="theme-image s3p8" src="https://app5.fjsen.com/h5/20260122/images/s3p8.png" mode="widthFix"
+      bindtap="onS3P8Click"></image>
+    <image class="theme-image s3p9" src="https://app5.fjsen.com/h5/20260122/images/s3p9.png" mode="widthFix"
+      bindtap="onS3P9Click"></image>
+    <image class="theme-image s3p10" src="https://app5.fjsen.com/h5/20260122/images/s3p10.png" mode="widthFix"
+      bindtap="onS3P10Click"></image>
   </view>
 </view>
