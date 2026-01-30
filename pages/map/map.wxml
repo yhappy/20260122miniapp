@@ -15,43 +15,46 @@
   </scroll-view>
 
   <!-- 内容区域 -->
-  <view class="content-area" style="top: {{backButtonTop}}rpx">
+  <view class="content-area" style="top: {{backButtonTop}}rpx" wx:if="{{cityConfig}}">
     <!-- 中部偏上：标题 -->
-    <image class="title" src="https://app5.fjsen.com/h5/20260122/images/福州title.png" mode="widthFix"></image>
+    <image class="title" src="{{cityConfig.titleImage}}" mode="widthFix"></image>
 
     <!-- 中部偏右：装饰图片 -->
     <image class="s2p7" src="https://app5.fjsen.com/h5/20260122/images/s2p7.png" mode="widthFix"></image>
 
     <!-- 中部中间：地图 -->
-    <image class="map" src="https://app5.fjsen.com/h5/20260122/images/福州map.png" mode="widthFix"></image>
+    <image class="map" src="{{cityConfig.mapImage}}" mode="widthFix"></image>
 
     <!-- 地图上的叠放点图片 -->
-    <image class="dot dot1" src="https://app5.fjsen.com/h5/20260122/images/dot1.png" mode="widthFix"></image>
-    <image class="dot dot2" src="https://app5.fjsen.com/h5/20260122/images/dot2.png" mode="widthFix"></image>
-    <image class="dot dot3" src="https://app5.fjsen.com/h5/20260122/images/dot3.png" mode="widthFix"></image>
+    <image
+      class="dot"
+      wx:for="{{cityConfig.dots}}"
+      wx:key="id"
+      wx:for-item="dot"
+      src="https://app5.fjsen.com/h5/20260122/images/dot{{dot.id}}.png"
+      mode="widthFix"
+      style="top: {{dot.top}}; left: {{dot.left}};"
+    ></image>
 
     <!-- 底部两列文字展示 -->
-    <view class="text-columns">
+    <view class="text-columns" style="top: {{cityConfig.textColumnsTop}};">
       <view class="column left">
-        <text class="column-text">1 福州鼓岭·柱里</text>
-        <text class="column-text">2 福州连江奇达村旗冠顶</text>
-        <text class="column-text">3 晋安区春伦生态茶园</text>
-        <text class="column-text">4 鼓楼区闽一口茶点茶馆</text>
-        <text class="column-text">5 "周末戏相逢"公益性演出（福州西湖）</text>
-        <text class="column-text">6 《冷月无声——吴石传奇》沉浸式戏剧</text>
-        <text class="column-text">7 《最忆船政》实景演艺项目</text>
-        <text class="column-text">8 福州达明美食街（台湾主题街区）</text>
+        <text
+          class="column-text"
+          wx:for="{{cityConfig.texts}}"
+          wx:key="id"
+          wx:for-item="text"
+          wx:if="{{text.id <= leftColumnCount}}"
+        >{{text.id}} {{text.content}}</text>
       </view>
       <view class="column right">
-        <text class="column-text">9 福建民俗博物馆"二十四节气里的闽式生活"</text>
-        <text class="column-text">10 福州漆艺基地·闽漆胶囊工场</text>
-        <text class="column-text">11 仓山区螺洲古镇</text>
-        <text class="column-text">12 三坊七巷·山海福厝</text>
-        <text class="column-text">13 烟台山亭下路</text>
-        <text class="column-text">14 福道</text>
-        <text class="column-text">15 中国船政文化博物馆</text>
-        <text class="column-text">16 吴石故居（仓山区吴厝村）</text>
-        <text class="column-text">17 林则徐纪念馆</text>
+        <text
+          class="column-text"
+          wx:for="{{cityConfig.texts}}"
+          wx:key="id"
+          wx:for-item="text"
+          wx:if="{{text.id > leftColumnCount}}"
+        >{{text.id}} {{text.content}}</text>
       </view>
     </view>
   </view>

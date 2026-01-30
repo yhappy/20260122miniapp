@@ -80,7 +80,7 @@
   display: block;
 }
 
-/* 中部偏上：福州标题 */
+/* 中部偏上：标题 */
 .title {
   position: absolute;
   top: 240rpx;
@@ -99,7 +99,7 @@
   z-index: 8;
 }
 
-/* 中部中间：福州地图 */
+/* 中部中间：地图 */
 .map {
   position: absolute;
   top: 400rpx;
@@ -114,27 +114,13 @@
   position: absolute;
   z-index: 10;
   width: 6%;
-}
-
-.dot1 {
-  top: 550rpx;
-  left: 35%;
-}
-
-.dot2 {
-  top: 650rpx;
-  left: 50%;
-}
-
-.dot3 {
-  top: 750rpx;
-  left: 60%;
+  /* top 和 left 通过内联样式设置 */
 }
 
 /* 底部两列文字展示 */
 .text-columns {
   position: absolute;
-  top: 1050rpx;
+  /* top 通过内联样式设置 */
   left: 0;
   width: 100%;
   padding: 0 30rpx 30rpx;
