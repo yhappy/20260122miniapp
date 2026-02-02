@@ -28,12 +28,13 @@
     <!-- 地图上的叠放点图片 -->
     <image
       class="dot"
-      wx:for="{{cityConfig.dots}}"
+      wx:for="{{cityConfig.items}}"
       wx:key="id"
-      wx:for-item="dot"
-      src="https://app5.fjsen.com/h5/20260122/images/dot{{dot.id}}.png"
+      wx:for-item="item"
+      src="https://app5.fjsen.com/h5/20260122/images/dot{{item.id}}.png"
       mode="widthFix"
-      style="top: {{dot.top}}; left: {{dot.left}};"
+      wx:if="{{item.dot}}"
+      style="top: {{item.dot.top}}; left: {{item.dot.left}};"
     ></image>
 
     <!-- 底部两列文字展示 -->
@@ -41,20 +42,20 @@
       <view class="column left">
         <text
           class="column-text"
-          wx:for="{{cityConfig.texts}}"
+          wx:for="{{cityConfig.items}}"
           wx:key="id"
-          wx:for-item="text"
-          wx:if="{{text.id <= leftColumnCount}}"
-        >{{text.id}} {{text.content}}</text>
+          wx:for-item="item"
+          wx:if="{{item.id <= leftColumnCount}}"
+        >{{item.id}} {{item.content}}</text>
       </view>
       <view class="column right">
         <text
           class="column-text"
-          wx:for="{{cityConfig.texts}}"
+          wx:for="{{cityConfig.items}}"
           wx:key="id"
-          wx:for-item="text"
-          wx:if="{{text.id > leftColumnCount}}"
-        >{{text.id}} {{text.content}}</text>
+          wx:for-item="item"
+          wx:if="{{item.id > leftColumnCount}}"
+        >{{item.id}} {{item.content}}</text>
       </view>
     </view>
   </view>

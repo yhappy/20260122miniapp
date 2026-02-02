@@ -9,104 +9,141 @@ const CITY_CONFIG = {
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/福州map.png',
     textColumnsTop: '1050rpx', // 底部文字区域的top值
     leftColumnCount: 8, // 左列文字条目数
-    dots: [{
+    items: [{
         id: 1,
-        top: '550rpx',
-        left: '35%'
+        content: '福州鼓岭·柱里',
+        dot: {
+          top: '540rpx',
+          left: '530rpx'
+        }
       },
       {
         id: 2,
-        top: '650rpx',
-        left: '50%'
+        content: '福州连江奇达村旗冠顶',
+        dot: {
+          top: '490rpx',
+          left: '600rpx'
+        }
       },
       {
         id: 3,
-        top: '750rpx',
-        left: '60%'
+        content: '晋安区春伦生态茶园',
+        dot: {
+          top: '530rpx',
+          left: '400rpx'
+        }
       },
       {
         id: 4,
-        top: '580rpx',
-        left: '45%'
+        content: '鼓楼区闽一口茶点茶馆',
+        dot: {
+          top: '650rpx',
+          left: '465rpx'
+        }
       },
       {
         id: 5,
-        top: '700rpx',
-        left: '55%'
+        content: '"周末戏相逢"公益性演出（福州西湖）',
+        dot: {
+          top: '420rpx',
+          left: '400rpx'
+        }
       },
       {
         id: 6,
-        top: '800rpx',
-        left: '40%'
-      }
-    ],
-    texts: [{
-        id: 1,
-        content: '福州鼓岭·柱里'
-      },
-      {
-        id: 2,
-        content: '福州连江奇达村旗冠顶'
-      },
-      {
-        id: 3,
-        content: '晋安区春伦生态茶园'
-      },
-      {
-        id: 4,
-        content: '鼓楼区闽一口茶点茶馆'
-      },
-      {
-        id: 5,
-        content: '"周末戏相逢"公益性演出（福州西湖）'
-      },
-      {
-        id: 6,
-        content: '《冷月无声——吴石传奇》沉浸式戏剧'
+        content: '《冷月无声——吴石传奇》沉浸式戏剧',
+        dot: {
+          top: '730rpx',
+          left: '430rpx'
+        }
       },
       {
         id: 7,
-        content: '《最忆船政》实景演艺项目'
+        content: '《最忆船政》实景演艺项目',
+        dot: {
+          top: '780rpx',
+          left: '480rpx'
+        }
       },
       {
         id: 8,
-        content: '福州达明美食街（台湾主题街区）'
+        content: '福州达明美食街（台湾主题街区）',
+        dot: {
+          top: '620rpx',
+          left: '220rpx'
+        }
       },
       {
         id: 9,
-        content: '福建民俗博物馆"二十四节气里的闽式生活"'
+        content: '福建民俗博物馆"二十四节气里的闽式生活"',
+        dot: {
+          top: '450rpx',
+          left: '270rpx'
+        }
       },
       {
         id: 10,
-        content: '福州漆艺基地·闽漆胶囊工场'
+        content: '福州漆艺基地·闽漆胶囊工场',
+        dot: {
+          top: '520rpx',
+          left: '165rpx'
+        }
       },
       {
         id: 11,
-        content: '仓山区螺洲古镇'
+        content: '仓山区螺洲古镇',
+        dot: {
+          top: '920rpx',
+          left: '530rpx'
+        }
       },
       {
         id: 12,
-        content: '三坊七巷·山海福厝'
+        content: '三坊七巷·山海福厝',
+        dot: {
+          top: '820rpx',
+          left: '340rpx'
+        }
       },
       {
         id: 13,
-        content: '烟台山亭下路'
+        content: '烟台山亭下路',
+        dot: {
+          top: '760rpx',
+          left: '270rpx'
+        }
       },
       {
         id: 14,
-        content: '福道'
+        content: '福道',
+        dot: {
+          top: '650rpx',
+          left: '75rpx'
+        }
       },
       {
         id: 15,
-        content: '中国船政文化博物馆'
+        content: '中国船政文化博物馆',
+        dot: {
+          top: '710rpx',
+          left: '510rpx'
+        }
       },
       {
         id: 16,
-        content: '吴石故居（仓山区吴厝村）'
+        content: '吴石故居（仓山区吴厝村）',
+        dot: {
+          top: '790rpx',
+          left: '70rpx'
+        }
       },
       {
         id: 17,
-        content: '林则徐纪念馆'
+        content: '林则徐纪念馆',
+        dot: {
+          top: '790rpx',
+          left: '395rpx'
+        }
       }
     ]
   },
@@ -117,24 +154,21 @@ const CITY_CONFIG = {
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/厦门map.png',
     textColumnsTop: '900rpx', // 底部文字区域的top值
     leftColumnCount: 1, // 左列文字条目数
-    dots: [{
+    items: [{
         id: 1,
-        top: '550rpx',
-        left: '40%'
+        content: '鼓浪屿',
+        dot: {
+          top: '550rpx',
+          left: '40%'
+        }
       },
       {
         id: 2,
-        top: '650rpx',
-        left: '50%'
-      }
-    ],
-    texts: [{
-        id: 1,
-        content: '鼓浪屿'
-      },
-      {
-        id: 2,
-        content: '南普陀寺'
+        content: '南普陀寺',
+        dot: {
+          top: '650rpx',
+          left: '50%'
+        }
       }
     ]
   }
@@ -244,7 +278,7 @@ Page({
       this.setData({
         cityConfig: defaultConfig,
         currentCity: 'fuzhou',
-        leftColumnCount: defaultConfig.leftColumnCount || Math.ceil(defaultConfig.texts.length / 2)
+        leftColumnCount: defaultConfig.leftColumnCount || Math.ceil(defaultConfig.items.length / 2)
       })
       wx.setNavigationBarTitle({
         title: defaultConfig.name
@@ -253,7 +287,7 @@ Page({
     }
 
     // 使用配置中的 leftColumnCount，如果没有配置则自动计算
-    const leftColumnCount = config.leftColumnCount || Math.ceil(config.texts.length / 2)
+    const leftColumnCount = config.leftColumnCount || Math.ceil(config.items.length / 2)
 
     this.setData({
       cityConfig: config,
