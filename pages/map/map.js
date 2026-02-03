@@ -150,13 +150,13 @@ const CITY_CONFIG = {
     name: '厦门',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/厦门title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/厦门map.png',
-    textColumnsTop: '1200rpx', // 底部文字区域的top值
+    textColumnsTop: '1150rpx', // 底部文字区域的top值
     leftColumnCount: 5, // 左列文字条目数
     items: [{
         id: 1,
         content: '厦门同安环东浪漫线',
         dot: {
-          top: '740rpx',
+          top: '700rpx',
           left: '400rpx'
         }
       },
@@ -164,8 +164,8 @@ const CITY_CONFIG = {
         id: 2,
         content: '湖里区郑福星老茶故事馆',
         dot: {
-          top: '1080rpx',
-          left: '340rpx'
+          top: '1000rpx',
+          left: '360rpx'
         }
       },
       {
@@ -180,8 +180,8 @@ const CITY_CONFIG = {
         id: 4,
         content: '厦门 "屿见闽南·时光幻境"',
         dot: {
-          top: '910rpx',
-          left: '100rpx'
+          top: '850rpx',
+          left: '130rpx'
         }
       },
       {
@@ -189,15 +189,15 @@ const CITY_CONFIG = {
         content: '同安区同字厝',
         dot: {
           top: '450rpx',
-          left: '180rpx'
+          left: '200rpx'
         }
       },
       {
         id: 6,
         content: '思明区沙坡尾艺术街区避风坞',
         dot: {
-          top: '1000rpx',
-          left: '300rpx'
+          top: '930rpx',
+          left: '310rpx'
         }
       },
       {
@@ -212,15 +212,15 @@ const CITY_CONFIG = {
         id: 8,
         content: '厦门国际邮轮母港',
         dot: {
-          top: '910rpx',
-          left: '520rpx'
+          top: '840rpx',
+          left: '500rpx'
         }
       },
       {
         id: 9,
         content: '陈嘉庚纪念馆',
         dot: {
-          top: '730rpx',
+          top: '700rpx',
           left: '270rpx'
         }
       }
@@ -230,7 +230,7 @@ const CITY_CONFIG = {
     name: '漳州',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/漳州title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/漳州map.png',
-    textColumnsTop: '1250rpx', // 底部文字区域的top值
+    textColumnsTop: '1150rpx', // 底部文字区域的top值
     leftColumnCount: 5, // 左列文字条目数
     items: [{
         id: 1,
