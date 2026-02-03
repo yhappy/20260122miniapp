@@ -25,9 +25,16 @@
         {
           "name": "pages/map/map",
           "pathName": "pages/map/map",
-          "query": "",
+          "query": "city=xiamen",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "pages/map/map",
+          "pathName": "pages/map/map",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "pages/news/news",

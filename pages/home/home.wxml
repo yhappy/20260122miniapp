@@ -15,16 +15,76 @@
       <image class="overlay-image s2p9" src="https://app5.fjsen.com/h5/20260122/images/s2p9.png" mode="widthFix"></image>
 
       <!-- 城市标签 -->
-      <image class="overlay-image nanping" src="https://app5.fjsen.com/h5/20260122/images/南平.png" mode="widthFix"></image>
-      <image class="overlay-image ningde" src="https://app5.fjsen.com/h5/20260122/images/宁德.png" mode="widthFix"></image>
-      <image class="overlay-image sanming" src="https://app5.fjsen.com/h5/20260122/images/三明.png" mode="widthFix"></image>
-      <image class="overlay-image longyan" src="https://app5.fjsen.com/h5/20260122/images/龙岩.png" mode="widthFix"></image>
-      <image class="overlay-image putian" src="https://app5.fjsen.com/h5/20260122/images/莆田.png" mode="widthFix"></image>
-      <image class="overlay-image quanzhou" src="https://app5.fjsen.com/h5/20260122/images/泉州.png" mode="widthFix"></image>
-      <image class="overlay-image zhangzhou" src="https://app5.fjsen.com/h5/20260122/images/漳州.png" mode="widthFix"></image>
-      <image class="overlay-image pingtan" src="https://app5.fjsen.com/h5/20260122/images/平潭.png" mode="widthFix"></image>
-      <image class="overlay-image xiamen" src="https://app5.fjsen.com/h5/20260122/images/厦门.png" mode="widthFix"></image>
-      <image class="overlay-image fuzhou" src="https://app5.fjsen.com/h5/20260122/images/福州.png" mode="widthFix"></image>
+      <image
+        class="overlay-image nanping"
+        src="https://app5.fjsen.com/h5/20260122/images/南平.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="nanping"
+      ></image>
+      <image
+        class="overlay-image ningde"
+        src="https://app5.fjsen.com/h5/20260122/images/宁德.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="ningde"
+      ></image>
+      <image
+        class="overlay-image sanming"
+        src="https://app5.fjsen.com/h5/20260122/images/三明.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="sanming"
+      ></image>
+      <image
+        class="overlay-image longyan"
+        src="https://app5.fjsen.com/h5/20260122/images/龙岩.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="longyan"
+      ></image>
+      <image
+        class="overlay-image putian"
+        src="https://app5.fjsen.com/h5/20260122/images/莆田.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="putian"
+      ></image>
+      <image
+        class="overlay-image quanzhou"
+        src="https://app5.fjsen.com/h5/20260122/images/泉州.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="quanzhou"
+      ></image>
+      <image
+        class="overlay-image zhangzhou"
+        src="https://app5.fjsen.com/h5/20260122/images/漳州.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="zhangzhou"
+      ></image>
+      <image
+        class="overlay-image pingtan"
+        src="https://app5.fjsen.com/h5/20260122/images/平潭.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="pingtan"
+      ></image>
+      <image
+        class="overlay-image xiamen"
+        src="https://app5.fjsen.com/h5/20260122/images/厦门.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="xiamen"
+      ></image>
+      <image
+        class="overlay-image fuzhou"
+        src="https://app5.fjsen.com/h5/20260122/images/福州.png"
+        mode="widthFix"
+        bindtap="onCityTap"
+        data-city="fuzhou"
+      ></image>
     </view>
 
     <!-- 中部靠下图片 - 使用 s2p1 和 s2p2 -->
