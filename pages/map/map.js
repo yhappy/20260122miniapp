@@ -1091,9 +1091,15 @@ Page({
     console.log('关闭详情弹窗')
 
     this.setData({
-      showDetailPopup: false,
-      selectedItem: null
+      showDetailPopup: false
     })
+
+    // 等待动画结束后再清空数据
+    setTimeout(() => {
+      this.setData({
+        selectedItem: null
+      })
+    }, 300)
   },
 
   /**
@@ -1213,7 +1219,7 @@ Page({
     console.log('分享到朋友圈:', item)
 
     return {
-      title: '林则徐纪念馆 - 福州古厝的典型代表',
+      title: '林则徐纪念馆',
       query: 'city=fuzhou',
       imageUrl: 'https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png'
     }

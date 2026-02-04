@@ -44,7 +44,7 @@
   </view>
 
   <!-- 详情弹窗遮罩层 -->
-  <view class="popup-mask {{showDetailPopup ? 'show' : ''}}" wx:if="{{showDetailPopup}}" bindtap="closeDetailPopup">
+  <view class="popup-mask {{showDetailPopup ? 'show' : ''}}" bindtap="closeDetailPopup">
     <!-- 弹窗内容 -->
     <view class="popup-content {{showDetailPopup ? 'show' : ''}}" catchtap="stopPropagation">
       <!-- 关闭按钮 -->
@@ -64,7 +64,7 @@
 
         <!-- 联系电话 -->
         <view class="popup-contact" bindtap="makePhoneCall">
-          <text class="contact-icon">📞</text>
+          <text class="contact-icon">☎️</text>
           <text class="contact-text">联系电话：0591-87622782</text>
         </view>
 
