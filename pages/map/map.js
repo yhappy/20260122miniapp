@@ -890,6 +890,8 @@ Page({
     backButtonTop: 0, // 返回按钮位置
     currentCity: 'fuzhou', // 当前城市
     cityConfig: null, // 当前城市配置
+    showDetailPopup: false, // 是否显示详情弹窗
+    selectedItem: null, // 当前选中的景点信息
     cities: [{
         id: 1,
         name: '福州',
@@ -1060,6 +1062,86 @@ Page({
           })
         }
       }
+    })
+  },
+
+  /**
+   * 点击地图标记点
+   */
+  onDotTap(e) {
+    const item = e.currentTarget.dataset.item
+    console.log('点击了标记点:', item)
+
+    // 触觉反馈
+    wx.vibrateShort({
+      type: 'light'
+    })
+
+    // 显示详情弹窗
+    this.setData({
+      showDetailPopup: true,
+      selectedItem: item
+    })
+  },
+
+  /**
+   * 关闭详情弹窗
+   */
+  closeDetailPopup() {
+    console.log('关闭详情弹窗')
+
+    this.setData({
+      showDetailPopup: false,
+      selectedItem: null
+    })
+  },
+
+  /**
+   * 阻止事件冒泡（防止点击弹窗内容时关闭弹窗）
+   */
+  stopPropagation() {
+    // 空函数，仅用于阻止事件冒泡
+  },
+
+  /**
+   * 导航前往景点
+   */
+  navigateToSpot() {
+    const item = this.data.selectedItem
+    console.log('导航前往:', item)
+
+    wx.showToast({
+      title: '正在规划路线...',
+      icon: 'loading',
+      duration: 2000
+    })
+
+    // 这里可以调用微信地图API进行导航
+    // wx.openLocation({
+    //   latitude: item.latitude,
+    //   longitude: item.longitude,
+    //   name: item.content,
+    //   address: item.address,
+    //   scale: 18
+    // })
+  },
+
+  /**
+   * 分享景点
+   */
+  shareSpot() {
+    const item = this.data.selectedItem
+    console.log('分享景点:', item)
+
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
+
+    wx.showToast({
+      title: '点击右上角分享',
+      icon: 'none',
+      duration: 2000
     })
   },
 

@@ -26,36 +26,81 @@
     <image class="map" src="{{cityConfig.mapImage}}" mode="widthFix"></image>
 
     <!-- 地图上的叠放点图片 -->
-    <image
-      class="dot"
-      wx:for="{{cityConfig.items}}"
-      wx:key="id"
-      wx:for-item="item"
-      src="https://app5.fjsen.com/h5/20260122/images/dot{{item.id}}.png"
-      mode="widthFix"
-      wx:if="{{item.dot}}"
-      style="top: {{item.dot.top}}; left: {{item.dot.left}};"
-    ></image>
+    <image class="dot" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
+      src="https://app5.fjsen.com/h5/20260122/images/dot{{item.id}}.png" mode="widthFix" wx:if="{{item.dot}}"
+      style="top: {{item.dot.top}}; left: {{item.dot.left}};" bindtap="onDotTap" data-item="{{item}}"></image>
 
     <!-- 底部两列文字展示 -->
     <view class="text-columns" style="top: {{cityConfig.textColumnsTop}};">
       <view class="column left">
-        <text
-          class="column-text"
-          wx:for="{{cityConfig.items}}"
-          wx:key="id"
-          wx:for-item="item"
-          wx:if="{{item.id <= leftColumnCount}}"
-        >{{item.id}} {{item.content}}</text>
+        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
+          wx:if="{{item.id <= leftColumnCount}}">{{item.id}} {{item.content}}</text>
       </view>
       <view class="column right">
-        <text
-          class="column-text"
-          wx:for="{{cityConfig.items}}"
-          wx:key="id"
-          wx:for-item="item"
-          wx:if="{{item.id > leftColumnCount}}"
-        >{{item.id}} {{item.content}}</text>
+        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
+          wx:if="{{item.id > leftColumnCount}}">{{item.id}} {{item.content}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 详情弹窗遮罩层 -->
+  <view class="popup-mask {{showDetailPopup ? 'show' : ''}}" wx:if="{{showDetailPopup}}" bindtap="closeDetailPopup">
+    <!-- 弹窗内容 -->
+    <view class="popup-content {{showDetailPopup ? 'show' : ''}}" catchtap="stopPropagation">
+      <!-- 关闭按钮 -->
+      <view class="popup-close" bindtap="closeDetailPopup">
+        <text class="close-icon">×</text>
+      </view>
+
+      <!-- 景点图片 -->
+      <image class="popup-image"
+        src="https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png"
+        mode="aspectFill"></image>
+
+      <!-- 景点信息 -->
+      <view class="popup-info">
+        <!-- 景点名称 -->
+        <view class="popup-title">林则徐纪念馆</view>
+
+        <!-- 联系电话 -->
+        <view class="popup-contact">
+          <text class="contact-icon">📞</text>
+          <text class="contact-text">联系电话：0591-87622782</text>
+        </view>
+
+        <!-- 详细地址 -->
+        <view class="popup-address">
+          <text class="address-icon">📍</text>
+          <text class="address-text">详细地址：福州市鼓楼区澳门路22号(南门兜地铁站L口步行411米)</text>
+        </view>
+
+        <!-- 开放时间 -->
+        <view class="popup-opening-hours">
+          <view class="section-title">开放时间：</view>
+          <text class="opening-hours-text">1.星期一工作日：8:30-17:00（设备维护，16:30停止入场）；
+            2.其他工作日：8:30-18:00（17:30停止入场）；
+            3.节假日及休息日：8:30-17:30全区域开放，17:30-20:00延时开放林文忠公祠，19:30停止入场。
+          </text>
+        </view>
+
+        <!-- 简介 -->
+        <view class="popup-description">
+          <text class="description-label">简介：</text>
+          <text
+            class="description-text">福州市林则徐纪念馆坐落于福州市鼓楼区澳门路1号，是"福州古厝"的典型代表。馆内设有"林则徐史绩展""禁毒展馆"两大固定陈列，其中"林则徐史绩展"依托丰富文物、详实图文资料，以传统与高科技融合的展陈方式，通过场景重塑、情景再现、沙盘演示、灯光营造等多元手段，生动还原林则徐波澜壮阔的一生，传承弘扬其伟大的爱国主义精神。同时，常态化开展林则徐主题精品巡展、精品研学、特色党性教育、左海讲坛、禁毒宣传等多元社教项目，持续升级参观体验。</text>
+        </view>
+
+        <!-- 操作按钮 -->
+        <view class="popup-actions">
+          <button class="action-btn primary" bindtap="navigateToSpot">
+            <text class="btn-icon">🧭</text>
+            <text class="btn-text">导航前往</text>
+          </button>
+          <button class="action-btn secondary" bindtap="shareSpot">
+            <text class="btn-icon">📤</text>
+            <text class="btn-text">分享</text>
+          </button>
+        </view>
       </view>
     </view>
   </view>
