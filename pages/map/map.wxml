@@ -63,15 +63,15 @@
         <view class="popup-title">林则徐纪念馆</view>
 
         <!-- 联系电话 -->
-        <view class="popup-contact">
+        <view class="popup-contact" bindtap="makePhoneCall">
           <text class="contact-icon">📞</text>
           <text class="contact-text">联系电话：0591-87622782</text>
         </view>
 
         <!-- 详细地址 -->
-        <view class="popup-address">
+        <view class="popup-address" bindtap="navigateToSpot">
           <text class="address-icon">📍</text>
-          <text class="address-text">详细地址：福州市鼓楼区澳门路22号(南门兜地铁站L口步行411米)</text>
+          <text class="address-text">详细地址：福州市鼓楼区澳门路1号(南门兜地铁站L口步行411米)</text>
         </view>
 
         <!-- 开放时间 -->
@@ -96,7 +96,7 @@
             <text class="btn-icon">🧭</text>
             <text class="btn-text">导航前往</text>
           </button>
-          <button class="action-btn secondary" bindtap="shareSpot">
+          <button class="action-btn secondary" open-type="share">
             <text class="btn-icon">📤</text>
             <text class="btn-text">分享</text>
           </button>

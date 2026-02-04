@@ -1110,39 +1110,113 @@ Page({
     const item = this.data.selectedItem
     console.log('导航前往:', item)
 
-    wx.showToast({
-      title: '正在规划路线...',
-      icon: 'loading',
-      duration: 2000
+    // 触觉反馈
+    wx.vibrateShort({
+      type: 'light'
     })
 
-    // 这里可以调用微信地图API进行导航
-    // wx.openLocation({
-    //   latitude: item.latitude,
-    //   longitude: item.longitude,
-    //   name: item.content,
-    //   address: item.address,
-    //   scale: 18
-    // })
+    // 腾讯地图坐标
+    const latitude = 26.078379
+    const longitude = 119.297252
+    const name = '林则徐纪念馆'
+    const address = '福州市鼓楼区澳门路1号'
+
+    // 使用微信内置地图导航
+    wx.openLocation({
+      latitude: latitude,
+      longitude: longitude,
+      name: name,
+      address: address,
+      scale: 18,
+      success: () => {
+        console.log('打开地图成功')
+      },
+      fail: (err) => {
+        console.error('打开地图失败:', err)
+        wx.showToast({
+          title: '打开地图失败',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  },
+
+  /**
+   * 拨打电话
+   */
+  makePhoneCall() {
+    const phoneNumber = '0591-87622782'
+    console.log('拨打电话:', phoneNumber)
+
+    // 触觉反馈
+    wx.vibrateShort({
+      type: 'light'
+    })
+
+    wx.showModal({
+      title: '拨打电话',
+      content: `是否拨打 ${phoneNumber}？`,
+      confirmText: '拨打',
+      cancelText: '取消',
+      success: (res) => {
+        if (res.confirm) {
+          wx.makePhoneCall({
+            phoneNumber: phoneNumber,
+            success: () => {
+              console.log('拨打电话成功')
+            },
+            fail: (err) => {
+              console.error('拨打电话失败:', err)
+              wx.showToast({
+                title: '拨打失败',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
   /**
    * 分享景点
    */
-  shareSpot() {
+  onShareAppMessage() {
     const item = this.data.selectedItem
     console.log('分享景点:', item)
 
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ['shareAppMessage', 'shareTimeline']
-    })
+    return {
+      title: '林则徐纪念馆',
+      path: '/pages/map/map?city=fuzhou',
+      imageUrl: 'https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png',
+      success: () => {
+        console.log('分享成功')
+        wx.showToast({
+          title: '分享成功',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail: (err) => {
+        console.error('分享失败:', err)
+      }
+    }
+  },
 
-    wx.showToast({
-      title: '点击右上角分享',
-      icon: 'none',
-      duration: 2000
-    })
+  /**
+   * 分享到朋友圈
+   */
+  onShareTimeline() {
+    const item = this.data.selectedItem
+    console.log('分享到朋友圈:', item)
+
+    return {
+      title: '林则徐纪念馆 - 福州古厝的典型代表',
+      query: 'city=fuzhou',
+      imageUrl: 'https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png'
+    }
   },
 
   /**
