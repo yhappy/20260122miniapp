@@ -34,24 +34,24 @@
     <view class="text-columns" style="top: {{cityConfig.textColumnsTop}};">
       <view class="column left">
         <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
-          wx:if="{{item.id <= leftColumnCount}}">{{item.id}} {{item.content}}</text>
+          wx:if="{{item.id <= leftColumnCount}}" bindtap="onDotTap" data-item="{{item}}">{{item.id}} {{item.content}}</text>
       </view>
       <view class="column right">
         <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
-          wx:if="{{item.id > leftColumnCount}}">{{item.id}} {{item.content}}</text>
+          wx:if="{{item.id > leftColumnCount}}" bindtap="onDotTap" data-item="{{item}}">{{item.id}} {{item.content}}</text>
       </view>
     </view>
   </view>
 
   <!-- 详情弹窗遮罩层 -->
   <view class="popup-mask {{showDetailPopup ? 'show' : ''}}" bindtap="closeDetailPopup">
+    <!-- 关闭按钮 -->
+    <view class="popup-close {{showDetailPopup ? 'show' : ''}}" bindtap="closeDetailPopup">
+      <text class="close-icon">×</text>
+    </view>
+
     <!-- 弹窗内容 -->
     <view class="popup-content {{showDetailPopup ? 'show' : ''}}" catchtap="stopPropagation">
-      <!-- 关闭按钮 -->
-      <view class="popup-close" bindtap="closeDetailPopup">
-        <text class="close-icon">×</text>
-      </view>
-
       <!-- 景点图片 -->
       <image class="popup-image"
         src="https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png"
@@ -89,19 +89,19 @@
           <text
             class="description-text">福州市林则徐纪念馆坐落于福州市鼓楼区澳门路1号，是"福州古厝"的典型代表。馆内设有"林则徐史绩展""禁毒展馆"两大固定陈列，其中"林则徐史绩展"依托丰富文物、详实图文资料，以传统与高科技融合的展陈方式，通过场景重塑、情景再现、沙盘演示、灯光营造等多元手段，生动还原林则徐波澜壮阔的一生，传承弘扬其伟大的爱国主义精神。同时，常态化开展林则徐主题精品巡展、精品研学、特色党性教育、左海讲坛、禁毒宣传等多元社教项目，持续升级参观体验。</text>
         </view>
-
-        <!-- 操作按钮 -->
-        <view class="popup-actions">
-          <button class="action-btn primary" bindtap="navigateToSpot">
-            <text class="btn-icon">🧭</text>
-            <text class="btn-text">导航前往</text>
-          </button>
-          <button class="action-btn secondary" open-type="share">
-            <text class="btn-icon">📤</text>
-            <text class="btn-text">分享</text>
-          </button>
-        </view>
       </view>
+    </view>
+
+    <!-- 操作按钮 - 固定在底部 -->
+    <view class="popup-actions {{showDetailPopup ? 'show' : ''}}">
+      <button class="action-btn primary" bindtap="navigateToSpot">
+        <text class="btn-icon">🧭</text>
+        <text class="btn-text">导航前往</text>
+      </button>
+      <button class="action-btn secondary" open-type="share">
+        <text class="btn-icon">📤</text>
+        <text class="btn-text">分享</text>
+      </button>
     </view>
   </view>
 </view>

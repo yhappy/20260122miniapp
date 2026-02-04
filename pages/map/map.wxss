@@ -29,6 +29,7 @@
 
 .back-icon {
   width: 100%;
+  height: 100%;
   display: block;
   filter: drop-shadow(0 0 8rpx white);
 }
@@ -159,6 +160,14 @@
   text-decoration: underline dotted #8b4513b2;
   text-underline-offset: 4rpx;
   text-decoration-thickness: 0.5rpx;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.column-text:active {
+  color: #A0522D;
+  text-decoration: underline solid #A0522D;
+  transform: scale(0.98);
 }
 
 /* 详情弹窗遮罩层 */
@@ -207,17 +216,30 @@
 
 /* 关闭按钮 */
 .popup-close {
-  position: absolute;
-  top: 20rpx;
+  position: fixed;
+  bottom: 67vh;
   right: 30rpx;
   width: 60rpx;
   height: 60rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
-  z-index: 10;
+  z-index: 1001;
+  transform: translateY(500rpx);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.popup-close.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.popup-close:active {
+  background: rgba(240, 240, 240, 0.5);
+  transform: scale(0.9);
 }
 
 .close-icon {
@@ -238,14 +260,14 @@
 
 /* 景点信息区域 */
 .popup-info {
-  padding: 40rpx 40rpx 0;
+  padding: 40rpx 40rpx 140rpx;
 }
 
 /* 景点名称 */
 .popup-title {
   font-size: 36rpx;
   font-weight: bold;
-  color: #333;
+  color: #8B4513;
   line-height: 1.4;
   margin-bottom: 20rpx;
 }
@@ -258,7 +280,6 @@
   padding: 16rpx 20rpx;
   background: #fff8f0;
   border-radius: 16rpx;
-  border-left: 4rpx solid #8B4513;
   transition: all 0.2s ease;
 }
 
@@ -316,14 +337,14 @@
 }
 
 .section-title {
-  font-size: 26rpx;
+  font-size: 28rpx;
   font-weight: bold;
-  color: #333;
+  color: #8B4513;
   margin-bottom: 12rpx;
 }
 
 .opening-hours-text {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #666;
   line-height: 1.8;
   white-space: pre-line;
@@ -350,15 +371,31 @@
 .description-text {
   font-size: 26rpx;
   color: #666;
-  line-height: 1.6;
+  line-height: 1.8;
   display: block;
 }
 
 /* 操作按钮 */
 .popup-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   gap: 20rpx;
-  margin-top: 20rpx;
+  padding: 20rpx 40rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
+}
+
+.popup-actions.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .action-btn {
