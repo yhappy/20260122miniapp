@@ -25,7 +25,7 @@
         {
           "name": "pages/map/map",
           "pathName": "pages/map/map",
-          "query": "city=quanzhou",
+          "query": "city=pingtan",
           "scene": null,
           "launchMode": "default"
         },
