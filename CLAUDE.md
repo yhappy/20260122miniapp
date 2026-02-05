@@ -4,207 +4,126 @@
 
 ## 项目概述
 
-这是一个微信小程序项目——"城市探索"，专注于福建省城市的展示与探索。项目使用微信小程序原生框架开发，展示福建省9个地级市和平潭综合实验区的文化、新闻和地理信息。
+这是一个微信小程序项目——"城市探索",专注于福建省城市的展示与探索。项目使用微信小程序原生框架开发,展示福建省9个地级市和平潭综合实验区的文化、新闻和地理信息。
 
 ### 核心功能
-- 封面动画展示（多层图片动画效果）
-- 福建省城市地图展示（闽A-闽K车牌代码标识）
-- 新闻资讯聚合（从东南网厦门频道抓取）
-- 地图定位与导航（微信地图组件）
-- 主题分类浏览（十大主题分类）
+- **封面动画**:多层图片动画效果展示
+- **城市选择**:福建省10个区域(9市+平潭)的交互式地图
+- **景点展示**:每个城市包含多个景点,支持查看详情和导航
+- **新闻资讯**:从东南网专题页面实时抓取新闻内容
+- **主题分类**:十大闽式生活主题分类浏览
 
-## 技术架构
+## 开发环境
 
-### 全局配置
+### 开发工具
+- 微信开发者工具
+- AppID: `wxf9e3b68a6cca198f`
 
-**app.json** - 应用配置
+### 编译配置 (project.config.json)
 ```json
 {
-  "pages": [
-    "pages/cover/cover",      // 封面页（首页）
-    "pages/home/home",        // 城市地图页
-    "pages/map/map",          // 地图导航页
-    "pages/themes/themes",    // 主题列表页
-    "pages/news/news",        // 新闻列表页
-    "pages/news-detail/news-detail",  // 新闻详情页
-    "pages/index/index",      // 默认示例页
-    "pages/logs/logs"         // 日志页
-  ],
-  "window": {
-    "navigationBarTitleText": "城市探索",
-    "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#ffffff"
-  },
-  "componentFramework": "glass-easel",
-  "lazyCodeLoading": "requiredComponents"
+  "es6": true,              // ES6 转换
+  "minified": true,         // 代码压缩
+  "minifyWXML": true,       // WXML 压缩
+  "minifyWXSS": true,       // WXSS 压缩
+  "enhance": true,          // 增强编译
+  "lazyCodeLoading": "requiredComponents"  // 按需注入
 }
 ```
 
-**project.config.json** - 编译配置
-- ES6 转换：启用
-- 代码压缩：启用（WXML、WXSS、JS）
-- 增强编译：启用
-- Tab 大小：2 空格
+### 代码规范
+- Tab 大小: 2 空格
+- 使用 ES6+ 语法
+- 模块化: `module.exports` / `require()`
 
-## 页面架构
+## 项目架构
 
-### 1. 封面页 (Cover) - `pages/cover/`
+### 页面流程图
+```
+封面页 (cover)
+   ↓ 点击 s1p1
+城市地图页 (home)
+   ├─→ 点击城市标签 → 地图页 (map)
+   └─→ 点击 s2p2 → 主题页 (themes)
+       ↓ 点击主题
+       新闻列表页 (news)
+           ↓ 点击新闻项
+           新闻详情页 (news-detail)
+```
 
-**布局结构**
-- 三层图片叠加系统
-- 背景层：s1p15.jpg（全屏背景）
-- 叠加层：s1p16.png、s1p3.png、s1p2.png（带入场动画）
-- 交互层：s1p1.png（带呼吸动画，点击跳转）
-- 底部装饰：s1p14.png（固定底部）
+### 全局配置 (app.json)
+- **入口页**: `pages/cover/cover`
+- **组件框架**: glass-easel
+- **按需加载**: requiredComponents
 
-**动画模式**
-- `fadeIn` - 淡入效果（2秒，0秒延迟）
-- `rotateIn` - 旋转出现（1秒，1秒延迟）
-- `slideUpFadeIn` - 从下到上淡入（1秒，2秒延迟）
-- `pulse` - 呼吸脉冲效果（2秒循环，3秒后开始）
+## 核心模块
 
-**交互逻辑**
+### 1. 地图页模块 (pages/map/)
+
+**架构特点**:配置驱动的城市景点展示系统
+
+**关键文件**:
+- `map.js` - 页面逻辑
+- `config/city-config.js` - 城市配置数据
+
+**城市配置结构**:
 ```javascript
-onS1P1Click() {
-  wx.vibrateShort({ type: 'light' })  // 触觉反馈
-  wx.redirectTo({ url: '/pages/home/home' })  // 重定向跳转
-}
-```
-
-### 2. 城市地图页 (Home) - `pages/home/`
-
-**布局结构**
-- 相同背景：s1p15.jpg
-- 装饰元素：6张叠加图片（s2p3-s2p9）
-- **城市标签系统**：10个城市标签（福建9市+平潭）
-
-**城市标签与车牌代码映射**
-```
-福州 (闽A) - fuzhou      - 0-1秒闪烁
-莆田 (闽B) - putian       - 1-2秒闪烁
-泉州 (闽C) - quanzhou     - 2-3秒闪烁
-厦门 (闽D) - xiamen       - 3-4秒闪烁
-漳州 (闽E) - zhangzhou    - 4-5秒闪烁
-龙岩 (闽F) - longyan      - 5-6秒闪烁
-三明 (闽G) - sanming      - 6-7秒闪烁
-南平 (闽H) - nanping      - 7-8秒闪烁
-宁德 (闽J) - ningde       - 8-9秒闪烁
-平潭 (闽K) - pingtan      - 9-10秒闪烁
-```
-
-**动画模式**
-- `fadeIn` - 淡入（各城市错开0.15秒）
-- `{city}Blink` - 城市循环闪烁（10秒循环，每城市1秒）
-- `cloudFloat` - 云彩漂浮（上下左右轻微浮动）
-
-**定位模式**
-- 使用绝对定位（`position: absolute`）
-- 水平居中：`left: 50%; transform: translateX(-50%)`
-- Z-index分层：0-8层
-
-### 3. 地图页 (Map) - `pages/map/`
-
-**地图组件**
-```javascript
-<map
-  latitude="{{latitude}}"    // 纬度：26.082018
-  longitude="{{longitude}}"  // 经度：119.296438
-  markers="{{markers}}"      // 标记点
-  show-location="{{true}}"   // 显示当前位置
-  bindmarkertap="onMarkerTap"
-/>
-```
-
-**覆盖层按钮**
-- 返回按钮（左上角）
-- 定位按钮（底部居中）
-- 导航按钮（底部居中）
-
-**导航功能**
-```javascript
-openWeChatLocation() {
-  wx.openLocation({
-    latitude, longitude, name, address, scale: 18
-  })
-}
-```
-
-### 4. 主题页 (Themes) - `pages/themes/`
-
-**十大主题分类**
-1. 历史文化 (🏛️) - 128篇
-2. 美食探索 (🍜) - 256篇
-3. 艺术展览 (🎭) - 89篇
-4. 自然风光 (🏞️) - 167篇
-5. 购物攻略 (🛍️) - 201篇
-6. 娱乐休闲 (🎪) - 145篇
-7. 建筑之美 (🏗️) - 78篇
-8. 交通出行 (🚇) - 92篇
-9. 教育培训 (🎓) - 134篇
-10. 职场发展 (💼) - 178篇
-
-**列表结构**
-- 使用 `scroll-view` 实现垂直滚动
-- 点击跳转到新闻列表页（带 themeId 参数）
-
-### 5. 新闻列表页 (News) - `pages/news/`
-
-**数据源**
-- 来源：东南网厦门频道 (https://xm.fjsen.com/node_163616.htm)
-- 实时抓取：使用 `news-parser.js` 工具模块
-
-**加载策略**
-```javascript
-async loadNews() {
-  try {
-    const newsList = await newsParser.getNewsList(NEWS_URL)
-    if (newsList.length > 0) {
-      this.setData({ newsList, loading: false })
-    } else {
-      this.useFallbackData()  // 降级到测试数据
-    }
-  } catch (error) {
-    this.useFallbackData()  // 降级到测试数据
+{
+  [cityKey]: {
+    name: '城市名',
+    titleImage: '标题图片URL',
+    mapImage: '地图背景图片URL',
+    textColumnsTop: '文字区域top值(rpx)',
+    leftColumnCount: 左列景点数量,
+    items: [{
+      id: 景点ID,
+      content: '景点名称',
+      dot: {
+        top: '标记点top值(rpx)',
+        left: '标记点left值(rpx)'
+      }
+    }]
   }
 }
 ```
 
-**状态管理**
-- `loading` - 加载中状态
-- `error` - 错误状态
-- `newsList` - 新闻列表数据
+**核心逻辑**:
+1. 通过 URL 参数 `city` 加载对应城市配置
+2. 动态计算返回按钮位置(基于状态栏高度)
+3. 点击标记点时,使用 `spot-parser` 从远程获取详情
+4. 支持导航、拨打电话、分享等功能
 
-### 6. 新闻详情页 (News-Detail) - `pages/news-detail/`
+**坐标系统**:
+- 使用 `rpx` 单位(750rpx = 屏幕宽度)
+- 标记点通过绝对定位叠加在地图背景上
 
-**数据结构**
-```javascript
-{
-  title: '',      // 标题
-  content: '',    // 正文（分段落）
-  pubtime: '',    // 发布时间
-  author: '',     // 作者
-  source: '',     // 来源
-  editor: '',     // 责编
-  url: ''         // 原文链接
-}
-```
+### 2. 新闻解析模块 (utils/news-parser.js)
 
-**元信息提取**
-- 发布时间：`<span id="pubtime_baidu">`
-- 作者：`<span id="author_baidu">`
-- 来源：`<span id="source_baidu">`
-- 责编：`<span id="editor_baidu">`
+**功能**:从东南网页面抓取和解析新闻内容
 
-## 工具模块
+**核心函数**:
 
-### news-parser.js - 新闻解析器
+**fetchHTML(url)**
+- 自动 HTTP → HTTPS 转换
+- 返回 Promise<string>
 
-**核心功能**
-1. **fetchHTML(url)** - 获取网页HTML
-   - 自动转换 HTTP → HTTPS
-   - 使用 `wx.request` 发起请求
+**parseNewsList(html)**
+- 解析 wap 版本新闻列表
+- 目标结构: `<ul class="clear tuwenlist clearfix">`
+- 提取: 图片URL、新闻链接、标题
+- 清理 HTML 实体和标签
+- 过滤无效标题(分页按钮等)
+- 最多提取 200 条
 
-**导出接口**
+**parseNewsDetail(html, url)**
+- 提取区域: `<div class="phone_content">`
+- 自动添加样式:
+  - 图片: `max-width: 100%; height: auto; display: block;`
+  - H1: 添加 `h1Class` 样式类
+  - P: 添加 `pClass` 样式类
+- 返回富文本 HTML 供 `<rich-text>` 组件渲染
+
+**导出接口**:
 ```javascript
 module.exports = {
   fetchHTML,
@@ -215,45 +134,136 @@ module.exports = {
 }
 ```
 
-### util.js - 通用工具
+### 3. 景点解析模块 (utils/spot-parser.js)
 
-**formatTime(date)** - 时间格式化
-```javascript
-formatTime(new Date())  // "2026/01/29 14:30:45"
+**功能**:从远程 HTML 提取景点详情数据
+
+**目标结构**:表格单元格内的 `id` 属性
+```html
+<td id="dot-cover">...</td>
+<td id="dot-title">...</td>
+<td id="dot-contact">...</td>
+<td id="dot-address">...</td>
+<td id="dot-latitude">...</td>
+<td id="dot-longitude">...</td>
+<td id="dot-opening-hours">...</td>
+<td id="dot-description">...</td>
 ```
 
-## 样式系统
+**核心函数**:
 
-### 单位系统
-- `rpx` - 响应式像素（750rpx = 屏幕宽度）
-- `vh` - 视口高度（100vh = 全屏）
+**extractContentById(html, id)**
+- 提取纯文本内容
+- 移除所有 HTML 标签
+- 替换 HTML 实体字符
 
-### 布局模式
+**extractContentWithLineBreaks(html, id)**
+- 保留段落换行
+- 将 `</p>` 转换为 `\n`
+- 清理多余空格
 
-**1. 全屏容器**
+**parseSpotDetail(html)**
+- 返回结构化对象
+- 字段: cover, title, contact, address, latitude, longitude, openingHours, description
+
+**使用示例** (map.js):
+```javascript
+const spotParser = require('../../utils/spot-parser')
+const SPOT_DETAIL_URL = 'https://www.fjsen.com/wap/zhuanti/...'
+
+spotParser.getSpotDetail(SPOT_DETAIL_URL)
+  .then(spotDetail => {
+    // 处理数据
+  })
+```
+
+### 4. 主题页模块 (pages/themes/)
+
+**功能**:十大闽式生活主题入口
+
+**主题 ID 映射**:
+```javascript
+320551 → 观山阅海
+320552 → 茶和天下
+320553 → 福见好戏
+320554 → 福地美食
+320555 → 非遗国潮
+320556 → 古厝新宿
+320557 → 闽韵福游
+320558 → 绿道慢活
+320559 → 福海扬帆
+320560 → 福祉绵延
+```
+
+**跳转逻辑**:
+```javascript
+wx.navigateTo({
+  url: `/pages/news/news?themeId=${themeId}`
+})
+```
+
+### 5. 新闻列表页 (pages/news/)
+
+**数据源**:
+```javascript
+const newsUrl = `https://www.fjsen.com/wap/zhuanti/node_${themeId}.htm`
+```
+
+**降级策略**:
+- 实时抓取失败时,使用本地测试数据
+- 显示提示: "使用本地数据"
+
+**下拉刷新**:支持 `onPullDownRefresh()`
+
+### 6. 新闻详情页 (pages/news-detail/)
+
+**URL 处理**:
+```javascript
+// 自动转换为 wap 版本
+if (url.includes('www.fjsen.com/') && !url.includes('/wap/')) {
+  wapUrl = url.replace('www.fjsen.com/', 'www.fjsen.com/wap/')
+}
+```
+
+**渲染方式**:
+- 使用 `<rich-text>` 组件渲染富文本
+- 样式类在解析时自动注入
+
+## UI 系统
+
+### 图片资源
+
+**CDN 地址**: `https://app5.fjsen.com/h5/20260122/images/`
+
+**命名规范**:
+```
+s1p{编号}.{ext} - 封面页图片
+s2p{编号}.{ext} - 首页图片
+s3p{编号}.{ext} - 主题页图片
+{城市名}.png - 城市标签(如:福州.png)
+{城市名}title.png - 城市标题
+{城市名}map.png - 城市地图背景
+```
+
+**图片模式**:
+```xml
+<image mode="aspectFill">  <!-- 裁剪填充 -->
+<image mode="widthFix">    <!-- 宽度自适应,高度按比例 -->
+```
+
+### 布局系统
+
+**全屏容器**:
 ```css
 .container {
   width: 100%;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 ```
 
-**2. 绝对定位居中**
-```css
-.element {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-```
-
-**3. 绝对定位水平居中**
+**绝对定位居中**:
 ```css
 .element {
   position: absolute;
@@ -262,27 +272,27 @@ formatTime(new Date())  // "2026/01/29 14:30:45"
 }
 ```
 
-**4. Z-index 分层**
-- 0 - 背景层
-- 1-5 - 内容层
-- 6-8 - 交互层
-- 100+ - 浮动按钮层
+**Z-index 分层**:
+- 0: 背景层
+- 1-5: 内容层
+- 6-8: 交互层
+- 100+: 浮动按钮层
 
-### 动画库
+### 动画系统
 
-**淡入动画**
+**淡入动画**:
 ```css
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-.element {
+.animation {
   animation: fadeIn 2s ease-out 0s forwards;
 }
 ```
 
-**脉冲动画**
+**脉冲动画**:
 ```css
 @keyframes pulse {
   0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
@@ -290,330 +300,295 @@ formatTime(new Date())  // "2026/01/29 14:30:45"
 }
 ```
 
-**云彩漂浮动画**
-```css
-@keyframes cloudFloat {
-  0% { transform: translateX(-50%) translateY(0) scale(1); }
-  25% { transform: translateX(calc(-50% + 8rpx)) translateY(-5rpx) scale(1.01); }
-  50% { transform: translateX(-50%) translateY(-8rpx) scale(1.02); }
-  75% { transform: translateX(calc(-50% - 8rpx)) translateY(-5rpx) scale(1.01); }
-  100% { transform: translateX(-50%) translateY(0) scale(1); }
-}
-```
-
-**城市闪烁动画（10秒循环）**
-```css
-@keyframes fuzhouBlink {
-  0%, 10% { opacity: 1; transform: translateX(-50%) scale(1); }
-  5% { opacity: 0.5; transform: translateX(-50%) scale(1.15); }
-  10%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
-}
-```
-
-## 图片资源管理
-
-### 图片托管
-- **CDN地址**：`https://app5.fjsen.com/h5/20260122/images/`
-- **命名规范**：
-  - 封面图：s1p{编号}.{扩展名}
-  - 首页图：s2p{编号}.{扩展名}
-  - 城市标签：{城市名}.png（如：福州.png、厦门.png）
-  - 功能图标：{功能名}.png（如：location.png、navigation.png）
-
-### 图片模式
-```xml
-<image src="..." mode="aspectFill"></image>  <!-- 裁剪填充 -->
-<image src="..." mode="widthFix"></image>    <!-- 宽度自适应 -->
-```
-
-### 图片分类
-
-**封面页图片**
-- s1p15.jpg - 全屏背景
-- s1p16.png - 顶部标题
-- s1p3.png - 装饰元素
-- s1p2.png - 中部装饰
-- s1p1.png - 交互按钮（带脉冲动画）
-- s1p14.png - 底部装饰
-
-**首页图片**
-- s1p15.jpg - 背景（共用）
-- s2p3-s2p9 - 装饰元素（6张）
-- s2p1.png, s2p2.png - 底部按钮
-- 10个城市标签图（福州.png - 平潭.png）
-
-## 页面配置
-
-### 导航栏样式
-大部分页面使用自定义导航栏：
-```json
-{
-  "navigationBarTitleText": "页面标题",
-  "navigationStyle": "custom"
-}
-```
-
-### 自定义顶部返回按钮
-```xml
-<view class="top-bar">
-  <view class="back-btn" bindtap="goBack">
-    <text class="back-icon">←</text>
-    <text class="back-text">返回</text>
-  </view>
-</view>
-```
-
-```javascript
-goBack() {
-  wx.navigateBack()
-}
-```
+**GPU 加速原则**:
+- 优先使用 `transform` 和 `opacity`
+- 避免动画 `left`/`top`
 
 ## 交互模式
 
 ### 页面跳转
 
-**重定向（关闭当前页）**
+**重定向(关闭当前页)**:
 ```javascript
 wx.redirectTo({ url: '/pages/home/home' })
 ```
 
-**导航（保留当前页）**
+**导航(保留当前页)**:
 ```javascript
-wx.navigateTo({ url: `/pages/news/news?themeId=${themeId}` })
+wx.navigateTo({
+  url: `/pages/news/news?themeId=${themeId}`
+})
 ```
 
-**返回**
+**返回**:
 ```javascript
 wx.navigateBack()
 ```
 
-### 触觉反馈
+### 用户反馈
+
+**触觉反馈**:
 ```javascript
-wx.vibrateShort({ type: 'light' })  // 轻震
+wx.vibrateShort({ type: 'light' })
 ```
 
-### 提示信息
-```javascript
-wx.showToast({
-  title: '加载中...',
-  icon: 'none',
-  duration: 2000
-})
-
-wx.showModal({
-  title: '提示',
-  content: '确认操作？',
-  success: (res) => { if (res.confirm) { /* 确认 */ } }
-})
-```
-
-### 加载状态
+**加载提示**:
 ```javascript
 wx.showLoading({ title: '加载中...', mask: true })
-// ... 操作 ...
 wx.hideLoading()
 ```
 
-### 动态设置导航栏标题
+**Toast 提示**:
 ```javascript
-wx.setNavigationBarTitle({ title: '新闻详情' })
+wx.showToast({
+  title: '操作成功',
+  icon: 'success',
+  duration: 2000
+})
+```
+
+**模态对话框**:
+```javascript
+wx.showModal({
+  title: '确认',
+  content: '是否继续?',
+  success: (res) => {
+    if (res.confirm) { /* 确认 */ }
+  }
+})
+```
+
+### 导航功能
+
+**打开微信地图**:
+```javascript
+wx.openLocation({
+  latitude: 26.078379,
+  longitude: 119.297252,
+  name: '景点名称',
+  address: '详细地址',
+  scale: 18
+})
+```
+
+**拨打电话**:
+```javascript
+wx.makePhoneCall({
+  phoneNumber: '0591-12345678'
+})
 ```
 
 ## 数据流
 
 ### 新闻数据流
 ```
-东南网页面 → wx.request → HTML内容 → news-parser解析 → 结构化数据 → 页面渲染
+东南网专题页
+  ↓ wx.request
+HTML 内容
+  ↓ news-parser.getNewsList()
+结构化新闻列表
+  ↓ setData()
+页面渲染
+  ↓ 点击新闻
+news-parser.getNewsDetail()
+  ↓
+富文本 HTML
+  ↓ <rich-text>
+详情页展示
+```
+
+### 景点数据流
+```
+map.js 传入 city 参数
+  ↓
+加载 city-config.js 配置
+  ↓
+渲染地图背景和标记点
+  ↓ 点击标记点
+spot-parser.getSpotDetail()
+  ↓
+远程 HTML 解析
+  ↓
+景点详情对象
+  ↓ setData()
+弹窗展示详情
+  ↓ 点击导航
+wx.openLocation()
 ```
 
 ### 页面间数据传递
 ```javascript
 // 发送方
 wx.navigateTo({
-  url: `/pages/news/news?themeId=${themeId}`
+  url: `/pages/map/map?city=${cityKey}`
 })
 
 // 接收方
 onLoad(options) {
-  const themeId = options.themeId
+  const cityKey = options.city
 }
 ```
 
-## 全局状态管理
+## 常用工具函数
 
-### app.js
+### URL 编解码
 ```javascript
-App({
-  onLaunch() {
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId
-      }
-    })
-  },
-  globalData: {
-    userInfo: null
-  }
-})
+const encodedUrl = encodeURIComponent(url)
+const decodedUrl = decodeURIComponent(encodedUrl)
 ```
 
-### 访问全局数据
+### px 转 rpx
 ```javascript
-const app = getApp()
-const userInfo = app.globalData.userInfo
+const systemInfo = wx.getSystemInfoSync()
+const rpxRatio = 750 / systemInfo.screenWidth
+const rpxValue = pxValue * rpxRatio
 ```
 
-### 本地存储
+### 获取状态栏高度
 ```javascript
-// 同步存储
-wx.setStorageSync('logs', logs)
-const logs = wx.getStorageSync('logs') || []
-
-// 异步存储
-wx.setStorage({ key: 'key', data: value })
-wx.getStorage({ key: 'key', success: (res) => {} })
-```
-
-## 页面生命周期
-
-```javascript
-Page({
-  onLoad(options) {
-    // 页面加载（只触发一次）
-  },
-  onReady() {
-    // 页面初次渲染完成（只触发一次）
-  },
-  onShow() {
-    // 页面显示
-  },
-  onHide() {
-    // 页面隐藏
-  },
-  onUnload() {
-    // 页面卸载
-  },
-  onPullDownRefresh() {
-    // 下拉刷新
-  },
-  onReachBottom() {
-    // 上拉触底
-  },
-  onShareAppMessage() {
-    // 分享
-    return {
-      title: '分享标题',
-      path: '/pages/index/index'
-    }
-  }
-})
+const statusBarHeight = wx.getSystemInfoSync().statusBarHeight
 ```
 
 ## 开发注意事项
 
-### API 调用限制
+### 域名配置
 - 需要在小程序后台配置合法域名
-- 本地开发可在"开发者工具"→"详情"→"本地设置"中勾选"不校验合法域名"
+- 本地开发: "详情" → "本地设置" → 勾选"不校验合法域名"
 
-### 能力检测
+### 网络请求
+- 所有请求自动转换为 HTTPS
+- 使用 `wx.request` 发起请求
+- 超时时间: 默认 60秒
+
+### 正则表达式技巧
 ```javascript
-if (wx.canIUse('getUserProfile')) {
-  // 支持该 API
+// 匹配 HTML 内容
+const regex = /<div class="content">([\s\S]*?)<\/div>/
+
+// 移除 HTML 标签
+text.replace(/<[^>]+>/g, '')
+
+// 替换 HTML 实体
+text
+  .replace(/&amp;/g, '&')
+  .replace(/&lt;/g, '<')
+  .replace(/&gt;/g, '>')
+  .replace(/&nbsp;/g, ' ')
+```
+
+### 调试技巧
+1. 使用 `console.log` 输出调试信息
+2. 开启"真机调试"测试实际设备
+3. 使用"性能监控"检查流畅度
+4. 临时边框: `border: 1rpx solid red`
+
+### 性能优化
+- 按需注入组件
+- 代码压缩(WXML, WXSS, JS)
+- 图片使用 CDN 加速
+- 动画使用 GPU 加速属性
+- 避免频繁 setData
+
+### 常见问题
+
+**图片不显示**
+- 检查 URL 是否正确
+- 确认域名已备案
+
+**网络请求失败**
+- 检查域名白名单
+- 确认协议为 HTTPS
+
+**动画卡顿**
+- 使用 `transform` 代替 `left`/`top`
+- 避免在动画中使用 `box-shadow`
+
+**页面跳转失败**
+- 检查 app.json 中是否注册页面
+- 确认路径以 `/` 开头
+
+## 代码示例
+
+### 添加新城市配置
+
+在 `pages/map/config/city-config.js` 中添加:
+
+```javascript
+const CITY_CONFIG = {
+  // ... 现有城市
+  newcity: {
+    name: '新城',
+    titleImage: 'https://app5.fjsen.com/h5/20260122/images/新城title.png',
+    mapImage: 'https://app5.fjsen.com/h5/20260122/images/新城map.png',
+    textColumnsTop: '1150rpx',
+    leftColumnCount: 5,
+    items: [
+      {
+        id: 1,
+        content: '景点名称',
+        dot: { top: '500rpx', left: '400rpx' }
+      }
+      // ... 更多景点
+    ]
+  }
 }
 ```
 
-### 模块化
-- 使用 `module.exports` 导出
-- 使用 `require()` 引入
-- 相对路径使用 `./` 或 `../`
+### 修改新闻源
 
-### 布局调试
-- 使用 `border: 1rpx solid red` 临时边框查看元素范围
-- 使用 `background-color` 检查层叠顺序
+编辑 `pages/news/news.js`:
+```javascript
+const NEWS_URL = 'https://your-news-source.com/list.htm'
+```
 
-### 性能优化
-- 按需注入：`lazyCodeLoading: "requiredComponents"`
-- 代码压缩：`minified: true`
-- 图片使用 CDN 加速
-- 动画使用 GPU 加速（transform、opacity）
+确保 `news-parser.js` 的解析规则匹配新源。
 
-### 常见问题
-1. **图片不显示**：检查图片 URL 是否正确、域名是否已备案
-2. **网络请求失败**：检查域名是否已添加到后台"服务器域名"
-3. **动画不流畅**：避免使用 `left`/`top` 动画，使用 `transform`
-4. **页面跳转失败**：检查 app.json 中是否已注册该页面
+### 自定义导航栏
 
-## 项目结构总结
+页面配置 `*.json`:
+```json
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "页面标题"
+}
+```
+
+WXML 添加返回按钮:
+```xml
+<view class="top-bar" style="top: {{backButtonTop}}rpx">
+  <view class="back-btn" bindtap="goBack">
+    <text>← 返回</text>
+  </view>
+</view>
+```
+
+JS 计算位置:
+```javascript
+getSystemInfo() {
+  const systemInfo = wx.getSystemInfoSync()
+  const rpxRatio = 750 / systemInfo.screenWidth
+  const backButtonTop = systemInfo.statusBarHeight * rpxRatio
+  this.setData({ backButtonTop })
+}
+```
+
+## 项目结构
 
 ```
 ├── app.js                  # 小程序入口
 ├── app.json                # 全局配置
-├── app.wxss                # 全局样式（空）
 ├── project.config.json     # 项目配置
-├── sitemap.json            # 索引配置
 ├── pages/                  # 页面目录
-│   ├── cover/              # 封面页（首页）
-│   │   ├── cover.js
-│   │   ├── cover.json      # 自定义导航栏
-│   │   ├── cover.wxml
-│   │   └── cover.wxss      # 动画系统
-│   ├── home/               # 城市地图页
-│   │   ├── home.js
-│   │   ├── home.json
-│   │   ├── home.wxml       # 10个城市标签
-│   │   └── home.wxss       # 城市闪烁动画
-│   ├── map/                # 地图导航页
-│   │   ├── map.js          # 经纬度：26.082018, 119.296438
-│   │   ├── map.json
-│   │   ├── map.wxml        # map组件+cover-view
-│   │   └── map.wxss
+│   ├── cover/              # 封面页(入口)
+│   ├── home/               # 城市选择页
+│   ├── map/                # 地图景点页
+│   │   └── config/
+│   │       └── city-config.js  # 城市配置数据
 │   ├── themes/             # 主题列表页
-│   │   ├── themes.js       # 10大主题数据
-│   │   ├── themes.json
-│   │   ├── themes.wxml     # scroll-view列表
-│   │   └── themes.wxss
 │   ├── news/               # 新闻列表页
-│   │   ├── news.js         # 调用news-parser
-│   │   ├── news.json       # 自定义导航栏
-│   │   ├── news.wxml       # 新闻列表
-│   │   └── news.wxss
-│   ├── news-detail/        # 新闻详情页
-│   │   ├── news-detail.js  # 解析新闻详情
-│   │   ├── news-detail.json
-│   │   ├── news-detail.wxml
-│   │   └── news-detail.wxss
-│   ├── index/              # 默认示例页（未使用）
-│   └── logs/               # 日志页（未使用）
-├── utils/                  # 工具模块
-│   ├── util.js             # 时间格式化
-│   └── news-parser.js      # 新闻解析器（HTML抓取）
-└── images/                 # 本地图片（未使用）
+│   └── news-detail/        # 新闻详情页
+└── utils/                  # 工具模块
+    ├── util.js             # 通用工具
+    ├── news-parser.js      # 新闻解析器
+    └── spot-parser.js      # 景点解析器
 ```
-
-## 快速开始
-
-1. **克隆项目**
-   ```bash
-   git clone <repository>
-   cd miniprogram-1
-   ```
-
-2. **开发工具**
-   - 下载"微信开发者工具"
-   - 导入项目目录
-   - AppID：使用测试号或项目的 AppID
-
-3. **修改图片资源**
-   - 所有图片在 `https://app5.fjsen.com/h5/20260122/images/`
-   - 修改需要同步更新 CDN 上的图片
-
-4. **修改新闻源**
-   - 编辑 `pages/news/news.js` 中的 `NEWS_URL`
-   - 确保 `news-parser.js` 的解析规则匹配新源
-
-5. **调试技巧**
-   - 使用 `console.log` 输出调试信息
-   - 开启"真机调试"测试实际设备表现
-   - 使用"性能监控"检查流畅度

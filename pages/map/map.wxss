@@ -94,7 +94,7 @@
 /* 中部偏右：装饰图片 s2p7 */
 .s2p7 {
   position: absolute;
-  top: 900rpx;
+  /* top 通过内联样式从配置中设置 */
   right: 40rpx;
   width: 12%;
   z-index: 8;
@@ -143,11 +143,13 @@
 .column.left {
   align-items: flex-start;
   padding-left: 10rpx;
+  padding-right: 10rpx;
 }
 
 .column.right {
   align-items: flex-start;
   padding-left: 10rpx;
+  padding-right: 10rpx;
 }
 
 .column-text {

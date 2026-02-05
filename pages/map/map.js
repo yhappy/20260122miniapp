@@ -189,7 +189,7 @@ Page({
     // 显示加载提示
     wx.showLoading({
       title: '加载中...',
-      mask: true
+      mask: false
     })
 
     // 从远程获取景点详情数据

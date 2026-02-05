@@ -5,6 +5,7 @@ const CITY_CONFIG = {
     name: '福州',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/福州title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/福州map.png',
+    s2p7Top: '900rpx', // s2p7装饰图片的top值
     textColumnsTop: '1050rpx', // 底部文字区域的top值
     leftColumnCount: 8, // 左列文字条目数
     items: [{
@@ -149,6 +150,7 @@ const CITY_CONFIG = {
     name: '厦门',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/厦门title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/厦门map.png',
+    s2p7Top: '1000rpx', // s2p7装饰图片的top值
     textColumnsTop: '1150rpx', // 底部文字区域的top值
     leftColumnCount: 5, // 左列文字条目数
     items: [{
@@ -229,6 +231,7 @@ const CITY_CONFIG = {
     name: '漳州',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/漳州title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/漳州map.png',
+    s2p7Top: '900rpx', // s2p7装饰图片的top值
     textColumnsTop: '1180rpx', // 底部文字区域的top值
     leftColumnCount: 5, // 左列文字条目数
     items: [{
@@ -317,6 +320,7 @@ const CITY_CONFIG = {
     name: '泉州',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/泉州title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/泉州map.png',
+    s2p7Top: '950rpx', // s2p7装饰图片的top值
     textColumnsTop: '1130rpx', // 底部文字区域的top值
     leftColumnCount: 7, // 左列文字条目数
     items: [{
@@ -437,6 +441,7 @@ const CITY_CONFIG = {
     name: '三明',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/三明title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/三明map.png',
+    s2p7Top: '900rpx', // s2p7装饰图片的top值
     textColumnsTop: '1050rpx', // 底部文字区域的top值
     leftColumnCount: 4, // 左列文字条目数
     items: [{
@@ -501,6 +506,7 @@ const CITY_CONFIG = {
     name: '莆田',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/莆田title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/莆田map.png',
+    s2p7Top: '900rpx', // s2p7装饰图片的top值
     textColumnsTop: '1080rpx', // 底部文字区域的top值
     leftColumnCount: 3, // 左列文字条目数
     items: [{
@@ -557,6 +563,7 @@ const CITY_CONFIG = {
     name: '南平',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/南平title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/南平map.png',
+    s2p7Top: '900rpx', // s2p7装饰图片的top值
     textColumnsTop: '1100rpx', // 底部文字区域的top值
     leftColumnCount: 6, // 左列文字条目数
     items: [{
@@ -661,6 +668,7 @@ const CITY_CONFIG = {
     name: '龙岩',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/龙岩title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/龙岩map.png',
+    s2p7Top: '900rpx', // s2p7装饰图片的top值
     textColumnsTop: '1100rpx', // 底部文字区域的top值
     leftColumnCount: 4, // 左列文字条目数
     items: [{
@@ -733,6 +741,7 @@ const CITY_CONFIG = {
     name: '宁德',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/宁德title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/宁德map.png',
+    s2p7Top: '900rpx', // s2p7装饰图片的top值
     textColumnsTop: '1080rpx', // 底部文字区域的top值
     leftColumnCount: 5, // 左列文字条目数
     items: [{
@@ -813,6 +822,7 @@ const CITY_CONFIG = {
     name: '平潭',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/平潭title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/平潭map.png',
+    s2p7Top: '750rpx', // s2p7装饰图片的top值
     textColumnsTop: '1150rpx', // 底部文字区域的top值
     leftColumnCount: 4, // 左列文字条目数
     items: [{

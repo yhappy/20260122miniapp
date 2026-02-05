@@ -20,7 +20,7 @@
     <image class="title" src="{{cityConfig.titleImage}}" mode="widthFix"></image>
 
     <!-- 中部偏右：装饰图片 -->
-    <image class="s2p7" src="https://app5.fjsen.com/h5/20260122/images/s2p7.png" mode="widthFix"></image>
+    <image class="s2p7" src="https://app5.fjsen.com/h5/20260122/images/s2p7.png" mode="widthFix" style="top: {{cityConfig.s2p7Top}};"></image>
 
     <!-- 中部中间：地图 -->
     <image class="map" src="{{cityConfig.mapImage}}" mode="widthFix"></image>
