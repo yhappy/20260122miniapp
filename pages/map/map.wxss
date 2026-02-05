@@ -349,6 +349,7 @@
   line-height: 1.8;
   white-space: pre-line;
   display: block;
+  word-break: break-all;
 }
 
 /* 简介 */
@@ -372,7 +373,10 @@
   font-size: 26rpx;
   color: #666;
   line-height: 1.8;
+  white-space: pre-line;
   display: block;
+  word-break: break-all;
+  text-align: justify;
 }
 
 /* 操作按钮 */

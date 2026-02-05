@@ -1,5 +1,11 @@
 // pages/map/map.js
 
+// 引入景点解析器
+const spotParser = require('../../utils/spot-parser')
+
+// 景点详情URL模板（每个景点对应不同的URL）
+const SPOT_DETAIL_URL = 'https://www.fjsen.com/wap/zhuanti/2026-02/05/content_32129000.htm'
+
 // 城市配置数据
 const CITY_CONFIG = {
   fuzhou: {
@@ -892,6 +898,7 @@ Page({
     cityConfig: null, // 当前城市配置
     showDetailPopup: false, // 是否显示详情弹窗
     selectedItem: null, // 当前选中的景点信息
+    spotDetail: null, // 景点详情数据
     cities: [{
         id: 1,
         name: '福州',
@@ -1077,11 +1084,49 @@ Page({
       type: 'light'
     })
 
-    // 显示详情弹窗
-    this.setData({
-      showDetailPopup: true,
-      selectedItem: item
+    // 显示加载提示
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
     })
+
+    // 从远程获取景点详情数据
+    spotParser.getSpotDetail(SPOT_DETAIL_URL)
+      .then(spotDetail => {
+        // 隐藏加载提示
+        wx.hideLoading()
+
+        // 调试日志：检查解析后的数据
+        console.log('解析后的 openingHours:', spotDetail.openingHours)
+        console.log('openingHours 包含换行符:', spotDetail.openingHours.includes('\n'))
+
+        // 显示详情弹窗，同时存储景点基础数据和详情数据
+        this.setData({
+          showDetailPopup: true,
+          selectedItem: item,
+          spotDetail: spotDetail
+        })
+      })
+      .catch(err => {
+        console.error('获取景点详情失败:', err)
+
+        // 隐藏加载提示
+        wx.hideLoading()
+
+        // 显示错误提示
+        wx.showToast({
+          title: '加载失败，请重试',
+          icon: 'none',
+          duration: 2000
+        })
+
+        // 仍然显示弹窗，使用默认数据
+        this.setData({
+          showDetailPopup: true,
+          selectedItem: item,
+          spotDetail: null
+        })
+      })
   },
 
   /**
@@ -1114,18 +1159,26 @@ Page({
    */
   navigateToSpot() {
     const item = this.data.selectedItem
-    console.log('导航前往:', item)
+    const spotDetail = this.data.spotDetail
+    console.log('导航前往:', item, spotDetail)
 
     // 触觉反馈
     wx.vibrateShort({
       type: 'light'
     })
 
-    // 腾讯地图坐标
-    const latitude = 26.078379
-    const longitude = 119.297252
-    const name = '林则徐纪念馆'
-    const address = '福州市鼓楼区澳门路1号'
+    // 使用解析后的坐标数据，如果没有则使用默认值
+    const latitude = spotDetail && spotDetail.latitude ? parseFloat(spotDetail.latitude) : 26.078379
+    const longitude = spotDetail && spotDetail.longitude ? parseFloat(spotDetail.longitude) : 119.297252
+    const name = spotDetail && spotDetail.title ? spotDetail.title : item.content
+    const address = spotDetail && spotDetail.address ? spotDetail.address : '福州市鼓楼区澳门路1号'
+
+    console.log('导航参数:', {
+      latitude,
+      longitude,
+      name,
+      address
+    })
 
     // 使用微信内置地图导航
     wx.openLocation({
@@ -1152,7 +1205,8 @@ Page({
    * 拨打电话
    */
   makePhoneCall() {
-    const phoneNumber = '0591-87622782'
+    const spotDetail = this.data.spotDetail
+    const phoneNumber = spotDetail && spotDetail.contact ? spotDetail.contact : '0591-87622782'
     console.log('拨打电话:', phoneNumber)
 
     // 触觉反馈
@@ -1191,12 +1245,13 @@ Page({
    */
   onShareAppMessage() {
     const item = this.data.selectedItem
-    console.log('分享景点:', item)
+    const spotDetail = this.data.spotDetail
+    console.log('分享景点:', item, spotDetail)
 
     return {
-      title: '林则徐纪念馆',
-      path: '/pages/map/map?city=fuzhou',
-      imageUrl: 'https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png',
+      title: spotDetail && spotDetail.title ? spotDetail.title : (item ? item.content : '林则徐纪念馆'),
+      path: '/pages/map/map?city=' + (this.data.currentCity || 'fuzhou'),
+      imageUrl: spotDetail && spotDetail.cover ? spotDetail.cover : 'https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png',
       success: () => {
         console.log('分享成功')
         wx.showToast({
@@ -1216,12 +1271,13 @@ Page({
    */
   onShareTimeline() {
     const item = this.data.selectedItem
-    console.log('分享到朋友圈:', item)
+    const spotDetail = this.data.spotDetail
+    console.log('分享到朋友圈:', item, spotDetail)
 
     return {
-      title: '林则徐纪念馆',
-      query: 'city=fuzhou',
-      imageUrl: 'https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png'
+      title: spotDetail && spotDetail.title ? spotDetail.title + ' - 福州古厝的典型代表' : '林则徐纪念馆 - 福州古厝的典型代表',
+      query: 'city=' + (this.data.currentCity || 'fuzhou'),
+      imageUrl: spotDetail && spotDetail.cover ? spotDetail.cover : 'https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png'
     }
   },
 
