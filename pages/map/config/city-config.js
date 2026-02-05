@@ -229,86 +229,86 @@ const CITY_CONFIG = {
     name: '漳州',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/漳州title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/漳州map.png',
-    textColumnsTop: '1150rpx', // 底部文字区域的top值
+    textColumnsTop: '1180rpx', // 底部文字区域的top值
     leftColumnCount: 5, // 左列文字条目数
     items: [{
         id: 1,
         content: '漳州漳浦火山岛纪念碑谷',
         dot: {
-          top: '680rpx',
-          left: '550rpx'
+          top: '880rpx',
+          left: '400rpx'
         }
       },
       {
         id: 2,
         content: '漳浦县天福茶博物院茶道教室',
         dot: {
-          top: '720rpx',
-          left: '600rpx'
+          top: '780rpx',
+          left: '140rpx'
         }
       },
       {
         id: 3,
         content: '《后港年华》行浸式夜游项目',
         dot: {
-          top: '600rpx',
-          left: '480rpx'
+          top: '870rpx',
+          left: '490rpx'
         }
       },
       {
         id: 4,
         content: '漳州古城青年路美食区',
         dot: {
-          top: '560rpx',
-          left: '400rpx'
+          top: '920rpx',
+          left: '160rpx'
         }
       },
       {
         id: 5,
         content: '漳州平和县克拉克红绿彩非遗传习所',
         dot: {
-          top: '640rpx',
-          left: '350rpx'
+          top: '770rpx',
+          left: '290rpx'
         }
       },
       {
         id: 6,
         content: '长泰燕集山居民宿',
         dot: {
-          top: '500rpx',
-          left: '380rpx'
+          top: '560rpx',
+          left: '340rpx'
         }
       },
       {
         id: 7,
         content: '南靖县云水谣德风楼广场',
         dot: {
-          top: '540rpx',
-          left: '280rpx'
+          top: '660rpx',
+          left: '490rpx'
         }
       },
       {
         id: 8,
         content: '东山县苏峰山环岛路',
         dot: {
-          top: '760rpx',
-          left: '520rpx'
+          top: '1040rpx',
+          left: '310rpx'
         }
       },
       {
         id: 9,
         content: '漳州月港海丝馆',
         dot: {
-          top: '520rpx',
-          left: '450rpx'
+          top: '740rpx',
+          left: '560rpx'
         }
       },
       {
         id: 10,
         content: '谷文昌纪念馆',
         dot: {
-          top: '800rpx',
-          left: '580rpx'
+          top: '630rpx',
+          left: '290rpx'
         }
       }
     ]
@@ -317,109 +317,109 @@ const CITY_CONFIG = {
     name: '泉州',
     titleImage: 'https://app5.fjsen.com/h5/20260122/images/泉州title.png',
     mapImage: 'https://app5.fjsen.com/h5/20260122/images/泉州map.png',
-    textColumnsTop: '1250rpx', // 底部文字区域的top值
+    textColumnsTop: '1130rpx', // 底部文字区域的top值
     leftColumnCount: 7, // 左列文字条目数
     items: [{
         id: 1,
         content: '泉州清源山 "柒望"云端会客厅',
         dot: {
-          top: '560rpx',
-          left: '400rpx'
+          top: '680rpx',
+          left: '480rpx'
         }
       },
       {
         id: 2,
         content: '安溪县八马茶业观光工厂',
         dot: {
-          top: '640rpx',
-          left: '520rpx'
+          top: '680rpx',
+          left: '100rpx'
         }
       },
       {
         id: 3,
         content: '泉州南音艺苑活态传承展演体验基地',
         dot: {
-          top: '600rpx',
-          left: '380rpx'
+          top: '780rpx',
+          left: '640rpx'
         }
       },
       {
         id: 4,
         content: '泉州鲤城区"老店新作"体验工坊',
         dot: {
-          top: '580rpx',
-          left: '350rpx'
+          top: '490rpx',
+          left: '240rpx'
         }
       },
       {
         id: 5,
         content: '泉州非遗馆入戏工坊',
         dot: {
-          top: '620rpx',
-          left: '320rpx'
+          top: '730rpx',
+          left: '530rpx'
         }
       },
       {
         id: 6,
         content: '泉州五店市国潮街区',
         dot: {
-          top: '700rpx',
-          left: '450rpx'
+          top: '530rpx',
+          left: '290rpx'
         }
       },
       {
         id: 7,
         content: '青普文化行馆·晋江梧林',
         dot: {
-          top: '720rpx',
-          left: '520rpx'
+          top: '830rpx',
+          left: '540rpx'
         }
       },
       {
         id: 8,
         content: '鲤城七栩钟楼酒店',
         dot: {
-          top: '540rpx',
-          left: '280rpx'
+          top: '880rpx',
+          left: '390rpx'
         }
       },
       {
         id: 9,
         content: '南安英良石材自然历史博物馆',
         dot: {
-          top: '660rpx',
-          left: '480rpx'
+          top: '420rpx',
+          left: '260rpx'
         }
       },
       {
         id: 10,
         content: '晋江九十九溪流域田园风光',
         dot: {
-          top: '680rpx',
-          left: '380rpx'
+          top: '640rpx',
+          left: '240rpx'
         }
       },
       {
         id: 11,
         content: '闽台对渡文化节',
         dot: {
-          top: '740rpx',
-          left: '420rpx'
+          top: '1010rpx',
+          left: '450rpx'
         }
       },
       {
         id: 12,
         content: '泉州海外交通史博物馆',
         dot: {
-          top: '560rpx',
-          left: '320rpx'
+          top: '840rpx',
+          left: '270rpx'
         }
       },
       {
         id: 13,
         content: '泉州欧乐堡海洋王国乐园',
         dot: {
-          top: '640rpx',
+          top: '570rpx',
           left: '250rpx'
         }
       },
@@ -427,7 +427,7 @@ const CITY_CONFIG = {
         id: 14,
         content: '晋江经验馆',
         dot: {
-          top: '680rpx',
+          top: '670rpx',
           left: '350rpx'
         }
       }
