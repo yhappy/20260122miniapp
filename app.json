@@ -5,9 +5,7 @@
     "pages/map/map",
     "pages/themes/themes",
     "pages/news/news",
-    "pages/news-detail/news-detail",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/news-detail/news-detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

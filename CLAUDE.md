@@ -563,14 +563,7 @@ WXML 添加返回按钮:
 ```
 
 JS 计算位置:
-```javascript
-getSystemInfo() {
-  const systemInfo = wx.getSystemInfoSync()
-  const rpxRatio = 750 / systemInfo.screenWidth
-  const backButtonTop = systemInfo.statusBarHeight * rpxRatio
-  this.setData({ backButtonTop })
-}
-```
+
 
 ## 项目结构
 
