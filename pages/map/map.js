@@ -17,11 +17,8 @@ Page({
     currentCity: 'fuzhou', // 当前城市
     cityConfig: null, // 当前城市配置
     showDetailPopup: false, // 是否显示详情弹窗
-    selectedItem: null, // 当前选中的景点信息
     spotDetail: null, // 景点详情数据
     animationKey: 0, // 动画 key，用于切换城市时重新播放动画
-    touchStartX: 0, // 触摸起始 X 坐标
-    touchStartY: 0, // 触摸起始 Y 坐标
     cities: [{
         id: 1,
         name: '福州',
@@ -212,9 +209,9 @@ Page({
         console.log('openingHours 包含换行符:', spotDetail.openingHours.includes('\n'))
 
         // 显示详情弹窗，同时存储景点基础数据和详情数据
+        this.selectedItem = item
         this.setData({
           showDetailPopup: true,
-          selectedItem: item,
           spotDetail: spotDetail
         })
       })
@@ -229,9 +226,9 @@ Page({
         })
 
         // 仍然显示弹窗，使用默认数据
+        this.selectedItem = item
         this.setData({
           showDetailPopup: true,
-          selectedItem: item,
           spotDetail: null
         })
       })
@@ -249,9 +246,7 @@ Page({
 
     // 等待动画结束后再清空数据
     setTimeout(() => {
-      this.setData({
-        selectedItem: null
-      })
+      this.selectedItem = null
     }, 300)
   },
 
@@ -266,7 +261,7 @@ Page({
    * 导航前往景点
    */
   navigateToSpot() {
-    const item = this.data.selectedItem
+    const item = this.selectedItem
     const spotDetail = this.data.spotDetail
     console.log('导航前往:', item, spotDetail)
 
@@ -352,7 +347,7 @@ Page({
    * 分享景点
    */
   onShareAppMessage() {
-    const item = this.data.selectedItem
+    const item = this.selectedItem
     const spotDetail = this.data.spotDetail
     console.log('分享景点:', item, spotDetail)
 
@@ -378,7 +373,7 @@ Page({
    * 分享到朋友圈
    */
   onShareTimeline() {
-    const item = this.data.selectedItem
+    const item = this.selectedItem
     const spotDetail = this.data.spotDetail
     console.log('分享到朋友圈:', item, spotDetail)
 
@@ -400,10 +395,8 @@ Page({
    * 触摸开始 - 记录起始位置
    */
   onTouchStart(e) {
-    this.setData({
-      touchStartX: e.touches[0].pageX,
-      touchStartY: e.touches[0].pageY
-    })
+    this.touchStartX = e.touches[0].pageX
+    this.touchStartY = e.touches[0].pageY
   },
 
   /**
@@ -417,8 +410,8 @@ Page({
 
     const touchEndX = e.changedTouches[0].pageX
     const touchEndY = e.changedTouches[0].pageY
-    const touchStartX = this.data.touchStartX
-    const touchStartY = this.data.touchStartY
+    const touchStartX = this.touchStartX
+    const touchStartY = this.touchStartY
 
     // 计算滑动距离
     const deltaX = touchEndX - touchStartX

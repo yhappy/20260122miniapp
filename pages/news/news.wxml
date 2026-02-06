@@ -1,6 +1,6 @@
 <view class="container">
   <!-- 返回按钮 - 与 themes 页面一致 -->
-  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" bindtap="goBack">
+  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" hover-class="back-btn-hover" hover-stay-time="50" bindtap="goBack">
     <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
   </view>
 

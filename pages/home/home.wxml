@@ -93,6 +93,8 @@
         class="center-image s2p1"
         src="https://app5.fjsen.com/h5/20260122/images/s2p1.png"
         mode="widthFix"
+        hover-class="s2p1-hover"
+        hover-stay-time="50"
         bindtap="onS2P1Click"
       ></image>
       <image

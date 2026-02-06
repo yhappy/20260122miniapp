@@ -235,7 +235,8 @@
   transition: transform 0.2s ease;
 }
 
-.center-image.s2p1:active {
+/* 点击态效果 - 使用 hover-class */
+.center-image.s2p1-hover {
   transform: translateX(-50%) scale(0.95);
 }
 

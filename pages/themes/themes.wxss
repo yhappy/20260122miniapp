@@ -25,7 +25,8 @@
   -webkit-user-select: none;
 }
 
-.back-btn:active {
+/* 点击态效果 - 使用 hover-class */
+.back-btn-hover {
   /* 点击时无视觉效果 */
 }
 

@@ -90,7 +90,7 @@
 
     <!-- 操作按钮 - 固定在底部 -->
     <view class="popup-actions {{showDetailPopup ? 'show' : ''}}">
-      <button class="action-btn primary" bindtap="navigateToSpot">
+      <button class="action-btn primary" hover-class="action-btn-primary-hover" hover-stay-time="50" bindtap="navigateToSpot">
         <text class="btn-icon">🧭</text>
         <text class="btn-text">导航前往</text>
       </button>
