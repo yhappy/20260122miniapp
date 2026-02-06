@@ -23,37 +23,16 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/map/map",
-          "pathName": "pages/map/map",
-          "query": "city=pingtan",
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
+          "query": "",
           "scene": null,
           "launchMode": "default"
         },
         {
           "name": "pages/map/map",
           "pathName": "pages/map/map",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/news/news",
-          "pathName": "pages/news/news",
-          "query": "themeId=320551",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/themes/themes",
-          "pathName": "pages/themes/themes",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/home/home",
-          "pathName": "pages/home/home",
-          "query": "",
+          "query": "city=fuzhou",
           "launchMode": "default",
           "scene": null
         }

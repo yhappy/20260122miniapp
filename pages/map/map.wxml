@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd">
   <!-- 返回按钮 - 与 news 页面一致 -->
   <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" bindtap="goBack">
     <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
@@ -6,16 +6,16 @@
 
   <!-- 城市横向滚动列表 - 返回按钮下方 -->
   <scroll-view class="city-scroll" style="top: {{backButtonTop + 120}}rpx" scroll-x="true" show-scrollbar="{{false}}"
-    enhanced="{{true}}" show-scrollbar="{{false}}">
+    enhanced="{{true}}" show-scrollbar="{{false}}" scroll-into-view="city-{{currentCity}}" scroll-with-animation="{{true}}">
     <view class="city-list">
-      <view class="city-item" wx:for="{{cities}}" wx:key="id" bindtap="onCityTap" data-city="{{item}}">
+      <view class="city-item" wx:for="{{cities}}" wx:key="id" id="city-{{item.key}}" bindtap="onCityTap" data-city="{{item}}">
         <image class="city-image" src="{{item.image}}" mode="aspectFill"></image>
       </view>
     </view>
   </scroll-view>
 
   <!-- 内容区域 -->
-  <view class="content-area" style="top: {{backButtonTop}}rpx" wx:if="{{cityConfig}}">
+  <view class="content-area" style="top: {{backButtonTop}}rpx" wx:if="{{cityConfig}}" wx:key="{{animationKey}}">
     <!-- 中部偏上：标题 -->
     <image class="title" src="{{cityConfig.titleImage}}" mode="widthFix"></image>
 
@@ -26,18 +26,18 @@
     <image class="map" src="{{cityConfig.mapImage}}" mode="widthFix"></image>
 
     <!-- 地图上的叠放点图片 -->
-    <image class="dot" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
+    <image class="dot" wx:for="{{cityConfig.items}}" wx:key="dot-{{currentCity}}-{{item.id}}" wx:for-item="item"
       src="https://app5.fjsen.com/h5/20260122/images/dot{{item.id}}.png" mode="widthFix" wx:if="{{item.dot}}"
       style="top: {{item.dot.top}}; left: {{item.dot.left}};" bindtap="onDotTap" data-item="{{item}}"></image>
 
     <!-- 底部两列文字展示 -->
     <view class="text-columns" style="top: {{cityConfig.textColumnsTop}};">
       <view class="column left">
-        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
+        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="text-left-{{currentCity}}-{{item.id}}" wx:for-item="item"
           wx:if="{{item.id <= leftColumnCount}}" bindtap="onDotTap" data-item="{{item}}">{{item.id}} {{item.content}}</text>
       </view>
       <view class="column right">
-        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
+        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="text-right-{{currentCity}}-{{item.id}}" wx:for-item="item"
           wx:if="{{item.id > leftColumnCount}}" bindtap="onDotTap" data-item="{{item}}">{{item.id}} {{item.content}}</text>
       </view>
     </view>

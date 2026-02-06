@@ -19,6 +19,9 @@ Page({
     showDetailPopup: false, // 是否显示详情弹窗
     selectedItem: null, // 当前选中的景点信息
     spotDetail: null, // 景点详情数据
+    animationKey: 0, // 动画 key，用于切换城市时重新播放动画
+    touchStartX: 0, // 触摸起始 X 坐标
+    touchStartY: 0, // 触摸起始 Y 坐标
     cities: [{
         id: 1,
         name: '福州',
@@ -170,8 +173,21 @@ Page({
       return
     }
 
-    // 切换到新城市
-    this.loadCityConfig(city.key)
+    // 先将 cityConfig 设为 null，移除 content-area 元素
+    this.setData({
+      cityConfig: null
+    })
+
+    // 等待 100ms 后再加载新城市配置并创建 content-area
+    setTimeout(() => {
+      // 更新 animationKey，强制重新播放动画
+      this.setData({
+        animationKey: this.data.animationKey + 1
+      })
+
+      // 切换到新城市
+      this.loadCityConfig(city.key)
+    }, 100)
   },
 
   /**
@@ -186,17 +202,10 @@ Page({
       type: 'light'
     })
 
-    // 显示加载提示
-    wx.showLoading({
-      title: '加载中...',
-      mask: false
-    })
 
     // 从远程获取景点详情数据
     spotParser.getSpotDetail(SPOT_DETAIL_URL)
       .then(spotDetail => {
-        // 隐藏加载提示
-        wx.hideLoading()
 
         // 调试日志：检查解析后的数据
         console.log('解析后的 openingHours:', spotDetail.openingHours)
@@ -211,9 +220,6 @@ Page({
       })
       .catch(err => {
         console.error('获取景点详情失败:', err)
-
-        // 隐藏加载提示
-        wx.hideLoading()
 
         // 显示错误提示
         wx.showToast({
@@ -388,5 +394,134 @@ Page({
    */
   goBack() {
     wx.navigateBack()
+  },
+
+  /**
+   * 触摸开始 - 记录起始位置
+   */
+  onTouchStart(e) {
+    this.setData({
+      touchStartX: e.touches[0].pageX,
+      touchStartY: e.touches[0].pageY
+    })
+  },
+
+  /**
+   * 触摸结束 - 判断滑动方向并切换城市
+   */
+  onTouchEnd(e) {
+    // 如果弹窗打开中，不处理滑动事件
+    if (this.data.showDetailPopup) {
+      return
+    }
+
+    const touchEndX = e.changedTouches[0].pageX
+    const touchEndY = e.changedTouches[0].pageY
+    const touchStartX = this.data.touchStartX
+    const touchStartY = this.data.touchStartY
+
+    // 计算滑动距离
+    const deltaX = touchEndX - touchStartX
+    const deltaY = touchEndY - touchStartY
+
+    // 判断是否是水平滑动（水平滑动距离 > 垂直滑动距离）
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // 水平滑动距离超过 50px 才触发切换
+      if (Math.abs(deltaX) > 50) {
+        // 检查触摸起始位置是否在 240rpx 以下
+        // 需要将 px 转换为 rpx（假设屏幕宽度 375px = 750rpx）
+        const systemInfo = wx.getSystemInfoSync()
+        const rpxRatio = 750 / systemInfo.screenWidth
+        const touchStartYInRpx = touchStartY * rpxRatio
+
+        // 只有触摸起始位置在 240rpx 以下才响应手势
+        if (touchStartYInRpx > 240) {
+          // 左滑：deltaX < 0，切换到下一个城市
+          if (deltaX < 0) {
+            this.switchToNextCity()
+          }
+          // 右滑：deltaX > 0，切换到上一个城市
+          else {
+            this.switchToPrevCity()
+          }
+        }
+      }
+    }
+  },
+
+  /**
+   * 切换到下一个城市
+   */
+  switchToNextCity() {
+    const cities = this.data.cities
+    const currentCityKey = this.data.currentCity
+
+    // 找到当前城市的索引
+    const currentIndex = cities.findIndex(city => city.key === currentCityKey)
+
+    // 计算下一个城市的索引（循环）
+    const nextIndex = (currentIndex + 1) % cities.length
+    const nextCity = cities[nextIndex]
+
+    console.log('左滑切换到下一个城市:', nextCity.name)
+
+    // 触觉反馈
+    wx.vibrateShort({
+      type: 'light'
+    })
+
+    // 先将 cityConfig 设为 null，移除 content-area 元素
+    this.setData({
+      cityConfig: null
+    })
+
+    // 等待 100ms 后再加载新城市配置
+    setTimeout(() => {
+      // 更新 animationKey
+      this.setData({
+        animationKey: this.data.animationKey + 1
+      })
+
+      // 切换到新城市
+      this.loadCityConfig(nextCity.key)
+    }, 100)
+  },
+
+  /**
+   * 切换到上一个城市
+   */
+  switchToPrevCity() {
+    const cities = this.data.cities
+    const currentCityKey = this.data.currentCity
+
+    // 找到当前城市的索引
+    const currentIndex = cities.findIndex(city => city.key === currentCityKey)
+
+    // 计算上一个城市的索引（循环）
+    const prevIndex = (currentIndex - 1 + cities.length) % cities.length
+    const prevCity = cities[prevIndex]
+
+    console.log('右滑切换到上一个城市:', prevCity.name)
+
+    // 触觉反馈
+    wx.vibrateShort({
+      type: 'light'
+    })
+
+    // 先将 cityConfig 设为 null，移除 content-area 元素
+    this.setData({
+      cityConfig: null
+    })
+
+    // 等待 100ms 后再加载新城市配置
+    setTimeout(() => {
+      // 更新 animationKey
+      this.setData({
+        animationKey: this.data.animationKey + 1
+      })
+
+      // 切换到新城市
+      this.loadCityConfig(prevCity.key)
+    }, 100)
   }
 })

@@ -7,6 +7,17 @@
   overflow: hidden;
 }
 
+/* 淡入动画定义 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 /* 返回按钮 - 与 news 页面完全一致 */
 .back-btn {
   position: fixed;
@@ -89,6 +100,8 @@
   transform: translateX(-50%);
   width: 80%;
   z-index: 10;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.3s forwards;
 }
 
 /* 中部偏右：装饰图片 s2p7 */
@@ -97,7 +110,10 @@
   /* top 通过内联样式从配置中设置 */
   right: 40rpx;
   width: 12%;
+  height: 10rpx;
   z-index: 8;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.5s forwards;
 }
 
 /* 中部中间：地图 */
@@ -108,6 +124,8 @@
   transform: translateX(-50%);
   width: 90%;
   z-index: 9;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0s forwards;
 }
 
 /* 地图上的叠放点图片 */
@@ -117,6 +135,8 @@
   width: 6%;
   height: 100rpx;
   /* top 和 left 通过内联样式设置 */
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.7s forwards;
 }
 
 /* 底部两列文字展示 */
@@ -131,6 +151,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.9s forwards;
 }
 
 .column {
