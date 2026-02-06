@@ -18,6 +18,8 @@
         class="center-image s1p1"
         src="https://app5.fjsen.com/h5/20260122/images/s1p1.png"
         mode="widthFix"
+        hover-class="s1p1-hover"
+        hover-stay-time="50"
         bindtap="onS1P1Click"
       ></image>
     </view>

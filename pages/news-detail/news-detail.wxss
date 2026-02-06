@@ -19,7 +19,7 @@
   -webkit-user-select: none;
 }
 
-.back-btn:active {
+.back-btn-hover {
   /* 点击时无视觉效果 */
 }
 

@@ -134,9 +134,10 @@
   }
 }
 
-/* 点击时的效果 - 已禁用，保持呼吸动画持续 */
-.center-image.s1p1:active {
-  /* 点击时不做任何视觉变化，保持动画继续 */
+/* 点击态效果 - 使用 hover-class */
+.center-image.s1p1-hover {
+  transform: translate(-50%, -50%) scale(0.95);
+  opacity: 0.8;
 }
 
 /* 底部靠边图片 - s1p14 - 使用绝对定位固定在屏幕底部 */

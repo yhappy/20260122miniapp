@@ -1,6 +1,6 @@
 <view class="container" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd">
   <!-- 返回按钮 - 与 news 页面一致 -->
-  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" bindtap="goBack">
+  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" bindtap="goBack" hover-class="back-btn-hover" hover-stay-time="50">
     <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
   </view>
 
@@ -94,7 +94,7 @@
         <text class="btn-icon">🧭</text>
         <text class="btn-text">导航前往</text>
       </button>
-      <button class="action-btn secondary" open-type="share">
+      <button class="action-btn secondary" open-type="share" hover-class="action-btn-secondary-hover" hover-stay-time="50">
         <text class="btn-icon">📤</text>
         <text class="btn-text">分享</text>
       </button>

@@ -41,6 +41,7 @@
 
 .news-list {
   padding: 0rpx;
+  -webkit-overflow-scrolling: touch;
 }
 
 .news-item {
@@ -52,7 +53,7 @@
   overflow: hidden;
 }
 
-.news-item:active {
+.news-item-hover {
   transform: scale(0.98);
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.12);
 }

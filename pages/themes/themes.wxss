@@ -45,6 +45,7 @@
   box-sizing: border-box;
   max-height: 100vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .theme-image {
@@ -53,6 +54,6 @@
   overflow: hidden;
 }
 
-.theme-image:active {
+.theme-image-hover {
   transform: scale(0.95);
 }

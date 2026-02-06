@@ -17,6 +17,8 @@
       wx:key="id"
       data-item="{{item}}"
       bindtap="onNewsTap"
+      hover-class="news-item-hover"
+      hover-stay-time="50"
     >
       <!-- 封面图片 -->
       <image

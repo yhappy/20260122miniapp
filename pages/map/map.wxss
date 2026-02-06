@@ -34,7 +34,7 @@
   -webkit-user-select: none;
 }
 
-.back-btn:active {
+.back-btn-hover {
   /* 点击时无视觉效果 */
 }
 
@@ -62,6 +62,7 @@
   box-sizing: border-box;
   z-index: 50;
   background: linear-gradient(to bottom, #fffede 0%, #fffede 80%, rgba(255, 254, 222, 0) 100%);
+  -webkit-overflow-scrolling: touch;
 }
 
 .city-list {
@@ -207,7 +208,7 @@
   cursor: pointer;
 }
 
-.column-text:active {
+.column-text-hover {
   color: #A0522D;
   text-decoration: underline solid #A0522D;
   transform: scale(0.98);
@@ -250,6 +251,7 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
   overflow-y: auto;
   box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.1);
+  -webkit-overflow-scrolling: touch;
 }
 
 .popup-content.show {
@@ -280,7 +282,7 @@
   opacity: 1;
 }
 
-.popup-close:active {
+.popup-close-hover {
   background: rgba(240, 240, 240, 0.5);
   transform: scale(0.9);
 }
@@ -326,7 +328,7 @@
   transition: all 0.2s ease;
 }
 
-.popup-contact:active {
+.popup-contact-hover {
   background: #f0e6d8;
   transform: scale(0.98);
 }
@@ -353,7 +355,7 @@
   transition: all 0.2s ease;
 }
 
-.popup-address:active {
+.popup-address-hover {
   background: #ebebeb;
   transform: scale(0.98);
 }
@@ -470,7 +472,7 @@
   border: 2rpx solid #8B4513;
 }
 
-.action-btn.secondary:active {
+.action-btn-secondary-hover {
   background: #e8e8e8;
   transform: scale(0.98);
 }

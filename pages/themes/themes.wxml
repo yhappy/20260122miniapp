@@ -8,24 +8,24 @@
   <!-- 主题图片网格 - 5行2列 -->
   <view class="themes-grid" style="padding-top: calc({{backButtonTop}}rpx + 40rpx)">
     <image class="theme-image s3p1" src="https://app5.fjsen.com/h5/20260122/images/s3p1.png" mode="widthFix"
-      bindtap="onS3P1Click"></image>
+      bindtap="onS3P1Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p2" src="https://app5.fjsen.com/h5/20260122/images/s3p2.png" mode="widthFix"
-      bindtap="onS3P2Click"></image>
+      bindtap="onS3P2Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p3" src="https://app5.fjsen.com/h5/20260122/images/s3p3.png" mode="widthFix"
-      bindtap="onS3P3Click"></image>
+      bindtap="onS3P3Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p4" src="https://app5.fjsen.com/h5/20260122/images/s3p4.png" mode="widthFix"
-      bindtap="onS3P4Click"></image>
+      bindtap="onS3P4Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p5" src="https://app5.fjsen.com/h5/20260122/images/s3p5.png" mode="widthFix"
-      bindtap="onS3P5Click"></image>
+      bindtap="onS3P5Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p6" src="https://app5.fjsen.com/h5/20260122/images/s3p6.png" mode="widthFix"
-      bindtap="onS3P6Click"></image>
+      bindtap="onS3P6Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p7" src="https://app5.fjsen.com/h5/20260122/images/s3p7.png" mode="widthFix"
-      bindtap="onS3P7Click"></image>
+      bindtap="onS3P7Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p8" src="https://app5.fjsen.com/h5/20260122/images/s3p8.png" mode="widthFix"
-      bindtap="onS3P8Click"></image>
+      bindtap="onS3P8Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p9" src="https://app5.fjsen.com/h5/20260122/images/s3p9.png" mode="widthFix"
-      bindtap="onS3P9Click"></image>
+      bindtap="onS3P9Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
     <image class="theme-image s3p10" src="https://app5.fjsen.com/h5/20260122/images/s3p10.png" mode="widthFix"
-      bindtap="onS3P10Click"></image>
+      bindtap="onS3P10Click" hover-class="theme-image-hover" hover-stay-time="50"></image>
   </view>
 </view>
