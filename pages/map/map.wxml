@@ -26,18 +26,18 @@
     <image class="map" src="{{cityConfig.mapImage}}" mode="widthFix"></image>
 
     <!-- 地图上的叠放点图片 -->
-    <image class="dot" wx:for="{{cityConfig.items}}" wx:key="dot-{{currentCity}}-{{item.id}}" wx:for-item="item"
+    <image class="dot dot-{{item.id}}" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
       src="https://app5.fjsen.com/h5/20260122/images/dot{{item.id}}.png" mode="widthFix" wx:if="{{item.dot}}"
       style="top: {{item.dot.top}}; left: {{item.dot.left}};" bindtap="onDotTap" data-item="{{item}}"></image>
 
     <!-- 底部两列文字展示 -->
     <view class="text-columns" style="top: {{cityConfig.textColumnsTop}};">
       <view class="column left">
-        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="text-left-{{currentCity}}-{{item.id}}" wx:for-item="item"
+        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
           wx:if="{{item.id <= leftColumnCount}}" bindtap="onDotTap" data-item="{{item}}">{{item.id}} {{item.content}}</text>
       </view>
       <view class="column right">
-        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="text-right-{{currentCity}}-{{item.id}}" wx:for-item="item"
+        <text class="column-text" wx:for="{{cityConfig.items}}" wx:key="id" wx:for-item="item"
           wx:if="{{item.id > leftColumnCount}}" bindtap="onDotTap" data-item="{{item}}">{{item.id}} {{item.content}}</text>
       </view>
     </view>

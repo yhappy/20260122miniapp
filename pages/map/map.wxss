@@ -67,15 +67,13 @@
 .city-list {
   display: inline-flex;
   flex-direction: row;
-  gap: 10rpx;
-  margin: 0 20rpx 0 20rpx;
+  gap: 0rpx;
+  align-items: center;
 }
 
 /* 城市项 */
 .city-item {
   display: inline-block;
-  width: 100rpx;
-  margin: 0 20rpx 0 20rpx;
   flex-shrink: 0;
   text-align: center;
   -webkit-tap-highlight-color: transparent;
@@ -83,13 +81,15 @@
   -webkit-user-select: none;
   transition: all 0.3s ease;
   box-sizing: border-box;
+
 }
 
 /* 城市图片 */
 .city-image {
-  width: 100rpx;
+  width: 108rpx;
   height: 70rpx;
   display: block;
+  margin: 0 20rpx 0 20rpx;
 }
 
 /* 中部偏上：标题 */
@@ -136,8 +136,27 @@
   height: 100rpx;
   /* top 和 left 通过内联样式设置 */
   opacity: 0;
-  animation: fadeIn 0.8s ease-out 0.7s forwards;
+  animation: fadeIn 0.6s ease-out forwards;
 }
+
+/* 每个 dot 依次出现，间隔 0.08s */
+.dot-1 { animation-delay: 0.70s; }
+.dot-2 { animation-delay: 0.78s; }
+.dot-3 { animation-delay: 0.86s; }
+.dot-4 { animation-delay: 0.94s; }
+.dot-5 { animation-delay: 1.02s; }
+.dot-6 { animation-delay: 1.10s; }
+.dot-7 { animation-delay: 1.18s; }
+.dot-8 { animation-delay: 1.26s; }
+.dot-9 { animation-delay: 1.34s; }
+.dot-10 { animation-delay: 1.42s; }
+.dot-11 { animation-delay: 1.50s; }
+.dot-12 { animation-delay: 1.58s; }
+.dot-13 { animation-delay: 1.66s; }
+.dot-14 { animation-delay: 1.74s; }
+.dot-15 { animation-delay: 1.82s; }
+.dot-16 { animation-delay: 1.90s; }
+.dot-17 { animation-delay: 1.98s; }
 
 /* 底部两列文字展示 */
 .text-columns {

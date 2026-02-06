@@ -138,12 +138,12 @@ Page({
    * 获取系统信息
    */
   getSystemInfo() {
-    const systemInfo = wx.getSystemInfoSync()
-    console.log('系统信息:', systemInfo)
+    const windowInfo = wx.getWindowInfo()
+    console.log('窗口信息:', windowInfo)
 
     // 计算状态栏高度（px转rpx）
-    const screenWidth = systemInfo.screenWidth
-    const statusBarHeight = systemInfo.statusBarHeight
+    const screenWidth = windowInfo.screenWidth
+    const statusBarHeight = windowInfo.statusBarHeight
 
     // px 转 rpx（以 iPhone 6 为基准，750rpx = 375px）
     const rpxRatio = 750 / screenWidth
@@ -428,14 +428,13 @@ Page({
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
       // 水平滑动距离超过 50px 才触发切换
       if (Math.abs(deltaX) > 50) {
-        // 检查触摸起始位置是否在 240rpx 以下
-        // 需要将 px 转换为 rpx（假设屏幕宽度 375px = 750rpx）
-        const systemInfo = wx.getSystemInfoSync()
-        const rpxRatio = 750 / systemInfo.screenWidth
+        // 需要将 px 转换为 rpx
+        const windowInfo = wx.getWindowInfo()
+        const rpxRatio = 750 / windowInfo.screenWidth
         const touchStartYInRpx = touchStartY * rpxRatio
 
-        // 只有触摸起始位置在 240rpx 以下才响应手势
-        if (touchStartYInRpx > 240) {
+        // 只有触摸起始位置在 333rpx 以下才响应手势
+        if (touchStartYInRpx > 333) {
           // 左滑：deltaX < 0，切换到下一个城市
           if (deltaX < 0) {
             this.switchToNextCity()
