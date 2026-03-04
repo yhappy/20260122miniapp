@@ -42,42 +42,97 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.news-item {
-  margin: 30rpx;
-  background-color: #fff;
-  border-radius: 6rpx;
-  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
-  overflow: hidden;
+/* ===== 顶部前两个稿件 - 并排显示 ===== */
+.top-news-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+  gap: 20rpx;
 }
 
-.news-item-hover {
+.top-news-item {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 6rpx;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.top-news-item-hover {
   transform: scale(0.98);
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.12);
 }
 
-/* 封面图片 */
-.news-cover {
+.top-news-cover {
   width: 100%;
-  height: 360rpx;
+  height: 250rpx;
   display: block;
   background-color: #f5f5f5;
 }
 
-/* 内容区域 */
-.news-content {
-  padding: 24rpx;
-  margin: 0 !important;
-}
-
-.news-title {
-  font-size: 32rpx;
+.top-news-title {
+  padding: 16rpx;
+  font-size: 28rpx;
   font-weight: bold;
   color: #333;
   line-height: 1.4;
-  margin: 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  max-height: 68rpx;
+}
+
+/* ===== 分隔图片 ===== */
+.separator-image {
+  padding: 0 20rpx 20rpx 30rpx;
+  display: flex;
+  justify-content: left;
+}
+
+.separator-image image {
+  width: 30%;
+  display: block;
+}
+
+/* ===== 底部剩余稿件列表 ===== */
+.bottom-news-list {
+  padding: 0 30rpx;
+}
+
+.bottom-news-item {
+  display: flex;
+  background-color: #fff;
+  border-radius: 6rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.bottom-news-item-hover {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.12);
+}
+
+.bottom-news-cover {
+  width: 240rpx;
+  height: 180rpx;
+  flex-shrink: 0;
+  display: block;
+  background-color: #f5f5f5;
+  margin: 10rpx 0 10rpx 10rpx;
+}
+
+.bottom-news-title {
+  flex: 1;
+  padding: 20rpx 24rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  max-height: 145rpx;
 }

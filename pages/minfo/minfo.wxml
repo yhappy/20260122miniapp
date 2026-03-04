@@ -12,27 +12,44 @@
 
   <!-- 新闻列表 -->
   <scroll-view class="news-list" scroll-y wx:elif="{{newsList.length > 0}}" style="padding-top: calc({{backButtonTop}}rpx + 60rpx)">
-    <view
-      class="news-item"
-      wx:for="{{newsList}}"
-      wx:key="id"
-      data-item="{{item}}"
-      bindtap="onNewsTap"
-      hover-class="news-item-hover"
-      hover-stay-time="50"
-    >
-      <!-- 封面图片 -->
-      <image
-        class="news-cover"
-        src="{{item.imgUrl}}"
-        mode="aspectFill"
-        lazy-load="{{true}}"
-      ></image>
 
-      <!-- 内容区域 -->
-      <view class="news-content">
-        <!-- 标题 -->
-        <view class="news-title">{{item.title}}</view>
+    <!-- 顶部前两个稿件 - 并排显示 -->
+    <view class="top-news-container" wx:if="{{newsList.length >= 2}}">
+      <!-- 第1个稿件 -->
+      <view class="top-news-item" data-item="{{newsList[0]}}"
+        bindtap="onNewsTap" hover-class="news-item-hover" hover-stay-time="50">
+        <image class="top-news-cover" src="{{newsList[0].imgUrl}}" mode="aspectFill" lazy-load="{{true}}"></image>
+        <view class="top-news-title">{{newsList[0].title}}</view>
+      </view>
+
+      <!-- 第2个稿件 -->
+      <view class="top-news-item" data-item="{{newsList[1]}}"
+        bindtap="onNewsTap" hover-class="news-item-hover" hover-stay-time="50">
+        <image class="top-news-cover" src="{{newsList[1].imgUrl}}" mode="aspectFill" lazy-load="{{true}}"></image>
+        <view class="top-news-title">{{newsList[1].title}}</view>
+      </view>
+    </view>
+
+    <!-- 分隔图片 -->
+    <view class="separator-image">
+      <image src="https://app5.fjsen.com/h5/20260122/images/闽式生活资讯.png" mode="widthFix"></image>
+    </view>
+
+    <!-- 剩余稿件列表 -->
+    <view class="bottom-news-list">
+      <view
+        class="bottom-news-item"
+        wx:for="{{newsList}}"
+        wx:for-index="idx"
+        wx:key="id"
+        wx:if="{{idx >= 2}}"
+        data-item="{{item}}"
+        bindtap="onNewsTap"
+        hover-class="news-item-hover"
+        hover-stay-time="50"
+      >
+        <image class="bottom-news-cover" src="{{item.imgUrl}}" mode="aspectFill" lazy-load="{{true}}"></image>
+        <view class="bottom-news-title">{{item.title}}</view>
       </view>
     </view>
   </scroll-view>
