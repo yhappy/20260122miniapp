@@ -92,6 +92,9 @@ Page({
       console.log('获取到的新闻:', newsList)
 
       if (newsList.length > 0) {
+        // 加载特殊内容并插入到列表最前面
+        await this.loadSpecialContentAndInsert(newsList)
+
         this.setData({
           newsList: newsList,
           loading: false
@@ -106,6 +109,73 @@ Page({
       console.error('加载新闻失败：', error)
       this.useFallbackData()
     }
+  },
+
+  /**
+   * 加载特殊内容并插入到新闻列表最前面
+   */
+  async loadSpecialContentAndInsert(newsList) {
+    try {
+      console.log('正在加载特殊内容...')
+
+      // 固定URL获取 id="content" 区域的详细内容
+      const specialContentUrl = 'https://www.fjsen.com/wap/zhuanti/2026-03/04/content_32143156.htm'
+      console.log('请求URL:', specialContentUrl)
+
+      // 使用新方法获取 content 区域
+      const result = await newsParser.getContentById(specialContentUrl)
+
+      console.log('获取结果:', result)
+      console.log('内容长度:', result?.content?.length)
+
+      if (result && result.content) {
+        // 创建特殊的新闻项
+        const specialItem = {
+          id: 'special-' + Date.now(),
+          title: '闽式生活·山海福建',  // 特殊标题
+          specialContent: result.content,
+          isSpecialItem: true,  // 标记为特殊项
+          url: specialContentUrl  // 保留原始URL
+        }
+
+        // 插入到列表最前面
+        newsList.unshift(specialItem)
+
+        console.log('特殊内容插入成功，当前列表长度:', newsList.length)
+        console.log('specialContent前200字符:', specialItem.specialContent.substring(0, 200))
+      } else {
+        console.warn('获取特殊内容失败，不插入特殊项')
+      }
+    } catch (error) {
+      console.error('加载特殊内容失败：', error)
+      // 失败时不插入特殊项，继续显示原有新闻列表
+    }
+  },
+
+  /**
+   * 从HTML中提取纯文本
+   */
+  extractPlainTextFromHTML(html) {
+    if (!html) return ''
+
+    // 移除所有HTML标签
+    let text = html
+      .replace(/<[^>]+>/g, '') // 移除HTML标签
+      .replace(/&nbsp;/g, ' ') // 替换空格实体
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&mdash;/g, '—')
+      .replace(/&ldquo;/g, '"')
+      .replace(/&rdquo;/g, '"')
+
+    // 移除多余的空格和换行
+    text = text
+      .replace(/\s+/g, ' ')
+      .trim()
+
+    return text
   },
 
   /**
@@ -148,6 +218,11 @@ Page({
       })
       return
     }
+
+    // 添加触觉反馈
+    wx.vibrateShort({
+      type: 'light'
+    })
 
     // 跳转到新闻详情页
     wx.navigateTo({

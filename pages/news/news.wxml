@@ -1,6 +1,7 @@
 <view class="container">
   <!-- 返回按钮 - 与 themes 页面一致 -->
-  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" hover-class="back-btn-hover" hover-stay-time="50" bindtap="goBack">
+  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" hover-class="back-btn-hover" hover-stay-time="50"
+    bindtap="goBack">
     <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
   </view>
 
@@ -10,29 +11,38 @@
   </view>
 
   <!-- 新闻列表 -->
-  <scroll-view class="news-list" scroll-y wx:elif="{{newsList.length > 0}}" style="padding-top: calc({{backButtonTop}}rpx + 60rpx)">
-    <view
-      class="news-item"
-      wx:for="{{newsList}}"
-      wx:key="id"
-      data-item="{{item}}"
-      bindtap="onNewsTap"
-      hover-class="news-item-hover"
-      hover-stay-time="50"
-    >
-      <!-- 封面图片 -->
-      <image
-        class="news-cover"
-        src="{{item.imgUrl}}"
-        mode="aspectFill"
-        lazy-load="{{true}}"
-      ></image>
+  <scroll-view class="news-list" scroll-y wx:elif="{{newsList.length > 0}}"
+    style="padding-top: calc({{backButtonTop}}rpx + 60rpx)">
+    <!-- 新闻列表遍历 -->
+    <view wx:for="{{newsList}}" wx:for-index="idx" wx:key="id">
 
-      <!-- 内容区域 -->
-      <view class="news-content">
-        <!-- 标题 -->
-        <view class="news-title">{{item.title}}</view>  
+      <!-- 特殊新闻项 - 自定义样式，无封面图，无点击事件 -->
+      <view wx:if="{{item.isSpecialItem}}" class="news-item news-item-first">
+        <!-- 内容区域 -->
+        <view class="news-content-first">
+          <!-- 标题 - 加粗显示 -->
+          <view class="news-title-first">{{item.title}}</view>
+
+          <!-- 可滚动的内容区域 -->
+          <scroll-view class="news-scrollable-content" scroll-y enable-flex>
+            <rich-text class="content-text" nodes="{{item.specialContent}}"></rich-text>
+          </scroll-view>
+        </view>
       </view>
+
+      <!-- 普通新闻项 - 有封面图，有点击事件 -->
+      <view wx:else class="news-item" data-item="{{item}}"
+        bindtap="onNewsTap" hover-class="news-item-hover" hover-stay-time="50">
+        <!-- 封面图片 -->
+        <image class="news-cover" src="{{item.imgUrl}}" mode="aspectFill" lazy-load="{{true}}"></image>
+
+        <!-- 内容区域 -->
+        <view class="news-content">
+          <!-- 标题 -->
+          <view class="news-title">{{item.title}}</view>
+        </view>
+      </view>
+
     </view>
   </scroll-view>
 

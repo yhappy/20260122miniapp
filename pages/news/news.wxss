@@ -28,7 +28,7 @@
 .back-icon {
   width: 100%;
   display: block;
-  filter:drop-shadow(0 0 8rpx white);
+  filter: drop-shadow(0 0 8rpx white);
 }
 
 .loading,
@@ -52,6 +52,47 @@
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
   overflow: hidden;
+}
+
+/* 第一个新闻项 - 特殊样式（无封面图） */
+.news-item-first {
+  background: transparent;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+/* 第一个新闻项的内容区域 */
+.news-content-first {
+  padding: 0rpx;
+  background-color: transparent;
+}
+
+/* 第一个新闻项的标题 - 加粗显示 */
+.news-title-first {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 1;
+  margin-bottom: 24rpx;
+}
+
+/* 可滚动的内容区域 */
+.news-scrollable-content {
+  height: 450rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 24rpx;
+  overflow-y: auto;
+}
+
+/* 富文本内容样式 */
+.content-text {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.8;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .news-item-hover {

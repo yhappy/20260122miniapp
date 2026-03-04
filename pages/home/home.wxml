@@ -87,23 +87,28 @@
       ></image>
     </view>
 
-    <!-- 中部靠下图片 - 使用 s2p1 和 s2p2 -->
+    <!-- 中部靠下图片 - 使用 s2p10、s2p11、s2p12 -->
     <view class="center-bottom">
       <image
-        class="center-image s2p1"
-        src="https://app5.fjsen.com/h5/20260122/images/s2p1.png"
+        class="center-image s2p10"
+        src="https://app5.fjsen.com/h5/20260122/images/s2p10.png"
         mode="widthFix"
-        hover-class="s2p1-hover"
+        hover-class="s2p10-hover"
         hover-stay-time="50"
-        bindtap="onS2P1Click"
+        bindtap="onS2P10Click"
       ></image>
       <image
-        class="center-image s2p2"
-        src="https://app5.fjsen.com/h5/20260122/images/s2p2.png"
+        class="center-image s2p11"
+        src="https://app5.fjsen.com/h5/20260122/images/s2p11.png"
         mode="widthFix"
-        hover-class="s2p2-hover"
+        hover-class="s2p11-hover"
         hover-stay-time="50"
-        bindtap="onS2P2Click"
+        bindtap="onS2P11Click"
+      ></image>
+      <image
+        class="center-image s2p12"
+        src="https://app5.fjsen.com/h5/20260122/images/s2p12.png"
+        mode="widthFix"
       ></image>
     </view>
   </view>

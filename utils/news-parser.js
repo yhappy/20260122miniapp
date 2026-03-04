@@ -79,15 +79,15 @@ function parseNewsList(html) {
     const maxCount = 200 // 最多提取200条新闻
 
     while ((match = newsItemRegex.exec(ulHTML)) !== null && count < maxCount) {
-      const imgUrl = match[2]     // 图片URL
-      const newsUrl = match[3]     // 新闻详情链接
-      let title = match[4].trim()   // 新闻标题
+      const imgUrl = match[2] // 图片URL
+      const newsUrl = match[3] // 新闻详情链接
+      let title = match[4].trim() // 新闻标题
 
       // 清理标题中的HTML标签和<br>标签
       title = title
-        .replace(/<[^>]+>/g, '')     // 移除所有HTML标签
-        .replace(/<br\s*\/?>/gi, '')  // 移除<br>和<br />
-        .replace(/&nbsp;/g, ' ')       // 替换HTML实体
+        .replace(/<[^>]+>/g, '') // 移除所有HTML标签
+        .replace(/<br\s*\/?>/gi, '') // 移除<br>和<br />
+        .replace(/&nbsp;/g, ' ') // 替换HTML实体
         .replace(/&amp;/g, '&')
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
@@ -101,19 +101,19 @@ function parseNewsList(html) {
 
       // 过滤掉无效标题
       if (title && title.length > 3 &&
-          !title.includes('上一页') &&
-          !title.includes('下一页') &&
-          !title.includes('尾页') &&
-          !title.match(/^[\d\s]+$/) &&
-          !title.includes('更多>>') &&
-          !title.includes('点击排行')) {
+        !title.includes('上一页') &&
+        !title.includes('下一页') &&
+        !title.includes('尾页') &&
+        !title.match(/^[\d\s]+$/) &&
+        !title.includes('更多>>') &&
+        !title.includes('点击排行')) {
 
         newsList.push({
           id: Date.now() + count,
           title: title,
-          url: newsUrl,         // 保存完整的新闻链接
-          imgUrl: cleanImgUrl,    // 保存图片URL
-          content: '',           // 列表页没有内容详情
+          url: newsUrl, // 保存完整的新闻链接
+          imgUrl: cleanImgUrl, // 保存图片URL
+          content: '', // 列表页没有内容详情
         })
         console.log(`新闻 ${count + 1}:`, title)
         count++
@@ -191,9 +191,9 @@ function parseNewsListFallback(html) {
         const title = match[2].trim()
 
         if (title.length > 3 &&
-            !title.includes('上一页') &&
-            !title.includes('下一页') &&
-            !title.match(/^\d+$/)) {
+          !title.includes('上一页') &&
+          !title.includes('下一页') &&
+          !title.match(/^\d+$/)) {
 
           newsList.push({
             id: Date.now() + count,
@@ -271,7 +271,7 @@ function generateNewsDetail(title) {
 function parseNewsDetail(html, url) {
   try {
     const article = {
-      content: ''  // 只保留富文本内容
+      content: '' // 只保留富文本内容
     }
 
     // 提取 phone_content 区域的完整 HTML 内容
@@ -295,7 +295,7 @@ function parseNewsDetail(html, url) {
       })
 
       // 2. 给 h1 标签添加字体大小样式
-       content = content.replace(/<h1([^>]*?)>/gi, (match, attrs) => {
+      content = content.replace(/<h1([^>]*?)>/gi, (match, attrs) => {
         // 检查是否已经存在 class 属性
         if (/class=["']/.test(attrs)) {
           // 如果存在 class，就在原有的 class 属性值里追加 h1Class
@@ -319,7 +319,7 @@ function parseNewsDetail(html, url) {
           return `<p${attrs} class="pClass">`;
         }
       });
-    
+
       article.content = content
       console.log('成功提取 phone_content 内容', article)
 
@@ -366,11 +366,144 @@ async function getNewsDetail(url) {
   }
 }
 
+/**
+ * 解析指定URL页面的 id="content" 区域内容
+ * @param {string} url - 目标URL
+ * @returns {Promise<Object>} 包含 content 字段的对象
+ */
+async function getContentById(url) {
+  try {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+
+    const html = await fetchHTML(url)
+
+    console.log('HTML内容长度:', html.length)
+
+    // 先尝试查找 id="content" 的位置
+    const contentIndex = html.toLowerCase().indexOf('id="content"')
+    console.log('找到 id="content" 的位置:', contentIndex)
+
+    if (contentIndex === -1) {
+      console.warn('HTML中不包含 id="content"')
+      wx.hideLoading()
+      return {
+        content: '<div style="padding: 20rpx; color: #999;">未找到内容区域</div>'
+      }
+    }
+
+    // 使用更可靠的方法：从 id="content" 开始，找到对应的结束标签
+    // 1. 找到 <td id="content"> 的开始位置
+    const tdStartRegex = /<td[^>]*id="content"[^>]*>/i;
+    const tdStartMatch = html.match(tdStartRegex)
+
+    if (!tdStartMatch) {
+      console.warn('未找到 <td id="content"> 开始标签')
+      wx.hideLoading()
+      return {
+        content: '<div style="padding: 20rpx; color: #999;">未找到内容区域</div>'
+      }
+    }
+
+    const startIndex = html.indexOf(tdStartMatch[0])
+    console.log('td 标签开始位置:', startIndex)
+
+    // 2. 从开始位置向后查找对应的 </td>
+    let currentIndex = startIndex + tdStartMatch[0].length
+    let stack = 1 // 栈深度，用于匹配嵌套的 td
+    let content = ''
+    let foundEnd = false
+
+    while (currentIndex < html.length && stack > 0) {
+      const nextTdStart = html.indexOf('<td', currentIndex)
+      const nextTdEnd = html.indexOf('</td>', currentIndex)
+
+      if (nextTdEnd === -1) {
+        // 没有找到结束标签，使用剩余所有内容
+        content = html.substring(currentIndex)
+        console.warn('未找到 </td> 结束标签，使用剩余内容')
+        break
+      }
+
+      if (nextTdStart !== -1 && nextTdStart < nextTdEnd) {
+        // 遇到嵌套的 td，增加栈深度
+        stack++
+        currentIndex = nextTdStart + 1
+      } else {
+        // 遇到 </td>，减少栈深度
+        stack--
+        if (stack === 0) {
+          // 找到匹配的结束标签
+          content = html.substring(currentIndex, nextTdEnd)
+          foundEnd = true
+          console.log('找到匹配的 </td> 标签，位置:', nextTdEnd)
+        } else {
+          currentIndex = nextTdEnd + 5 // 跳过 </td>
+        }
+      }
+    }
+
+    console.log('提取的原始内容长度:', content.length)
+    console.log('原始内容前200字符:', content.substring(0, 200))
+
+    // 3. 处理样式
+    let processedContent = content.trim()
+
+    // 1. 给所有图片添加内联样式
+    processedContent = processedContent.replace(/<img([^>]*?)>/gi, (match, attrs) => {
+      const imgStyle = 'max-width: 100%; height: auto; display: block; margin: 20rpx auto; border-radius: 8rpx;'
+      if (attrs.includes('style=')) {
+        return match.replace(/style=["']([^"']*)["']/i, (styleMatch, styleContent) => {
+          return `style="${styleContent}; ${imgStyle}"`
+        })
+      } else {
+        return `<img${attrs} style="${imgStyle}">`
+      }
+    })
+
+    // 2. 给所有 p 标签添加内联样式
+    processedContent = processedContent.replace(/<p([^>]*?)>/gi, (match, attrs) => {
+      const pStyle = 'font-size: 28rpx; color: #333; line-height: 1.3; margin-bottom: 2px;'
+      if (attrs.includes('style=')) {
+        return match.replace(/style=["']([^"']*)["']/i, (styleMatch, styleContent) => {
+          return `<p${attrs.replace(/style=["'][^"']*["']/i, '')} style="${styleContent}; ${pStyle}">`
+        })
+      } else {
+        return `<p${attrs} style="${pStyle}">`
+      }
+    })
+
+    // 3. 移除不需要的 div 和 textarea
+    processedContent = processedContent.replace(/<div id="player"[^>]*>[\s\S]*?<\/div>/gi, '')
+    processedContent = processedContent.replace(/<textarea[^>]*>[\s\S]*?<\/textarea>/gi, '')
+
+    console.log('成功提取并处理 content 区域，最终长度:', processedContent.length)
+    console.log('处理后内容前200字符:', processedContent.substring(0, 200))
+    console.log('处理后内容后200字符:', processedContent.substring(Math.max(0, processedContent.length - 200)))
+
+    wx.hideLoading()
+
+    return {
+      content: processedContent
+    }
+
+  } catch (error) {
+    wx.hideLoading()
+    console.error('获取 content 区域失败：', error)
+    return {
+      content: '<div style="padding: 20rpx; color: #999;">加载失败，请重试</div>'
+    }
+  }
+}
+
 module.exports = {
   fetchHTML,
   parseNewsList,
   getNewsList,
   generateNewsDetail,
   parseNewsDetail,
-  getNewsDetail
+  getNewsDetail,
+  getContentById
 }

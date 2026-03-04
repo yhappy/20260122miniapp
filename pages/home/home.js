@@ -15,10 +15,10 @@ Page({
   },
 
   /**
-   * s2p1 图片点击事件 - 跳转到地图页面（默认福州）
+   * s2p10 图片点击事件 - 跳转到地图页面（默认福州）
    */
-  onS2P1Click() {
-    console.log('点击了 s2p1 图片，准备跳转到 map 页面')
+  onS2P10Click() {
+    console.log('点击了 s2p10 图片，准备跳转到 map 页面')
 
     // 添加点击反馈震动
     wx.vibrateShort({
@@ -62,10 +62,10 @@ Page({
   },
 
   /**
-   * s2p2 图片点击事件 - 跳转到主题页面
+   * s2p11 图片点击事件 - 跳转到主题页面
    */
-  onS2P2Click() {
-    console.log('点击了 s2p2 图片，准备跳转到 themes 页面')
+  onS2P11Click() {
+    console.log('点击了 s2p11 图片，准备跳转到 themes 页面')
 
     // 添加点击反馈震动
     wx.vibrateShort({
