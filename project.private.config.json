@@ -26,8 +26,8 @@
           "name": "pages/minfo/minfo",
           "pathName": "pages/minfo/minfo",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "pages/news/news",
