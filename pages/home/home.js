@@ -82,5 +82,28 @@ Page({
         console.error('跳转失败:', err)
       }
     })
+  },
+
+  /**
+   * s2p12 图片点击事件 - 跳转到闽式生活资讯页面
+   */
+  onS2P12Click() {
+    console.log('点击了 s2p12 图片，准备跳转到 minfo 页面')
+
+    // 添加点击反馈震动
+    wx.vibrateShort({
+      type: 'light'
+    })
+
+    // 跳转到闽式生活资讯页面
+    wx.navigateTo({
+      url: '/pages/minfo/minfo',
+      success: () => {
+        console.log('跳转到 minfo 页面成功')
+      },
+      fail: (err) => {
+        console.error('跳转失败:', err)
+      }
+    })
   }
 })

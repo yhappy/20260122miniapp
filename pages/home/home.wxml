@@ -109,6 +109,9 @@
         class="center-image s2p12"
         src="https://app5.fjsen.com/h5/20260122/images/s2p12.png"
         mode="widthFix"
+        hover-class="s2p12-hover"
+        hover-stay-time="50"
+        bindtap="onS2P12Click"
       ></image>
     </view>
   </view>

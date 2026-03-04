@@ -1,0 +1,44 @@
+<view class="container">
+  <!-- 返回按钮 -->
+  <view class="back-btn" style="top: {{backButtonTop + 14}}rpx" hover-class="back-btn-hover" hover-stay-time="50"
+    bindtap="goBack">
+    <image class="back-icon" src="https://app5.fjsen.com/h5/20260122/images/back.png" mode="widthFix"></image>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}" style="padding-top: calc({{backButtonTop}}rpx + 188rpx)">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 新闻列表 -->
+  <scroll-view class="news-list" scroll-y wx:elif="{{newsList.length > 0}}" style="padding-top: calc({{backButtonTop}}rpx + 60rpx)">
+    <view
+      class="news-item"
+      wx:for="{{newsList}}"
+      wx:key="id"
+      data-item="{{item}}"
+      bindtap="onNewsTap"
+      hover-class="news-item-hover"
+      hover-stay-time="50"
+    >
+      <!-- 封面图片 -->
+      <image
+        class="news-cover"
+        src="{{item.imgUrl}}"
+        mode="aspectFill"
+        lazy-load="{{true}}"
+      ></image>
+
+      <!-- 内容区域 -->
+      <view class="news-content">
+        <!-- 标题 -->
+        <view class="news-title">{{item.title}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:else style="padding-top: calc({{backButtonTop}}rpx + 188rpx)">
+    <text>暂无新闻数据</text>
+  </view>
+</view>

@@ -70,21 +70,34 @@ function parseNewsList(html) {
     const ulHTML = ulMatch[0]
     console.log('成功提取 tuwenlist 区域')
 
-    // 匹配 <li><a href="完整链接"><img src="..."></a><h2><a href="完整链接">标题</a></h2></li>
-    // 注意：标题中可能包含<br>标签，需要特殊处理
-    const newsItemRegex = /<li[^>]*>\s*<a[^>]*href=["']([^"']+)["'][^>]*>[\s\S]*?<img[^>]*src=["']([^"']+)["'][^>]*>[\s\S]*?<\/a>\s*<h2[^>]*><a[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a><\/h2>\s*<\/li>/gi
+    // 匹配 <li><a href="..."><img src="..."></a><h2><a href="...">标题</a></h2></li>
+    // 图片是可选的,如果为空则使用默认图片
+    const newsItemRegex = /<li[^>]*>\s*<a[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>\s*<h2[^>]*><a[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a><\/h2>\s*<\/li>/gi
 
     let match
     let count = 0
     const maxCount = 200 // 最多提取200条新闻
 
     while ((match = newsItemRegex.exec(ulHTML)) !== null && count < maxCount) {
-      const imgUrl = match[2] // 图片URL
-      const newsUrl = match[3] // 新闻详情链接
-      let title = match[4].trim() // 新闻标题
+      const newsUrl1 = match[1] // 第一个<a>的href (可能是图片链接)
+      const contentBetween = match[2] // <a>和<h2>之间的内容(可能包含img)
+      const newsUrl2 = match[3] // 第二个<a>的href (新闻详情链接)
+      const title = match[4].trim() // 新闻标题
+
+      console.log(`第 ${count + 1} 次匹配 - 原始标题: ${title.substring(0, 50)}...`)
+
+      // 从contentBetween中提取图片URL
+      const imgMatch = contentBetween.match(/<img[^>]*src=["']([^"']*)["'][^>]*>/i)
+      let imgUrl = imgMatch ? imgMatch[1] : ''
+
+      // 如果图片URL为空,使用默认图片
+      if (!imgUrl) {
+        imgUrl = 'https://app5.fjsen.com/h5/20260122/images/s2p3.png'
+        console.log(`新闻 ${count + 1} 使用默认图片`)
+      }
 
       // 清理标题中的HTML标签和<br>标签
-      title = title
+      let cleanTitle = title
         .replace(/<[^>]+>/g, '') // 移除所有HTML标签
         .replace(/<br\s*\/?>/gi, '') // 移除<br>和<br />
         .replace(/&nbsp;/g, ' ') // 替换HTML实体
@@ -96,27 +109,37 @@ function parseNewsList(html) {
         .replace(/&rdquo;/g, '"')
         .trim()
 
+      console.log(`第 ${count + 1} 次匹配 - 清理后标题: ${cleanTitle.substring(0, 50)}...`)
+
       // 清理图片URL
       const cleanImgUrl = imgUrl.replace(/&amp;/g, '&')
 
+      // 检查标题是否是网址
+      if (cleanTitle.startsWith('http://') || cleanTitle.startsWith('https://') || cleanTitle.startsWith('www.')) {
+        console.log(`第 ${count + 1} 次匹配 - 标题是网址,跳过`)
+        continue
+      }
+
       // 过滤掉无效标题
-      if (title && title.length > 3 &&
-        !title.includes('上一页') &&
-        !title.includes('下一页') &&
-        !title.includes('尾页') &&
-        !title.match(/^[\d\s]+$/) &&
-        !title.includes('更多>>') &&
-        !title.includes('点击排行')) {
+      if (cleanTitle && cleanTitle.length > 3 &&
+          !cleanTitle.includes('上一页') &&
+          !cleanTitle.includes('下一页') &&
+          !cleanTitle.includes('尾页') &&
+          !cleanTitle.match(/^[\d\s]+$/) &&
+          !cleanTitle.includes('更多>>') &&
+          !cleanTitle.includes('点击排行')) {
 
         newsList.push({
           id: Date.now() + count,
-          title: title,
-          url: newsUrl, // 保存完整的新闻链接
+          title: cleanTitle,
+          url: newsUrl2, // 使用第二个<a>的href作为新闻链接
           imgUrl: cleanImgUrl, // 保存图片URL
           content: '', // 列表页没有内容详情
         })
-        console.log(`新闻 ${count + 1}:`, title)
+        console.log(`✓ 添加新闻 ${count + 1}:`, cleanTitle)
         count++
+      } else {
+        console.log(`✗ 跳过第 ${count + 1} 次匹配: 标题不满足条件`)
       }
     }
 
