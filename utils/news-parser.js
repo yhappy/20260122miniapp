@@ -392,7 +392,7 @@ async function getNewsDetail(url) {
 /**
  * 解析指定URL页面的 id="content" 区域内容
  * @param {string} url - 目标URL
- * @returns {Promise<Object>} 包含 content 字段的对象
+ * @returns {Promise<Object>} 包含 content 和 title 字段的对象
  */
 async function getContentById(url) {
   try {
@@ -404,6 +404,30 @@ async function getContentById(url) {
     const html = await fetchHTML(url)
 
     console.log('HTML内容长度:', html.length)
+
+    // 提取 h1 标题
+    let title = ''
+    const h1Regex = /<h1[^>]*>([\s\S]*?)<\/h1>/i
+    const h1Match = html.match(h1Regex)
+
+    if (h1Match) {
+      // 清理标题中的HTML标签
+      title = h1Match[1]
+        .replace(/<[^>]+>/g, '') // 移除所有HTML标签
+        .replace(/&nbsp;/g, ' ') // 替换HTML实体
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&mdash;/g, '—')
+        .replace(/&ldquo;/g, '"')
+        .replace(/&rdquo;/g, '"')
+        .trim()
+
+      console.log('提取到的标题:', title)
+    } else {
+      console.warn('未找到 h1 标题')
+      title = '闽式生活·山海福建' // 使用默认标题
+    }
 
     // 先尝试查找 id="content" 的位置
     const contentIndex = html.toLowerCase().indexOf('id="content"')
@@ -509,7 +533,8 @@ async function getContentById(url) {
     wx.hideLoading()
 
     return {
-      content: processedContent
+      content: processedContent,
+      title: title // 返回提取的标题
     }
 
   } catch (error) {

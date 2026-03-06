@@ -1,16 +1,14 @@
 // pages/news/news.js
 const newsParser = require('../../utils/news-parser.js')
 
-// 默认新闻源（厦门频道）
-const DEFAULT_NEWS_URL = 'https://xm.fjsen.com/node_163616.htm'
-
 Page({
   data: {
     newsList: [],
     loading: false,
     error: false,
     currentUrl: '', // 当前新闻URL
-    backButtonTop: 0 // 返回按钮位置
+    backButtonTop: 0, // 返回按钮位置
+    specialContentUrl: '' // 特殊内容URL，根据主题ID动态配置
   },
 
   onLoad(options) {
@@ -44,10 +42,29 @@ Page({
       320560: '福祉绵延'
     }
 
+    // 根据主题ID配置特殊内容URL
+    const specialContentUrls = {
+      320551: 'https://www.fjsen.com/wap/zhuanti/2026-03/04/content_32143156.htm', // 观山阅海
+      320552: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144017.htm', // 茶和天下
+      320553: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144019.htm', // 福见好戏
+      320554: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144020.htm', // 福地美食
+      320555: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144022.htm', // 非遗国潮
+      320556: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144023.htm', // 古厝新宿
+      320557: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144024.htm', // 闽韵福游
+      320558: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144027.htm', // 绿道慢活
+      320559: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144030.htm', // 福海扬帆
+      320560: 'https://www.fjsen.com/wap/zhuanti/2026-03/05/content_32144033.htm'  // 福祉绵延
+    }
+
     const title = themeTitles[themeId] || '闽式生活'
 
     wx.setNavigationBarTitle({
       title: title
+    })
+
+    // 保存特殊内容URL到data中
+    this.setData({
+      specialContentUrl: specialContentUrls[themeId] || ''
     })
 
     // 加载新闻数据
@@ -118,8 +135,15 @@ Page({
     try {
       console.log('正在加载特殊内容...')
 
-      // 固定URL获取 id="content" 区域的详细内容
-      const specialContentUrl = 'https://www.fjsen.com/wap/zhuanti/2026-03/04/content_32143156.htm'
+      // 从data中获取当前主题对应的特殊内容URL
+      const specialContentUrl = this.data.specialContentUrl
+
+      // 如果没有配置特殊内容URL，则跳过
+      if (!specialContentUrl) {
+        console.warn('未配置特殊内容URL，跳过特殊内容加载')
+        return
+      }
+
       console.log('请求URL:', specialContentUrl)
 
       // 使用新方法获取 content 区域
@@ -127,15 +151,16 @@ Page({
 
       console.log('获取结果:', result)
       console.log('内容长度:', result?.content?.length)
+      console.log('标题:', result?.title)
 
       if (result && result.content) {
-        // 创建特殊的新闻项
+        // 创建特殊的新闻项，使用从HTML中提取的标题
         const specialItem = {
           id: 'special-' + Date.now(),
-          title: '闽式生活·山海福建',  // 特殊标题
+          title: result.title || '闽式生活·山海福建', // 使用提取的标题，降级到默认标题
           specialContent: result.content,
-          isSpecialItem: true,  // 标记为特殊项
-          url: specialContentUrl  // 保留原始URL
+          isSpecialItem: true, // 标记为特殊项
+          url: specialContentUrl // 保留原始URL
         }
 
         // 插入到列表最前面
@@ -143,6 +168,7 @@ Page({
 
         console.log('特殊内容插入成功，当前列表长度:', newsList.length)
         console.log('specialContent前200字符:', specialItem.specialContent.substring(0, 200))
+        console.log('specialItem标题:', specialItem.title)
       } else {
         console.warn('获取特殊内容失败，不插入特殊项')
       }
