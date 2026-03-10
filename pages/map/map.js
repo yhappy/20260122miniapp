@@ -199,9 +199,12 @@ Page({
       type: 'light'
     })
 
+    // 优先使用配置中的专属 URL，如果没有则使用默认 URL
+    const spotDetailUrl = item.SpotDetailURL || SPOT_DETAIL_URL
+    console.log('使用景点详情 URL:', spotDetailUrl)
 
     // 从远程获取景点详情数据
-    spotParser.getSpotDetail(SPOT_DETAIL_URL)
+    spotParser.getSpotDetail(spotDetailUrl)
       .then(spotDetail => {
 
         // 调试日志：检查解析后的数据

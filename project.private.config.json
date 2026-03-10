@@ -23,6 +23,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/map/map",
+          "pathName": "pages/map/map",
+          "query": "city=xiamen",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "pages/map/map",
+          "pathName": "pages/map/map",
+          "query": "city=fuzhou",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/minfo/minfo",
           "pathName": "pages/minfo/minfo",
           "query": "",
