@@ -14,7 +14,8 @@ const CITY_CONFIG = {
         dot: {
           top: '540rpx',
           left: '530rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/06/content_32129014.htm'
       },
       {
         id: 2,
@@ -22,7 +23,8 @@ const CITY_CONFIG = {
         dot: {
           top: '490rpx',
           left: '600rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/11/content_32129015.htm'
       },
       {
         id: 3,
@@ -30,7 +32,8 @@ const CITY_CONFIG = {
         dot: {
           top: '530rpx',
           left: '400rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/11/content_32129017.htm'
       },
       {
         id: 4,
@@ -38,7 +41,8 @@ const CITY_CONFIG = {
         dot: {
           top: '650rpx',
           left: '465rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129018.htm'
       },
       {
         id: 5,
@@ -46,7 +50,8 @@ const CITY_CONFIG = {
         dot: {
           top: '420rpx',
           left: '400rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129019.htm'
       },
       {
         id: 6,
@@ -54,7 +59,8 @@ const CITY_CONFIG = {
         dot: {
           top: '730rpx',
           left: '430rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129020.htm'
       },
       {
         id: 7,
@@ -62,7 +68,8 @@ const CITY_CONFIG = {
         dot: {
           top: '780rpx',
           left: '480rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129021.htm'
       },
       {
         id: 8,
@@ -70,7 +77,8 @@ const CITY_CONFIG = {
         dot: {
           top: '620rpx',
           left: '220rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129022.htm'
       },
       {
         id: 9,
@@ -78,7 +86,8 @@ const CITY_CONFIG = {
         dot: {
           top: '450rpx',
           left: '270rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129023.htm'
       },
       {
         id: 10,
@@ -86,7 +95,8 @@ const CITY_CONFIG = {
         dot: {
           top: '520rpx',
           left: '165rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129024.htm'
       },
       {
         id: 11,
@@ -94,7 +104,8 @@ const CITY_CONFIG = {
         dot: {
           top: '920rpx',
           left: '530rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129026.htm'
       },
       {
         id: 12,
@@ -102,7 +113,8 @@ const CITY_CONFIG = {
         dot: {
           top: '820rpx',
           left: '340rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129027.htm'
       },
       {
         id: 13,
@@ -110,7 +122,8 @@ const CITY_CONFIG = {
         dot: {
           top: '760rpx',
           left: '270rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129028.htm'
       },
       {
         id: 14,
@@ -118,7 +131,8 @@ const CITY_CONFIG = {
         dot: {
           top: '650rpx',
           left: '75rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129029.htm'
       },
       {
         id: 15,
@@ -126,7 +140,8 @@ const CITY_CONFIG = {
         dot: {
           top: '710rpx',
           left: '510rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129030.htm'
       },
       {
         id: 16,
@@ -134,7 +149,8 @@ const CITY_CONFIG = {
         dot: {
           top: '790rpx',
           left: '70rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129031.htm'
       },
       {
         id: 17,
@@ -142,7 +158,8 @@ const CITY_CONFIG = {
         dot: {
           top: '790rpx',
           left: '395rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-02/05/content_32129000.htm'
       }
     ]
   },
@@ -249,7 +266,8 @@ const CITY_CONFIG = {
         dot: {
           top: '880rpx',
           left: '400rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/06/content_32129208.htm'
       },
       {
         id: 2,
@@ -257,7 +275,8 @@ const CITY_CONFIG = {
         dot: {
           top: '780rpx',
           left: '140rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/06/content_32141306.htm'
       },
       {
         id: 3,
@@ -265,7 +284,8 @@ const CITY_CONFIG = {
         dot: {
           top: '870rpx',
           left: '490rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141307.htm'
       },
       {
         id: 4,
@@ -273,7 +293,8 @@ const CITY_CONFIG = {
         dot: {
           top: '920rpx',
           left: '160rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141308.htm'
       },
       {
         id: 5,
@@ -281,7 +302,8 @@ const CITY_CONFIG = {
         dot: {
           top: '770rpx',
           left: '290rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141310.htm'
       },
       {
         id: 6,
@@ -289,7 +311,8 @@ const CITY_CONFIG = {
         dot: {
           top: '560rpx',
           left: '340rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141314.htm'
       },
       {
         id: 7,
@@ -297,7 +320,8 @@ const CITY_CONFIG = {
         dot: {
           top: '660rpx',
           left: '490rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141315.htm'
       },
       {
         id: 8,
@@ -305,7 +329,8 @@ const CITY_CONFIG = {
         dot: {
           top: '1040rpx',
           left: '310rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141317.htm'
       },
       {
         id: 9,
@@ -313,7 +338,8 @@ const CITY_CONFIG = {
         dot: {
           top: '740rpx',
           left: '560rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141318.htm'
       },
       {
         id: 10,
@@ -321,7 +347,8 @@ const CITY_CONFIG = {
         dot: {
           top: '630rpx',
           left: '290rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141319.htm'
       }
     ]
   },
@@ -338,7 +365,8 @@ const CITY_CONFIG = {
         dot: {
           top: '680rpx',
           left: '480rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129209.htm'
       },
       {
         id: 2,
@@ -346,7 +374,8 @@ const CITY_CONFIG = {
         dot: {
           top: '680rpx',
           left: '100rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141321.htm'
       },
       {
         id: 3,
@@ -354,7 +383,8 @@ const CITY_CONFIG = {
         dot: {
           top: '780rpx',
           left: '640rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141322.htm'
       },
       {
         id: 4,
@@ -362,7 +392,8 @@ const CITY_CONFIG = {
         dot: {
           top: '490rpx',
           left: '240rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141323.htm'
       },
       {
         id: 5,
@@ -370,7 +401,8 @@ const CITY_CONFIG = {
         dot: {
           top: '730rpx',
           left: '530rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141324.htm'
       },
       {
         id: 6,
@@ -378,7 +410,8 @@ const CITY_CONFIG = {
         dot: {
           top: '530rpx',
           left: '290rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141325.htm'
       },
       {
         id: 7,
@@ -386,7 +419,8 @@ const CITY_CONFIG = {
         dot: {
           top: '830rpx',
           left: '540rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141327.htm'
       },
       {
         id: 8,
@@ -394,7 +428,8 @@ const CITY_CONFIG = {
         dot: {
           top: '880rpx',
           left: '390rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141328.htm'
       },
       {
         id: 9,
@@ -402,7 +437,8 @@ const CITY_CONFIG = {
         dot: {
           top: '420rpx',
           left: '260rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141329.htm'
       },
       {
         id: 10,
@@ -410,7 +446,8 @@ const CITY_CONFIG = {
         dot: {
           top: '640rpx',
           left: '240rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141330.htm'
       },
       {
         id: 11,
@@ -418,7 +455,8 @@ const CITY_CONFIG = {
         dot: {
           top: '1010rpx',
           left: '450rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141332.htm'
       },
       {
         id: 12,
@@ -426,7 +464,8 @@ const CITY_CONFIG = {
         dot: {
           top: '840rpx',
           left: '270rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141333.htm'
       },
       {
         id: 13,
@@ -434,7 +473,8 @@ const CITY_CONFIG = {
         dot: {
           top: '570rpx',
           left: '250rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141334.htm'
       },
       {
         id: 14,
@@ -442,7 +482,8 @@ const CITY_CONFIG = {
         dot: {
           top: '670rpx',
           left: '350rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141335.htm'
       }
     ]
   },
@@ -459,7 +500,8 @@ const CITY_CONFIG = {
         dot: {
           top: '510rpx',
           left: '440rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129210.htm'
       },
       {
         id: 2,
@@ -467,7 +509,8 @@ const CITY_CONFIG = {
         dot: {
           top: '700rpx',
           left: '500rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141337.htm'
       },
       {
         id: 3,
@@ -475,7 +518,8 @@ const CITY_CONFIG = {
         dot: {
           top: '750rpx',
           left: '550rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141338.htm'
       },
       {
         id: 4,
@@ -483,7 +527,8 @@ const CITY_CONFIG = {
         dot: {
           top: '710rpx',
           left: '150rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141339.htm'
       },
       {
         id: 5,
@@ -491,7 +536,8 @@ const CITY_CONFIG = {
         dot: {
           top: '670rpx',
           left: '300rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141340.htm'
       },
       {
         id: 6,
@@ -499,7 +545,8 @@ const CITY_CONFIG = {
         dot: {
           top: '820rpx',
           left: '420rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141342.htm'
       },
       {
         id: 7,
@@ -507,7 +554,8 @@ const CITY_CONFIG = {
         dot: {
           top: '460rpx',
           left: '100rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141343.htm'
       }
     ]
   },
@@ -524,7 +572,8 @@ const CITY_CONFIG = {
         dot: {
           top: '770rpx',
           left: '510rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129211.htm'
       },
       {
         id: 2,
@@ -532,7 +581,8 @@ const CITY_CONFIG = {
         dot: {
           top: '460rpx',
           left: '280rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141344.htm'
       },
       {
         id: 3,
@@ -540,7 +590,8 @@ const CITY_CONFIG = {
         dot: {
           top: '620rpx',
           left: '160rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141345.htm'
       },
       {
         id: 4,
@@ -548,7 +599,8 @@ const CITY_CONFIG = {
         dot: {
           top: '480rpx',
           left: '100rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141346.htm'
       },
       {
         id: 5,
@@ -556,7 +608,8 @@ const CITY_CONFIG = {
         dot: {
           top: '590rpx',
           left: '450rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141347.htm'
       },
       {
         id: 6,
@@ -564,7 +617,8 @@ const CITY_CONFIG = {
         dot: {
           top: '790rpx',
           left: '390rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141348.htm'
       }
     ]
   },
@@ -581,7 +635,8 @@ const CITY_CONFIG = {
         dot: {
           top: '580rpx',
           left: '540rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32129212.htm'
       },
       {
         id: 2,
@@ -589,7 +644,8 @@ const CITY_CONFIG = {
         dot: {
           top: '790rpx',
           left: '220rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141350.htm'
       },
       {
         id: 3,
@@ -597,7 +653,8 @@ const CITY_CONFIG = {
         dot: {
           top: '640rpx',
           left: '600rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141427.htm'
       },
       {
         id: 4,
@@ -605,7 +662,8 @@ const CITY_CONFIG = {
         dot: {
           top: '720rpx',
           left: '550rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141428.htm'
       },
       {
         id: 5,
@@ -613,7 +671,8 @@ const CITY_CONFIG = {
         dot: {
           top: '660rpx',
           left: '400rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141430.htm'
       },
       {
         id: 6,
@@ -621,7 +680,8 @@ const CITY_CONFIG = {
         dot: {
           top: '940rpx',
           left: '360rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141431.htm'
       },
       {
         id: 7,
@@ -629,7 +689,8 @@ const CITY_CONFIG = {
         dot: {
           top: '520rpx',
           left: '420rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141432.htm'
       },
       {
         id: 8,
@@ -637,7 +698,8 @@ const CITY_CONFIG = {
         dot: {
           top: '500rpx',
           left: '280rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141434.htm'
       },
       {
         id: 9,
@@ -645,7 +707,8 @@ const CITY_CONFIG = {
         dot: {
           top: '740rpx',
           left: '480rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141435.htm'
       },
       {
         id: 10,
@@ -653,7 +716,8 @@ const CITY_CONFIG = {
         dot: {
           top: '580rpx',
           left: '140rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141436.htm'
       },
       {
         id: 11,
@@ -661,7 +725,8 @@ const CITY_CONFIG = {
         dot: {
           top: '820rpx',
           left: '460rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141437.htm'
       },
       {
         id: 12,
@@ -669,7 +734,8 @@ const CITY_CONFIG = {
         dot: {
           top: '830rpx',
           left: '340rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141438.htm'
       }
     ]
   },
@@ -686,7 +752,8 @@ const CITY_CONFIG = {
         dot: {
           top: '740rpx',
           left: '140rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/06/content_32129213.htm'
       },
       {
         id: 2,
@@ -694,7 +761,8 @@ const CITY_CONFIG = {
         dot: {
           top: '510rpx',
           left: '420rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141439.htm'
       },
       {
         id: 3,
@@ -702,7 +770,8 @@ const CITY_CONFIG = {
         dot: {
           top: '620rpx',
           left: '300rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141440.htm'
       },
       {
         id: 4,
@@ -710,7 +779,8 @@ const CITY_CONFIG = {
         dot: {
           top: '470rpx',
           left: '520rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141441.htm'
       },
       {
         id: 5,
@@ -718,7 +788,8 @@ const CITY_CONFIG = {
         dot: {
           top: '720rpx',
           left: '490rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141456.htm'
       },
       {
         id: 6,
@@ -726,7 +797,8 @@ const CITY_CONFIG = {
         dot: {
           top: '800rpx',
           left: '420rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141457.htm'
       },
       {
         id: 7,
@@ -734,7 +806,8 @@ const CITY_CONFIG = {
         dot: {
           top: '630rpx',
           left: '600rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141459.htm'
       },
       {
         id: 8,
@@ -742,7 +815,8 @@ const CITY_CONFIG = {
         dot: {
           top: '590rpx',
           left: '180rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141461.htm'
       }
     ]
   },
@@ -759,7 +833,8 @@ const CITY_CONFIG = {
         dot: {
           top: '780rpx',
           left: '540rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32129214.htm'
       },
       {
         id: 2,
@@ -767,7 +842,8 @@ const CITY_CONFIG = {
         dot: {
           top: '520rpx',
           left: '490rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141466.htm'
       },
       {
         id: 3,
@@ -775,7 +851,8 @@ const CITY_CONFIG = {
         dot: {
           top: '560rpx',
           left: '630rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141467.htm'
       },
       {
         id: 4,
@@ -783,7 +860,8 @@ const CITY_CONFIG = {
         dot: {
           top: '810rpx',
           left: '390rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141468.htm'
       },
       {
         id: 5,
@@ -791,7 +869,8 @@ const CITY_CONFIG = {
         dot: {
           top: '720rpx',
           left: '110rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141469.htm'
       },
       {
         id: 6,
@@ -799,7 +878,8 @@ const CITY_CONFIG = {
         dot: {
           top: '570rpx',
           left: '260rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141471.htm'
       },
       {
         id: 7,
@@ -807,7 +887,8 @@ const CITY_CONFIG = {
         dot: {
           top: '680rpx',
           left: '540rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141472.htm'
       },
       {
         id: 8,
@@ -815,7 +896,8 @@ const CITY_CONFIG = {
         dot: {
           top: '650rpx',
           left: '310rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141473.htm'
       },
       {
         id: 9,
@@ -823,7 +905,8 @@ const CITY_CONFIG = {
         dot: {
           top: '440rpx',
           left: '370rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/12/content_32141474.htm'
       }
     ]
   },
@@ -840,7 +923,8 @@ const CITY_CONFIG = {
         dot: {
           top: '830rpx',
           left: '420rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/06/content_32129215.htm'
       },
       {
         id: 2,
@@ -848,7 +932,8 @@ const CITY_CONFIG = {
         dot: {
           top: '990rpx',
           left: '340rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141475.htm'
       },
       {
         id: 3,
@@ -856,7 +941,8 @@ const CITY_CONFIG = {
         dot: {
           top: '450rpx',
           left: '260rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141476.htm'
       },
       {
         id: 4,
@@ -864,7 +950,8 @@ const CITY_CONFIG = {
         dot: {
           top: '560rpx',
           left: '480rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141477.htm'
       },
       {
         id: 5,
@@ -872,7 +959,8 @@ const CITY_CONFIG = {
         dot: {
           top: '440rpx',
           left: '320rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141478.htm'
       },
       {
         id: 6,
@@ -880,7 +968,8 @@ const CITY_CONFIG = {
         dot: {
           top: '380rpx',
           left: '370rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/11/content_32141479.htm'
       },
       {
         id: 7,
@@ -888,7 +977,8 @@ const CITY_CONFIG = {
         dot: {
           top: '850rpx',
           left: '550rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141480.htm'
       },
       {
         id: 8,
@@ -896,7 +986,8 @@ const CITY_CONFIG = {
         dot: {
           top: '840rpx',
           left: '170rpx'
-        }
+        },
+        SpotDetailURL: 'https://www.fjsen.com/wap/zhuanti/2026-03/10/content_32141481.htm'
       }
     ]
   }
