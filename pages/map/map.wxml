@@ -51,7 +51,7 @@
     </view>
 
     <!-- 弹窗内容 -->
-    <view class="popup-content {{showDetailPopup ? 'show' : ''}}" catchtap="stopPropagation">
+    <view class="popup-content show" wx:if="{{showDetailPopup}}" catchtap="stopPropagation">
       <!-- 景点图片 -->
       <image class="popup-image"
         src="{{spotDetail ? spotDetail.cover : 'https://www.fjsen.com/images/2026-01/05/32110370_5abbc451-3e99-4dfb-8178-c798a39c1c62copy.png'}}"

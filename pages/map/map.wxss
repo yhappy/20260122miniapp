@@ -246,17 +246,23 @@
   border-radius: 40rpx 40rpx 0 0;
   padding: 0 0 40rpx 0;
   position: relative;
-  transform: translateY(500rpx);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  /* 使用 wx:if 后，每次创建时都从下方滑入 */
+  animation: slideUp 0.3s ease forwards;
   overflow-y: auto;
+  overflow-x: hidden;
   box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.1);
   -webkit-overflow-scrolling: touch;
 }
 
-.popup-content.show {
-  transform: translateY(0);
-  opacity: 1;
+@keyframes slideUp {
+  from {
+    transform: translateY(500rpx);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* 关闭按钮 */
